@@ -9,7 +9,6 @@ import * as Actions from './Actions';
  * @param {*}  param1.data
  */
 let Reducer = (state = Defaults, { type, data }) => {
-  console.log(state);
   switch (type) {
     /** Basic control data */
     case Actions.POD_START: {

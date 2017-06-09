@@ -1,4 +1,4 @@
-import { client as WebSocketClient } from 'websocket';
+import { w3cwebsocket as SocketClient } from 'websocket';
 
 const defaultURL = 'ws://localhost:8080/';
 
@@ -6,7 +6,6 @@ const defaultURL = 'ws://localhost:8080/';
  * connection used to send/recieve messages from the server
  * @type {Connection}
  */
-let socket;
 
 let client;
 
@@ -14,43 +13,36 @@ let client;
  * Establishes connection with socket
  * @param {String} url 
  */
-export function connect(url = defaultURL){
-  return new Promise( (resolve, reject) => {
-    client = new WebSocketClient();
-    client.on('connectFailed', (error) => 
-      reject(error));
-    
-    client.on('connect', (connection) => {
-      socket = connection;
-      resolve();
-    });
+export function connect(
+  onopen, onmessage, onerror, onclose, url = defaultURL) {
+  client = new SocketClient(url, 'echo-protocol');
 
-    client.on('message', socketDataHandler);
-
-    client.connect(url, 'echo-protocol');
-  })
+  client.onerror = onerror;
+  client.onclose = onclose;
+  client.onmessage = onmessage;
+  client.onopen = onopen;
 }
 
-/**
- * Handles incoming socket data
- * @param {Object} message 
- */
-function socketDataHandler(message){
-  
-}
 
-export function sendMessage(message){
-  if(!socket){
+export function sendMessage(message) {
+  if (!client) {
     throw new Error("socket hasn't been established yet");
   }
-  if(!socket.connected){
+  if (client.readyState != client.OPEN) {
     throw new Error("socket not connected yet");
   }
 
-  client.sendUTF(message); 
+  client.send(message);
 }
 
-export function sendJSON (obj){
+export function sendJSON(obj) {
   let message = JSON.stringify(obj);
   sendMessage(message);
+}
+
+export function sendCommand(Command, value){
+  sendJSON({
+    Command,
+    value
+  });
 }

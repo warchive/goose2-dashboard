@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Row, Col } from 'react-bootstrap';
-import { sendMessage, sendJSON } from '../api/api';
+import { sendCommand } from '../api/api';
 
 const ButtonGroup = ({ 
   emergencyStop, start, brake,
@@ -44,18 +44,9 @@ const ButtonGroupConnected = connect(
   },
   (dispatch) => {
     return {
-      changeEmergencyStop: (val) => sendJSON({
-        command: 'Emergency Stop',
-        value: val
-      }),
-      changeStart: (val) => sendJSON({
-        command: 'Start',
-        value: val
-      }),
-      changeBrake: (val) => sendJSON({
-        command: 'Brake',
-        value: val
-      })
+      changeEmergencyStop: (val) => sendCommand('Emergency Stop', val),
+      changeStart: (val) => sendCommand('Start', val),
+      changeBrake: (val) => sendCommand('Brake', val)
     }
   }
 )(ButtonGroup);
