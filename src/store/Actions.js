@@ -1,0 +1,18 @@
+/** Basic controls */
+export const EMERGENCY_STOP = 'EMERGENCY_STOP'; 
+export const POD_START = 'POD_START'; 
+export const CHANGE_SPEED = 'CHANGE_SPEED'; 
+export const CHANGE_ACCELERATION = 'CHANGE_ACCELERATION';
+export const CHANGE_BRAKE = "CHANGE_BRAKE";
+
+/** General datums */
+export const UPDATE_SPEED = 'UPDATE_SPEED_DATA'; 
+export const UPDATE_ACCELERATION = 'UPDATE_ACCELERATION'; 
+
+export const UPDATE_AIR_TANK_LEVEL = 'UPDATE_AIR_TANK_LEVEL';
+export const UPDATE_BATTERY = 'UPDATE_BATTERY';
+export const UPDATE_TEMP = 'UPDATE_TEMP';
+export const UPDATE_AIR_TANK_PRESSURE = 'UPDATE_AIR_TANK_PRESSURE';
+export const UPDATE_DISTANCE = 'UPDATE_DISTANCE';
+export const UPDATE_IMU = 'UPDATE_IMU';
+export const UPDATE_IMU_ROTATION = 'UPDATE_IMU_ROTATION';

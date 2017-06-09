@@ -1,11 +1,16 @@
-var debug = process.env.NODE_ENV !== "production";
-var path = require('path');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+const path = require('path');
+const debug = process.env.NODE_ENV !== "production";
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const webpack = require('webpack');
 
-var extractSass = new ExtractTextPlugin({
+const extractSass = new ExtractTextPlugin({
   filename: "../dist/[name].css",
   disable: debug
 });
+
+const loaderOptions = new webpack.DefinePlugin({
+  DEBUG: debug
+})
 
 module.exports = {
   context: path.join(__dirname, "src"),
@@ -17,6 +22,9 @@ module.exports = {
   output: {
     path: __dirname + "/dist/",
     filename: "main.min.js"
+  },
+  resolve: {
+    extensions: ['.js', '.jsx']
   },
   module: {
     loaders: [{
@@ -45,7 +53,8 @@ module.exports = {
     ]
   },
   plugins: [
-    extractSass
+    extractSass,
+    loaderOptions
   ],
   devServer: {
     publicPath: "/",
