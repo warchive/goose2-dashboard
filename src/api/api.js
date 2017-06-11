@@ -1,6 +1,5 @@
 import { w3cwebsocket as SocketClient } from 'websocket';
-
-const defaultURL = 'ws://localhost:8080/';
+import {URL as defaultURL} from '../../config'; 
 
 /**
  * connection used to send/recieve messages from the server

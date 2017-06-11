@@ -1,5 +1,5 @@
 const path = require('path');
-const debug = process.env.NODE_ENV !== "production";
+const debug = process.env.NODE_ENV !== "production";  //eslint-disable-line
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const webpack = require('webpack');
 
@@ -10,17 +10,17 @@ const extractSass = new ExtractTextPlugin({
 
 const loaderOptions = new webpack.DefinePlugin({
   DEBUG: debug
-})
+});
 
 module.exports = {
-  context: path.join(__dirname, "src"),
+  context: path.join(__dirname, "src"), //eslint-disable-line
   devtool: debug ? "inline-sourcemap" : false,
   entry: [
     "./main.jsx",
     "./main.scss"
   ],
   output: {
-    path: __dirname + "/dist/",
+    path: __dirname + "/dist/", //eslint-disable-line
     filename: "main.min.js"
   },
   resolve: {
@@ -28,28 +28,28 @@ module.exports = {
   },
   module: {
     loaders: [{
-        test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['env', 'react'],
-            plugins: ['transform-async-to-generator']
-          }
+      test: /\.jsx?$/,
+      exclude: /(node_modules|bower_components)/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['env', 'react'],
+          plugins: ['transform-async-to-generator']
         }
-      },
-      {
-        test: /\.s?css$/,
-        use: extractSass.extract({
-          use: [{
-            loader: "css-loader"
-          }, {
-            loader: "sass-loader"
-          }],
-          // use style-loader in development
-          fallback: "style-loader"
-        })
       }
+    },
+    {
+      test: /\.s?css$/,
+      use: extractSass.extract({
+        use: [{
+          loader: "css-loader"
+        }, {
+          loader: "sass-loader"
+        }],
+        // use style-loader in development
+        fallback: "style-loader"
+      })
+    }
     ]
   },
   plugins: [
@@ -60,4 +60,4 @@ module.exports = {
     publicPath: "/",
     contentBase: "./dist"
   },
-}
+};

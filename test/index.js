@@ -6,7 +6,7 @@ const http = require('http');
 const PORT = 8080;
 
 const app = express();
-app.use(express.static(path.join(__dirname, '..', 'dist')));
+app.use(express.static(path.join(__dirname, '..', 'dist'))); // eslint-disable-line
 
 let server = http.createServer(app);
 
@@ -27,5 +27,5 @@ wsServer.on('request', (req) => {
   
   connection.on('message', (message) => {
     console.log(message);
-  })
-})
+  });
+});

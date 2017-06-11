@@ -1,1 +1,10 @@
 @import './scss/bootstrap.min.css';
+@import './scss/controlGroup.scss';
+
+body {
+  max-height: 100vh;
+}
+
+#root {
+  max-height: 100vh;
+}

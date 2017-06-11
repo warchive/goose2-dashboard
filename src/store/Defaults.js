@@ -11,7 +11,7 @@ let controls = {
   speed: 0,
   acceleration: 0,
   brake: false  
-}
+};
 
 /**
  * @typedef {Object} ControlSettings
@@ -21,7 +21,7 @@ let controls = {
 let controlSettings = {
   manualControl: false,
   instantChange: false
-}
+};
 
 /**
  * @typedef {Object} Data
@@ -45,7 +45,7 @@ let data = {
   distance: [],
   imu: [],
   imuRotation: []
-}
+};
 
 /**
  * @typedef {Object} Connection
@@ -57,7 +57,7 @@ let connection = {
   connected: false,
   strength: 0,
   latency: 0
-}
+};
 
 /**
  * @typedef {Object} StoreState
@@ -71,4 +71,4 @@ export default {
   controls,
   controlSettings,
   connection
-}
+};

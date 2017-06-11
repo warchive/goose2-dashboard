@@ -23,11 +23,11 @@ class App extends React.Component {
       <Grid fluid>
         <Control />
       </Grid>
-    )
+    );
   }
 }
 
-const store = createStore(Reducer, DEBUG ?
+const store = createStore(Reducer, DEBUG ?  //eslint-disable-line
   window.__REDUX_DEVTOOLS_EXTENSION__ &&
   window.__REDUX_DEVTOOLS_EXTENSION__() : null);
 
@@ -48,11 +48,11 @@ WSConnect(() => {
       data: false
     });
     console.log('disconnected');
-  })
+  });
 
 ReactDom.render(
   <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById('root')
-)
+);
