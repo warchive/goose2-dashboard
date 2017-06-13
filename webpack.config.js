@@ -1,27 +1,27 @@
-const path = require('path');
+const path = require('path')
 const debug = process.env.NODE_ENV !== "production";  //eslint-disable-line
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const webpack = require('webpack')
 
 const extractSass = new ExtractTextPlugin({
-  filename: "../dist/[name].css",
+  filename: '../dist/[name].css',
   disable: debug
-});
+})
 
 const loaderOptions = new webpack.DefinePlugin({
   DEBUG: debug
-});
+})
 
 module.exports = {
   context: path.join(__dirname, "src"), //eslint-disable-line
-  devtool: debug ? "inline-sourcemap" : false,
+  devtool: debug ? 'inline-sourcemap' : false,
   entry: [
-    "./main.jsx",
-    "./main.scss"
+    './main.jsx',
+    './main.scss'
   ],
   output: {
     path: __dirname + "/dist/", //eslint-disable-line
-    filename: "main.min.js"
+    filename: 'main.min.js'
   },
   resolve: {
     extensions: ['.js', '.jsx']
@@ -42,12 +42,12 @@ module.exports = {
       test: /\.s?css$/,
       use: extractSass.extract({
         use: [{
-          loader: "css-loader"
+          loader: 'css-loader'
         }, {
-          loader: "sass-loader"
+          loader: 'sass-loader'
         }],
         // use style-loader in development
-        fallback: "style-loader"
+        fallback: 'style-loader'
       })
     }
     ]
@@ -57,7 +57,7 @@ module.exports = {
     loaderOptions
   ],
   devServer: {
-    publicPath: "/",
-    contentBase: "./dist"
-  },
-};
+    publicPath: '/',
+    contentBase: './dist'
+  }
+}

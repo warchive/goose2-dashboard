@@ -1,26 +1,27 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Button, Row, Col } from 'react-bootstrap';
-import { sendCommand } from '../api/api';
+import React from 'react'
+import { Row, Col } from 'react-bootstrap'
 
 /** Components */
-import ButtonGroup from './controls/ButtonGroup';
-import SliderGroup from './controls/SliderGroup';
+import ButtonGroup from './controls/ButtonGroup'
+import SliderGroup from './controls/SliderGroup'
+import Settings from './controls/Settings'
 
 class Control extends React.Component {
-
-  render() {
+  render () {
     return (
       <Row>
-        <Col sm={4} style={{display:'flex'}}>
+        <Col sm={2}>
+          <Settings />
+        </Col>
+        <Col sm={5} style={{display: 'flex'}}>
           <SliderGroup />
         </Col>
-        <Col sm={4}>
+        <Col sm={5}>
           <ButtonGroup />
         </Col>
       </Row>
-    );
+    )
   }
 }
 
-export default Control;
+export default Control

@@ -1,32 +1,32 @@
-import { connect } from 'react-redux';
-import { Button, Row, Col } from 'react-bootstrap';
-import { sendCommand } from '../../api/api';
-import React from 'react';
+import { connect } from 'react-redux'
+import { Button } from 'react-bootstrap'
+import { sendCommand } from '../../api/api'
+import React from 'react'
 
-const ButtonGroup = ({ 
+const ButtonGroup = ({
   emergencyStop, start, brake,
   changeEmergencyStop, changeStart, changeBrake }) => {
   return (
     <div>
-        <Button bsStyle="success" bsSize="large" block
-          active={start}
-          onClick={() => changeStart(!start)}>
+      <Button bsStyle='success' bsSize='large' block
+        active={start}
+        onClick={() => changeStart(!start)}>
           Start
         </Button>
-        <Button bsStyle="danger" bsSize="large" block
-          active={emergencyStop}
-          onClick={() => changeEmergencyStop(!emergencyStop)}>
+      <Button bsStyle='danger' bsSize='large' block
+        active={emergencyStop}
+        onClick={() => changeEmergencyStop(!emergencyStop)}>
           Emergency Stop
         </Button>
-      <hr/>
-        <Button bsStyle="info" bsSize="large" block
-          active={brake}
-          onClick={() => changeBrake(!brake)}>
+      <hr />
+      <Button bsStyle='info' bsSize='large' block
+        active={brake}
+        onClick={() => changeBrake(!brake)}>
           Engage Brakes
         </Button>
     </div>
-  );
-};
+  )
+}
 
 const ButtonGroupConnected = connect(
   (state) => {
@@ -34,15 +34,15 @@ const ButtonGroupConnected = connect(
       emergencyStop: state.controls.emergencyStop,
       start: state.controls.start,
       brake: state.controls.brake
-    };
+    }
   },
   (dispatch) => {
     return {
       changeEmergencyStop: (val) => sendCommand('Emergency Stop', val),
       changeStart: (val) => sendCommand('Start', val),
       changeBrake: (val) => sendCommand('Brake', val)
-    };
+    }
   }
-)(ButtonGroup);
+)(ButtonGroup)
 
-export default ButtonGroupConnected;
+export default ButtonGroupConnected

@@ -1,6 +1,14 @@
 # control-front
 
-[![Build Status](https://travis-ci.org/teamwaterloop/control-front.svg?branch=master)](https://travis-ci.org/teamwaterloop/control-front)
+[![Build Status][build-badge]][build] [![Standard code style][standard-badge]][standard]
+
+[build]: https://travis-ci.org/teamwaterloop/control-front
+
+[build-badge]: https://travis-ci.org/teamwaterloop/control-front.svg?branch=master
+
+[standard]: https://standardjs.com
+
+[standard-badge]: https://img.shields.io/badge/code_style-standard-brightgreen.svg
 
 Front end HTML page for controlling the pod
 

@@ -1,58 +1,57 @@
 /** React */
-import React from 'react';
-import ReactDom from 'react-dom';
+import React from 'react'
+import ReactDom from 'react-dom'
 
 /** Redux */
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-import Reducer from './store/Reducer';
-import * as Actions from './store/Actions';
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import Reducer from './store/Reducer'
+import * as Actions from './store/Actions'
 
 /** Bootstrap */
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid } from 'react-bootstrap'
 
 /** Other components */
-import Control from './section/Controls';
+import Control from './section/Controls'
 
-import { connect as WSConnect } from './api/api';
+import { connect as WSConnect } from './api/api'
 
 class App extends React.Component {
-
-  render() {
+  render () {
     return (
       <Grid fluid>
         <Control />
       </Grid>
-    );
+    )
   }
 }
 
 const store = createStore(Reducer, DEBUG ?  //eslint-disable-line
   window.__REDUX_DEVTOOLS_EXTENSION__ &&
-  window.__REDUX_DEVTOOLS_EXTENSION__() : null);
+  window.__REDUX_DEVTOOLS_EXTENSION__() : null)
 
 WSConnect(() => {
   store.dispatch({
-    type: Actions.UPDATE_CONNECTION_STATE, 
+    type: Actions.UPDATE_CONNECTION_STATE,
     data: true
-  });
-  console.log('connected');
+  })
+  console.log('connected')
 },
   (message) => {
-    console.log(message);
+    console.log(message)
   }, (error) => {
-    console.error(error);
+    console.error(error)
   }, () => {
     store.dispatch({
       type: Actions.UPDATE_CONNECTION_STATE,
       data: false
-    });
-    console.log('disconnected');
-  });
+    })
+    console.log('disconnected')
+  })
 
 ReactDom.render(
   <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById('root')
-);
+)

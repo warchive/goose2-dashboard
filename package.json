@@ -7,8 +7,8 @@
     "build:debug": "NODE_ENV=debug node_modules/.bin/webpack --watch",
     "build:prod": "NODE_ENV=production node_modules/.bin/webpack",
     "testServer": "node test/index.js",
-    "lint": "node_modules/.bin/eslint .",
-    "lint:fix": "node_modules/.bin/eslint --fix .",
+    "lint": "node_modules/.bin/standard",
+    "lint:fix": "node_modules/.bin/standard --fix",
     "test": "echo no tests yet"
   },
   "author": "",
@@ -21,7 +21,9 @@
     "react-bootstrap": "^0.31.0",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.5",
+    "react-toggle-switch": "^2.1.4",
     "redux": "^3.6.0",
+    "standard": "^10.0.2",
     "webpack": "^2.6.1",
     "websocket": "^1.0.24"
   },
