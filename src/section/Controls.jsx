@@ -12,7 +12,7 @@ class Control extends React.Component {
   render() {
     return (
       <Row>
-        <Col sm={4}>
+        <Col sm={4} style={{display:'flex'}}>
           <SliderGroup />
         </Col>
         <Col sm={4}>

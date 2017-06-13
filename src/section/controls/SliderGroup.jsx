@@ -11,11 +11,14 @@ import { SPEED_CONF, ACCELERATION_CONF } from '../../../config';
 
 const SliderWithTooltip = createSliderWithTooltip(Slider);
 
-const Handle = () => {
-  console.log('handle');
-  return (
-    <div style={{ color: 'black', height: 10, width: 10 }} />
-  );
+const styles = {
+  handleStyle: {
+    width: '80px',
+    transform: 'translateX(-40px)',
+    height: '20px',
+    borderRadius: '0',
+    margin: 0
+  }
 };
 
 const Slide = ({ instantChange, onChange, title, min, max, defaultVal }) => {
@@ -26,7 +29,7 @@ const Slide = ({ instantChange, onChange, title, min, max, defaultVal }) => {
         onChange={instantChange ? onChange : () => null}
         onAfterChange={instantChange ? () => null : onChange}
         min={min} max={max} default={defaultVal}
-        handleStyle={[{ backgroundColor: 'black', width: 30 }]} />
+        handleStyle={[styles.handleStyle]} />
     </div>
   );
 };

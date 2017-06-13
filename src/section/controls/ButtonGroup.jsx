@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { Button, Row, Col } from 'react-bootstrap';
 import { sendCommand } from '../../api/api';
+import React from 'react';
 
 const ButtonGroup = ({ 
   emergencyStop, start, brake,
