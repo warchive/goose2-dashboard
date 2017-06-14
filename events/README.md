@@ -24,7 +24,7 @@ Definitions saved in commands.js
 | Command       | Value Type | Bound    | Description                                      |
 | ------------- | ---------- | -------- | ------------------------------------------------ |
 | acceleration  | Float      | [0, 100] | Changes acceleration of the pod                  |
-| brake         | Boolean?   |          | Activates Brakes                                 |
+| brake         | Boolean    |          | Activates Brakes                                 |
 | emergencyStop | Boolean    |          | Activate emergency stop prodcedure               |
 | levitation    | Boolean    |          | Activates levitation                             |
 | manualControl | Boolean    |          | Signals that manual controls are being activated |
@@ -44,13 +44,13 @@ Definitions saved in broadcast.js
 }
 ```
 
-| name         | Value Type                      | Description                                    |
-| ------------ | ------------------------------- | ---------------------------------------------- |
-| speed        | Float                           | Speed of the pod                               |
-| acceleration | Array[3]\<Float> ?               | Represents x,y,z                               |
-| airTankLevel | Float                           | PSI in Air Tank                                |
-| batteryLevel | Float                           | Batteries percentage                           |
-| temp         | Float                           | Maybe we have to account for different sensors |
-| distance     |                                 |                                                |
-| Float        | From the photo electric sensors |                                                |
-| IMU          | Array[3]<Float> ?               | Data from inertial measurements sensor         |
+| name         | Value Type         | Bound    | Description                                    |
+| ------------ | ------------------ | -------- | ---------------------------------------------- |
+| speed        | Float              | [0,100]  | Speed of the pod                               |
+| start        | Boolean            |          | If the pod has started                         |
+| acceleration | Array[3]\<Float> ? | [0,100]  | Represents x,y,z                               |
+| airTankLevel | Float              | [0,100]  | PSI in Air Tank                                |
+| batteryLevel | Float              | [0,100]  | Batteries percentage                           |
+| temp         | Float              |          | Maybe we have to account for different sensors |
+| distance     | Float              | [0, ...] | From photo electric sensors                    |
+| IMU          | Array[3]\<Float> ?  |          | Data from inertial measurements sensor         |
