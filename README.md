@@ -12,6 +12,10 @@
 
 Front end HTML page for controlling the pod
 
+## See below link for documentation
+
+* [Commands and Events for Websocket Communication](https://github.com/teamwaterloop/control-front/tree/master/events)
+
 ## Steps to run
 
 ```bash
