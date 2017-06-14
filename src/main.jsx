@@ -13,6 +13,7 @@ import { Grid } from 'react-bootstrap'
 
 /** Other components */
 import Control from './section/Controls'
+import Network from './section/Network'
 
 import { connect as WSConnect } from './api/api'
 
@@ -20,15 +21,18 @@ class App extends React.Component {
   render () {
     return (
       <Grid fluid>
+        <Network />
         <Control />
       </Grid>
     )
   }
 }
 
-const store = createStore(Reducer, DEBUG ?  //eslint-disable-line
-  window.__REDUX_DEVTOOLS_EXTENSION__ &&
-  window.__REDUX_DEVTOOLS_EXTENSION__() : null)
+const store = createStore(
+  Reducer, DEBUG  // eslint-disable-line
+  ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
+    window.__REDUX_DEVTOOLS_EXTENSION__() : null
+ )
 
 WSConnect(() => {
   store.dispatch({

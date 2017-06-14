@@ -7,6 +7,7 @@ import * as Actions from '../../store/Actions'
 import * as Commands from '../../../events/commands'
 
 const LabelSwitch = ({ label, checked, onToggle }) => {
+  console.log('checked: ' + checked)
   return (
     <div style={{
       display: 'flex',
@@ -15,7 +16,7 @@ const LabelSwitch = ({ label, checked, onToggle }) => {
       alignContent: 'center',
       margin: 10}}>
       <Switch
-        checked={checked}
+        on={checked}
         onClick={() => onToggle(!checked)} />
       <p style={{marginBottom: 0, marginLeft: 10}}>{label}</p>
     </div>
@@ -32,6 +33,7 @@ const Settings = ({ manualControl, instantChange,
           checked={manualControl}
           onToggle={(evt) => changeManualControl(evt)} />
       </Row>
+      <hr />
       <Row>
         <LabelSwitch
           label='Instant Change'
@@ -45,19 +47,19 @@ const Settings = ({ manualControl, instantChange,
 const SettingsConnected = connect(
   (state) => {
     return {
-      manualControl: state.manualControl,
-      instantChange: state.instantChange
+      manualControl: state.controlSettings.manualControl,
+      instantChange: state.controlSettings.instantChange
     }
   },
   (dispatch) => {
     return {
       changeManualControl: (val) => {
-        console.log(val)
-        dispatch({ type: Actions.CHANGE_CONTROL_MANUAL, val })
-        sendCommand(Commands.MANUAL_CONTROLl)
+        console.log('val ' + val)
+        dispatch({ type: Actions.CHANGE_CONTROL_MANUAL, data: val })
+        sendCommand(Commands.MANUAL_CONTROL)
       },
       changeInstantControl: (val) => {
-        dispatch({ type: Actions.CHANGE_CONTROL_INSTANT, val })
+        dispatch({ type: Actions.CHANGE_CONTROL_INSTANT, data: val })
       }
     }
   }

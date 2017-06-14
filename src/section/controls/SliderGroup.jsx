@@ -2,12 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Row } from 'react-bootstrap'
 import { sendCommand } from '../../api/api'
-import * as Actions from '../../store/Actions.js'
 import Slider from 'rc-slider/lib/Slider'
 import createSliderWithTooltip from 'rc-slider/lib/createSliderWithTooltip'
-import 'rc-slider/assets/index.css'
 
-import { SPEED_CONF, ACCELERATION_CONF } from '../../../config'
+import { SliderDefinitions } from '../../../config'
+
+import 'rc-slider/assets/index.css'
 
 const SliderWithTooltip = createSliderWithTooltip(Slider)
 
@@ -21,48 +21,40 @@ const styles = {
   }
 }
 
-const Slide = ({ instantChange, onChange, title, min, max, defaultVal }) => {
+const Slide = ({ instantChange, onChange, title, min, max,
+  defaultVal, disabled }) => {
   return (
     <div className='slider-container'>
       <p className='text-center' >{title}</p>
       <SliderWithTooltip vertical included
         onChange={instantChange ? onChange : () => null}
         onAfterChange={instantChange ? () => null : onChange}
-        min={min} max={max} default={defaultVal}
-        handleStyle={[styles.handleStyle]} />
+        min={min}
+        max={max}
+        default={defaultVal}
+        handleStyle={[styles.handleStyle]}
+        disabled={disabled} />
     </div>
   )
 }
 
-class SliderGroup extends React.Component {
-  handleSliderChange (type, val) {
-    if (type === 'Acceleration') {
-      this.props.changeAcceleration(val)
-    } else if (type === 'Speed') {
-      this.props.changeSpeed(val)
-    }
-  }
-
-  render () {
-    return (
-      <Row className='slider-group'>
-        <Slide
-          instantChange={this.props.instantChange}
-          onChange={(val) => this.handleSliderChange('Acceleration', val)}
-          title='Acceleration'
-          min={ACCELERATION_CONF.min}
-          max={ACCELERATION_CONF.max}
-          defaultVal={ACCELERATION_CONF.default} />
-        <Slide
-          instantChange={this.props.instantChange}
-          onChange={(val) => this.handleSliderChange('Speed', val)}
-          title='Speed'
-          min={SPEED_CONF.min}
-          max={SPEED_CONF.max}
-          defaultVal={SPEED_CONF.default} />
-      </Row>
-    )
-  }
+const SliderGroup = ({ instantChange, manual, changeControl }) => {
+  return (
+    <Row className='slider-group'>
+      {
+        SliderDefinitions.map(v =>
+          <Slide
+            instantChange={instantChange}
+            onChange={val => changeControl(v.action, v.command, val)}
+            title={v.name}
+            min={v.min}
+            max={v.max}
+            defaultVal={v.default}
+            disabled={!manual} />
+        )
+      }
+    </Row>
+  )
 }
 
 const SliderGroupConnected = connect(
@@ -74,13 +66,9 @@ const SliderGroupConnected = connect(
   },
   (dispatch) => {
     return {
-      changeSpeed: (val) => {
-        sendCommand('Speed', val)
-        dispatch({ type: Actions.CHANGE_SPEED, data: val })
-      },
-      changeAcceleration: (val) => {
-        sendCommand('Acceleration', val)
-        dispatch({ type: Actions.CHANGE_ACCELERATION, data: val })
+      changeControl: (action, command, val) => {
+        sendCommand(command, val)
+        dispatch({ type: action, data: val })
       }
     }
   }

@@ -12,69 +12,98 @@ let Reducer = (state = Defaults, { type, data }) => {
   switch (type) {
     /** Basic control data */
     case Actions.POD_START: {
-      return Object.assign({}, state, { controls: { start: data } })
+      return changeControl(state, data, 'start')
     }
     case Actions.EMERGENCY_STOP: {
-      return Object.assign({}, state, { controls: { emergencyStop: data } })
+      return changeControl(state, data, 'emergencyStop')
     }
     case Actions.CHANGE_SPEED: {
-      return Object.assign({}, state, { controls: { speed: data } })
+      return changeControl(state, data, 'speed')
     }
     case Actions.CHANGE_ACCELERATION: {
-      return Object.assign({}, state, { controls: { acceleration: data } })
+      return changeControl(state, data, 'acceleration')
     }
     case Actions.CHANGE_BRAKE: {
-      return Object.assign({}, state, { controls: { brake: data } })
+      return changeControl(state, data, 'brake')
+    }
+    case Actions.CHANGE_CONTROL_INSTANT: {
+      return changeSetting(state, data, 'instantChange')
+    }
+    case Actions.CHANGE_CONTROL_MANUAL: {
+      return changeSetting(state, data, 'manualControl')
     }
 
-    /** Data update settings */
+    /** Data updates */
     case Actions.UPDATE_SPEED: {
-      let newSpeedData = state.data.speed.concat(data)
-      return Object.assign({}, state, { data: { speed: newSpeedData } })
+      return addToData(state, data, 'speed')
     }
     case Actions.UPDATE_ACCELERATION: {
-      let newAccelerationData = state.data.acceleration.concat(data)
-      return Object.assign({}, state,
-        { data: { acceleration: newAccelerationData } })
-    }
-    case Actions.UPDATE_AIR_TANK_LEVEL: {
-      let newAirTankData = state.data.airTankLevel.concat(data)
-      return Object.assign({}, state,
-        { data: { airTankLevel: newAirTankData } })
+      return addToData(state, data, 'acceleration')
     }
     case Actions.UPDATE_BATTERY: {
-      let newBatteryData = state.data.battery.concat(data)
-      return Object.assign({}, state,
-        { data: { battery: newBatteryData } })
+      return addToData(state, data, 'battery')
     }
     case Actions.UPDATE_TEMP: {
-      let newTempData = state.data.temp.concat(data)
-      return Object.assign({}, state,
-        { data: { temp: newTempData } })
+      return addToData(state, data, 'battery')
+    }
+    case Actions.UPDATE_AIR_TANK_LEVEL: {
+      return addToData(state, data, 'airTankLevel')
     }
     case Actions.UPDATE_AIR_TANK_PRESSURE: {
-      let newAirTankPressureData = state.data.airTankPressure.concat(data)
-      return Object.assign({}, state,
-        { data: { airTankPressure: newAirTankPressureData } })
+      return addToData(state, data, 'airTankPressure')
     }
     case Actions.UPDATE_DISTANCE: {
-      let newDistanceData = state.data.distance.concat(data)
-      return Object.assign({}, state,
-        { data: { distance: newDistanceData } })
+      return addToData(state, data, 'distance')
     }
     case Actions.UPDATE_IMU: {
-      let newIMUData = state.data.imu.concat(data)
-      return Object.assign({}, state,
-        { data: { imu: newIMUData } })
+      return addToData(state, data, 'imu')
     }
     case Actions.UPDATE_IMU_ROTATION: {
-      let newIMURotationData = state.data.imuRotation.concat(data)
-      return Object.assign({}, state,
-        { data: { imuRotation: newIMURotationData } })
+      return addToData(state, data, 'imuRotation')
     }
 
-    default: return state
+    /** Network */
+    case Actions.UPDATE_CONNECTION_STATE: {
+      return changeConnection(state, data, 'connected')
+    }
+    default:
+      return state
   }
+}
+
+function changeControl (state, data, field) {
+  let newControl = Object.assign({}, state.controls, {
+    [field]: data
+  })
+
+  return Object.assign({}, state, {control: newControl})
+}
+
+function changeSetting (state, data, field) {
+  let newSetting = Object.assign({}, state.controlSettings, {
+    [field]: data
+  })
+
+  console.log(newSetting)
+
+  return Object.assign({}, state, {controlSettings: newSetting})
+}
+
+function changeConnection (state, data, field) {
+  let newConnection = Object.assign({}, state.connection, {
+    [field]: data
+  })
+
+  return Object.assign({}, state, {connection: newConnection})
+}
+
+function addToData (state, data, field) {
+  let newData = state.data[field].concat(data)
+
+  return Object.assign({}, state, {
+    data: Object.assign({}, state.data, {
+      [field]: newData
+    })})
 }
 
 export default Reducer

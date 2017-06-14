@@ -4,6 +4,7 @@ export const POD_START = 'POD_START'
 export const CHANGE_SPEED = 'CHANGE_SPEED'
 export const CHANGE_ACCELERATION = 'CHANGE_ACCELERATION'
 export const CHANGE_BRAKE = 'CHANGE_BRAKE'
+export const CHANGE_LEVITATION = 'CHANGE_LEVITATION'
 
 /** Setting controls */
 export const CHANGE_CONTROL_MANUAL = 'CHANGE_CONTROL_MANUAL'
