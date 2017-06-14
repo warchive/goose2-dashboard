@@ -23,7 +23,7 @@ export const SliderDefinitions = [
     default: 0,
     action: Actions.CHANGE_ACCELERATION,
     command: Commands.ACCELERATION,
-    valueFromState: (state) => state.controls.acceleration
+    valueFromControl: (controls) => controls.acceleration
   }, {
     name: 'Speed',
     min: 0,
@@ -31,6 +31,6 @@ export const SliderDefinitions = [
     default: 0,
     action: Actions.CHANGE_SPEED,
     command: Commands.SPEED,
-    valueFromState: (state) => state.controls.speed
+    valueFromControl: (controls) => controls.speed
   }
 ]

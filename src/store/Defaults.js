@@ -10,7 +10,13 @@ let controls = {
   emergencyStop: false,
   speed: 0,
   acceleration: 0,
-  brake: false
+  brake: false,
+  /** Actual values reported from the pod */
+  startActual: false,
+  emergencyStopActual: false,
+  speedActual: 0,
+  accelerationActual: 0,
+  brakeActual: false
 }
 
 /**

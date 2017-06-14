@@ -26,5 +26,6 @@ wsServer.on('request', (req) => {
 
   connection.on('message', (message) => {
     console.log(message)
+    connection.sendUTF(JSON.stringify({name: 'start', value: true}))
   })
 })

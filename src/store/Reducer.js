@@ -33,6 +33,17 @@ let Reducer = (state = Defaults, { type, data }) => {
       return changeSetting(state, data, 'manualControl')
     }
 
+    /** Pod reported 'actual' values */
+    case Actions.UPDATE_EMERGENCY_STOP: {
+      return changeControl(state, data, 'emergencyStopActual')
+    }
+    case Actions.UPDATE_POD_START: {
+      return changeControl(state, data, 'startActual')
+    }
+    case Actions.UPDATE_LEVITATION: {
+      return changeControl(state, data, 'levitationActual')
+    }
+
     /** Data updates */
     case Actions.UPDATE_SPEED: {
       return addToData(state, data, 'speed')
@@ -76,15 +87,13 @@ function changeControl (state, data, field) {
     [field]: data
   })
 
-  return Object.assign({}, state, {control: newControl})
+  return Object.assign({}, state, {controls: newControl})
 }
 
 function changeSetting (state, data, field) {
   let newSetting = Object.assign({}, state.controlSettings, {
     [field]: data
   })
-
-  console.log(newSetting)
 
   return Object.assign({}, state, {controlSettings: newSetting})
 }
