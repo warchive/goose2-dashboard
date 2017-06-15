@@ -35,14 +35,7 @@ function command (input, connection) {
     case 'stop speed': {
       return clearInterval(intervalId['sp'])
     }
-    case 'start': {
-      return connection.sendUTF(packet('start', true))
-    }
-
-    case 'stop start': {
-      return connection.sendUTF(packet('start', false))
-    }
-    default:
+   default:
       console.log('command not defined')
   }
 }

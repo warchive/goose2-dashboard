@@ -15,6 +15,7 @@ Front end HTML page for controlling the pod
 ## See below link for documentation
 
 * [Commands and Events for Websocket Communication](https://github.com/teamwaterloop/control-front/tree/master/events)
+* [Testing client with test server](https://github.com/teamwaterloop/control-front/tree/master/test)
 
 ## Steps to run
 
