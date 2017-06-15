@@ -24,7 +24,6 @@ function command (input, connection) {
     return connection.sendUTF(packet(sections[1], Number(sections[2])))
   }
 
-
   switch (input) {
     case 'speed': {
       intervalId['speed'] = setInterval(() => connection.sendUTF(

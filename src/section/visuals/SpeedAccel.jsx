@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import { GaugeConfig } from '../../../config'
+// import { GaugeConfig } from '../../../config'
 import Gauge from '../../components/Gauge'
 import LiveChart from '../../components/LiveChart'
 

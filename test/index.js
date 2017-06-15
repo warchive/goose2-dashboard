@@ -33,7 +33,6 @@ wsServer.on('request', (req) => {
   })
 })
 
-
 const rl = readLine.createInterface({
   input: process.stdin,
   output: process.stdout
