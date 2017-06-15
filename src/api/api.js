@@ -37,9 +37,9 @@ export function sendJSON (obj) {
   sendMessage(message)
 }
 
-export function sendCommand (Command, value) {
+export function sendCommand (command, value) {
   sendJSON({
-    Command,
+    command,
     value
   })
 }
