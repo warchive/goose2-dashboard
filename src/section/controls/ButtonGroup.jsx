@@ -13,6 +13,7 @@ const ButtonGroup = ({
   emergencyStop, start, brake, levitation,
   changeEmergencyStop, changeStart, changeBrake, changeLevitation }) => {
   console.log('start: ' + start)
+  console.log(typeof start)
   return (
     <div>
       <Row>
@@ -65,7 +66,7 @@ const ButtonGroupConnected = connect(
       start: state.controls.startActual,
       levitation: state.controls.levitationActual,
       brake: state.controls.brakeActual,
-      manual: state.controlSettings.manualControlActual
+      manual: state.controlSettings.manualControl
     }
   },
   (dispatch) => {

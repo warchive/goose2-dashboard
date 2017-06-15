@@ -3,18 +3,6 @@ import * as Commands from './events/commands'
 
 export const URL = 'ws://localhost:8080/'
 
-export const SPEED_CONF = {
-  min: 0,
-  max: 100,
-  default: 0
-}
-
-export const ACCELERATION_CONF = {
-  min: 0,
-  max: 100,
-  default: 0
-}
-
 export const SliderDefinitions = [
   {
     name: 'Acceleration',
@@ -34,3 +22,17 @@ export const SliderDefinitions = [
     valueFromControl: (controls) => controls.speed
   }
 ]
+
+export const GaugeConfig = {
+  speed: {
+    label: 'Speed',
+    id: 'speed-gauge',
+    width: 120,
+    height: 120,
+    redFrom: 90,
+    redTo: 100,
+    yellowFrom: 75,
+    yellowTo: 90,
+    minorTicks: 5
+  }
+}

@@ -4,6 +4,12 @@
  * @property {boolean} emergencyStop If the emergency stop has been engaged
  * @property {float} speed The set speed for the pod
  * @property {float} acceleration The set acceleration
+ *
+ * Actual referes to what the pod reports (pod's state)
+ * @property {boolean} startActual
+ * @property {boolean} emergencyStopActual
+ * @property {float} speedActual
+ * @property {float} accelerationActual
  */
 let controls = {
   start: false,
@@ -42,8 +48,8 @@ let controlSettings = {
  * @property {Array<Array<float>[3]>} imuRotation Inertial rotation history
  */
 let data = {
-  speed: [],
-  acceleration: [],
+  speed: [[0, 0]],
+  acceleration: [[0, 0]],
   battery: [],
   temp: [],
   airTankLevel: [],

@@ -15,7 +15,6 @@ let client
 export function connect (
   onopen, onmessage, onerror, onclose, url = defaultURL) {
   client = new SocketClient(url, 'echo-protocol')
-
   client.onerror = onerror
   client.onclose = onclose
   client.onmessage = onmessage

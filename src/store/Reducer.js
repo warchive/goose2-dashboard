@@ -43,9 +43,13 @@ let Reducer = (state = Defaults, { type, data }) => {
     case Actions.UPDATE_LEVITATION: {
       return changeControl(state, data, 'levitationActual')
     }
+    case Actions.UPDATE_BRAKE: {
+      return changeControl(state, data, 'brakeActual')
+    }
 
     /** Data updates */
     case Actions.UPDATE_SPEED: {
+      console.log('Update speed')
       return addToData(state, data, 'speed')
     }
     case Actions.UPDATE_ACCELERATION: {
@@ -107,7 +111,7 @@ function changeConnection (state, data, field) {
 }
 
 function addToData (state, data, field) {
-  let newData = state.data[field].concat(data)
+  let newData = state.data[field].concat([data])
 
   return Object.assign({}, state, {
     data: Object.assign({}, state.data, {

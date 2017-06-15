@@ -1,3 +1,4 @@
+export const BRAKE = 'brake'
 export const SPEED = 'speed'
 export const START = 'start'
 export const EMERGENCY_STOP = 'emergencyStop'

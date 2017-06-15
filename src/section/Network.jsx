@@ -4,7 +4,6 @@ import { Row } from 'react-bootstrap'
 import '../scss/network.scss'
 
 const Network = ({ connected, strength, latency }) => {
-  console.log(connected)
   return (
     <Row className='network-bar'>
       <p className={connected ? 'good' : 'error'}>

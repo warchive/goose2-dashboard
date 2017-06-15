@@ -13,10 +13,10 @@ class Control extends React.Component {
         <Col sm={2}>
           <Settings />
         </Col>
-        <Col sm={5} style={{display: 'flex'}}>
+        <Col sm={6} style={{display: 'flex'}}>
           <SliderGroup />
         </Col>
-        <Col sm={5}>
+        <Col sm={4}>
           <ButtonGroup />
         </Col>
       </Row>

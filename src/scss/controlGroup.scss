@@ -1,6 +1,7 @@
 .slider-group {
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
   flex: 1;
 }
 
@@ -16,7 +17,7 @@
   flex: 1;
 }
 
-p{
+p {
   margin-bottom: 0
 }
 
@@ -26,4 +27,8 @@ p{
 
 .active:focus {
   @extend .active;
+}
+
+.section {
+  border: 1px solid black;
 }
