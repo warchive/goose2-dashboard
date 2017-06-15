@@ -13,7 +13,7 @@ You can use the included test server (index.js) to test the client
 
 Any commands the the client sends to the server will be printed on the screen. For example, if you presss the start button, you should see:
 
-```json
+```js
 // Start command
 { type: 'utf8', utf8Data: '{"Command":"start","value":true}' }
 
