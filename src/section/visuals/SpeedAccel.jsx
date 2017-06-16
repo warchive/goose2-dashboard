@@ -2,44 +2,58 @@ import React from 'react'
 import { Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 // import { GaugeConfig } from '../../../config'
-import Gauge from '../../components/Gauge'
-import LiveChart from '../../components/LiveChart'
+import GaugeChart from '../../components/GaugeChart'
+
+const SpeedChart = ({ val }) => {
+  return (
+    <GaugeChart
+      value={val}
+      height={200}
+      min={0}
+      max={100}
+      title='Speed'
+      unit='m/s'
+      bufferSize={200} />
+  )
+}
+
+const SpeedChartConnected = connect((state) => {
+  return {
+    val: state.data.speed[state.data.speed.length - 1]
+  }
+})(SpeedChart)
+
+const AccelerationChart = ({ val }) => {
+  return (
+    <GaugeChart
+      value={val}
+      height={200}
+      min={0}
+      max={100}
+      title='Speed'
+      unit='m/s'
+      bufferSize={200} />
+  )
+}
+
+const AccelerationChartConnected = connect((state) => {
+  return {
+    val: state.data.acceleration[state.data.acceleration.length - 1]
+  }
+})(AccelerationChart)
 
 const SpeedAccelChart = ({ speed, acceleration }) => {
-  let lastData = speed[speed.length - 1]
   return (
     <Row>
       <Col sm={6}>
-        <div>
-          <Gauge
-            width={200}
-            height={200}
-            min={0}
-            max={100}
-            value={lastData[1]}
-            default={0}
-            unit='km/h'
-            title='speed'
-          />
-        </div>
+        <SpeedChartConnected />
       </Col>
+
       <Col sm={6}>
-        <LiveChart
-          tile='speed'
-          unit='m/s'
-          value={lastData}
-          bufferSize={100}
-          />
+        <AccelerationChartConnected />
       </Col>
     </Row>
   )
 }
 
-export default connect(
-  (state) => {
-    return {
-      speed: state.data.speed,
-      acceleration: state.data.acceleration
-    }
-  }
-)(SpeedAccelChart)
+export default SpeedAccelChart

@@ -3,6 +3,8 @@ import * as Commands from './events/commands'
 
 export const URL = 'ws://localhost:8080/'
 
+export const CACHE_LAST_DATA = true
+
 export const SliderDefinitions = [
   {
     name: 'Acceleration',

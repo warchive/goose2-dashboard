@@ -26,6 +26,7 @@ function command (input, connection) {
 
   switch (input) {
     case 'speed': {
+      clearInterval(intervalId['speed'])
       intervalId['speed'] = setInterval(() => connection.sendUTF(
         packet('speed', Math.random() * 100)),
         200
@@ -33,9 +34,20 @@ function command (input, connection) {
       return
     }
     case 'stop speed': {
-      return clearInterval(intervalId['sp'])
+      return clearInterval(intervalId['speed'])
     }
-   default:
+    case 'acceleration': {
+      clearInterval(intervalId['acceleration'])
+      intervalId['acceleration'] = setInterval(() => connection.sendUTF(
+        packet('acceleration', Math.random() * 100)),
+        200
+      )
+      return
+    }
+    case 'stop acceleration': {
+      return clearInterval(intervalId['acceleration'])
+    }
+    default:
       console.log('command not defined')
   }
 }

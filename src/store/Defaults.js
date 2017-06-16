@@ -32,7 +32,8 @@ let controls = {
  */
 let controlSettings = {
   manualControl: false,
-  instantChange: false
+  instantChange: false,
+  onlyKeepLastData: false
 }
 
 /**

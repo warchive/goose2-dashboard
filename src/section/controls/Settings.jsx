@@ -24,7 +24,9 @@ const LabelSwitch = ({ label, checked, onToggle }) => {
 }
 
 const Settings = ({ manualControl, instantChange,
-  changeManualControl, changeInstantControl }) => {
+  onlyKeepLastData,
+  changeManualControl, changeInstantControl,
+  changeKeepLastData }) => {
   return (
     <div>
       <Row>
@@ -40,6 +42,13 @@ const Settings = ({ manualControl, instantChange,
           checked={instantChange}
           onToggle={(evt) => changeInstantControl(evt)} />
       </Row>
+      <Row>
+        <LabelSwitch
+          label='Only Cache Last Data'
+          checked={onlyKeepLastData}
+          onToggle={(evt) => changeKeepLastData(evt)} />
+      </Row>
+
     </div>
   )
 }
@@ -48,7 +57,8 @@ const SettingsConnected = connect(
   (state) => {
     return {
       manualControl: state.controlSettings.manualControl,
-      instantChange: state.controlSettings.instantChange
+      instantChange: state.controlSettings.instantChange,
+      onlyKeepLastData: state.controlSettings.onlyKeepLastData
     }
   },
   (dispatch) => {
@@ -60,6 +70,9 @@ const SettingsConnected = connect(
       },
       changeInstantControl: (val) => {
         dispatch({ type: Actions.CHANGE_CONTROL_INSTANT, data: val })
+      },
+      changeKeepLastData: (val) => {
+        dispatch({ type: Actions.CHANGE_KEEP_LAST_DATA, data: val })
       }
     }
   }

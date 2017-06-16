@@ -6,19 +6,26 @@ import CircularBuffer from 'circular-buffer'
 export default class LiveChart extends React.Component {
   constructor (props) {
     super()
-
     this.state = {
-      data: [],
-      timeStart: Date.now()
+      data: [new TimeEvent(Date.now(), 0)]
     }
     this.buff = new CircularBuffer(props.bufferSize)
   }
 
   componentWillReceiveProps (nextProps) {
     let value = nextProps.value
+    if (value[0] === 0) {
+      return
+    }
+    let lastEventTime = this.state.data[this.state.data.length - 1].toPoint()[0]
+    if (value[0] <= lastEventTime) {
+      return
+    }
+
     this.buff.push(new TimeEvent(value[0], value[1]))
 
-    this.setState(Object.assign({}, this.state, {data: this.buff.toarray()}))
+    this.setState(Object.assign({},
+      this.state, {data: this.buff.toarray()}))
   }
 
   render () {
@@ -29,11 +36,11 @@ export default class LiveChart extends React.Component {
     return (
 
       <ChartContainer timeRange={timeRange}>
-        <ChartRow height='150'>
+        <ChartRow height={this.props.height}>
           <YAxis
             id='y'
             label='Value'
-            min={0} max={100}
+            min={this.props.min} max={this.props.max}
             type='linear' />
           <Charts>
             <LineChart

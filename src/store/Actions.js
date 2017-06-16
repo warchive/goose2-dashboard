@@ -14,6 +14,7 @@ export const UPDATE_BRAKE = 'UPDATE_BRAKE'
 /** Setting controls */
 export const CHANGE_CONTROL_MANUAL = 'CHANGE_CONTROL_MANUAL'
 export const CHANGE_CONTROL_INSTANT = 'CHANGE_CONTROL_INSTANT'
+export const CHANGE_KEEP_LAST_DATA = 'CHANGE_KEEP_LAST_DATA'
 
 /** General datums */
 export const UPDATE_SPEED = 'UPDATE_SPEED_DATA'

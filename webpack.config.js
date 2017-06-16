@@ -8,9 +8,26 @@ const extractSass = new ExtractTextPlugin({
   disable: debug
 })
 
-const loaderOptions = new webpack.DefinePlugin({
-  DEBUG: debug
+const minify = new webpack.optimize.UglifyJsPlugin({
+  compress: {warnings: false}
 })
+
+const prodPlugsin = [
+  minify,
+  new webpack.DefinePlugin({
+    'process.env': {
+      'NODE_ENV': JSON.stringify('production')
+    },
+    DEBUG: debug
+  })
+
+]
+
+const developPlugins = [
+  new webpack.DefinePlugin({
+    DEBUG: debug
+  })
+]
 
 module.exports = {
   context: path.join(__dirname, "src"), //eslint-disable-line
@@ -33,8 +50,7 @@ module.exports = {
       use: {
         loader: 'babel-loader',
         options: {
-          presets: ['env', 'react'],
-          plugins: ['transform-async-to-generator']
+          presets: ['env', 'react']
         }
       }
     },
@@ -53,9 +69,8 @@ module.exports = {
     ]
   },
   plugins: [
-    extractSass,
-    loaderOptions
-  ],
+    extractSass
+  ].concat(debug ? developPlugins : prodPlugsin),
   devServer: {
     publicPath: '/',
     contentBase: './dist'

@@ -111,7 +111,12 @@ function changeConnection (state, data, field) {
 }
 
 function addToData (state, data, field) {
-  let newData = state.data[field].concat([data])
+  let newData
+  if (state.controlSettings.cacheLastData) {
+    newData = [data]
+  } else {
+    newData = state.data[field].concat([data])
+  }
 
   return Object.assign({}, state, {
     data: Object.assign({}, state.data, {

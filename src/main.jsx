@@ -36,11 +36,16 @@ class App extends React.Component {
   }
 }
 
-const store = createStore(
-  Reducer, DEBUG  // eslint-disable-line
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
-    window.__REDUX_DEVTOOLS_EXTENSION__() : null
-)
+let store
+
+if (DEBUG){   // eslint-disable-line
+  store = createStore(
+    Reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
+    window.__REDUX_DEVTOOLS_EXTENSION__())
+} else {
+  store = createStore(Reducer)
+}
 
 const broadcastListener = BroadcastListener(store.dispatch)
 
