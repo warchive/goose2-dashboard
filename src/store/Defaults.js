@@ -33,7 +33,7 @@ let controls = {
 let controlSettings = {
   manualControl: false,
   instantChange: false,
-  onlyKeepLastData: false
+  keepLastData: false
 }
 
 /**
@@ -51,7 +51,7 @@ let controlSettings = {
 let data = {
   speed: [[0, 0]],
   acceleration: [[0, 0]],
-  battery: [],
+  battery: [[0, 0]],
   temp: [],
   airTankLevel: [],
   airTankPressure: [],

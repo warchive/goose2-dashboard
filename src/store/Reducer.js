@@ -32,6 +32,9 @@ let Reducer = (state = Defaults, { type, data }) => {
     case Actions.CHANGE_CONTROL_MANUAL: {
       return changeSetting(state, data, 'manualControl')
     }
+    case Actions.CHANGE_KEEP_LAST_DATA: {
+      return changeSetting(state, data, 'keepLastData')
+    }
 
     /** Pod reported 'actual' values */
     case Actions.UPDATE_EMERGENCY_STOP: {
@@ -112,7 +115,7 @@ function changeConnection (state, data, field) {
 
 function addToData (state, data, field) {
   let newData
-  if (state.controlSettings.cacheLastData) {
+  if (state.controlSettings.keepLastData) {
     newData = [data]
   } else {
     newData = state.data[field].concat([data])

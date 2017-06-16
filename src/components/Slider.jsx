@@ -44,6 +44,11 @@ class Slide extends React.Component {
 
   onButtonChange (up) {
     let newVal = this.state.val + (up ? 1 : -1)
+
+    if (newVal > this.props.max || newVal < this.props.min) {
+      return
+    }
+
     this.setState(Object.assign({}, this.state, { val: newVal }))
 
     this.props.onChange(newVal)

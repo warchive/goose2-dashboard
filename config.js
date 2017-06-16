@@ -25,16 +25,33 @@ export const SliderDefinitions = [
   }
 ]
 
-export const GaugeConfig = {
-  speed: {
-    label: 'Speed',
-    id: 'speed-gauge',
-    width: 120,
-    height: 120,
-    redFrom: 90,
-    redTo: 100,
-    yellowFrom: 75,
-    yellowTo: 90,
-    minorTicks: 5
+export const GaugeConfig = [
+  {
+    height: 200,
+    min: 0,
+    max: 100,
+    title: 'Speed',
+    unit: 'm/s',
+    bufferSize: 200,
+    getValFromState: (state) =>
+      state.data.speed[state.data.speed.length - 1]
+  }, {
+    height: 200,
+    min: 0,
+    max: 100,
+    title: 'Acceleration',
+    unit: 'm/s/2',
+    bufferSize: 200,
+    getValFromState: (state) =>
+      state.data.acceleration[state.data.acceleration.length - 1]
+  }, {
+    height: 200,
+    min: 0,
+    max: 100,
+    title: 'Battery',
+    unit: 'percentage',
+    bufferSize: 200,
+    getValFromState: (state) =>
+      state.data.battery[state.data.battery.length - 1]
   }
-}
+]
