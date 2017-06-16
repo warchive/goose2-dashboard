@@ -52,6 +52,7 @@ Definitions saved in broadcast.js
 | emergencyStop | Boolean            |          | If emergency stop has been engaged             |
 | manualControl | Boolean            |          | If the client has manual control               |
 | acceleration  | Array[3]\<Float> ? | [0,100]  | Represents x,y,z                               |
+| battery       | Float              | [0,100]  | Battery level                                  |
 | airTankLevel  | Float              | [0,100]  | PSI in Air Tank                                |
 | batteryLevel  | Float              | [0,100]  | Batteries percentage                           |
 | temp          | Float              |          | Maybe we have to account for different sensors |

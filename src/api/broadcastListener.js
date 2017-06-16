@@ -23,6 +23,8 @@ const BroadcastListener = (dispatch) => {
         return dispatch({type: Actions.UPDATE_BRAKE, data: val})
       case Broadcasts.DISTANCE:
         return dispatch({type: Actions.UPDATE_DISTANCE, data: dateValPair(val)})
+      case Broadcasts.BATTERY:
+        return dispatch({type: Actions.UPDATE_BATTERY, data: dateValPair(val)})
       case Broadcasts.EMERGENCY_STOP:
         return dispatch({type: Actions.UPDATE_EMERGENCY_STOP, data: val})
       case Broadcasts.LEVITATION:

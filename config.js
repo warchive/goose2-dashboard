@@ -2,6 +2,7 @@ import * as Actions from './src/store/Actions'
 import * as Commands from './events/commands'
 
 export const URL = 'ws://localhost:8080/'
+export const PROMPT_FOR_URL = true
 
 export const CACHE_LAST_DATA = true
 

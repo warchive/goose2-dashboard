@@ -1,5 +1,5 @@
 import { w3cwebsocket as SocketClient } from 'websocket'
-import {URL as defaultURL} from '../../config'
+import {URL as defaultURL, PROMPT_FOR_URL} from '../../config'
 
 /**
  * connection used to send/recieve messages from the server
@@ -14,6 +14,10 @@ let client
  */
 export function connect (
   onopen, onmessage, onerror, onclose, url = defaultURL) {
+  if (PROMPT_FOR_URL) {
+    url = window.prompt('Please input the server url', url)
+  }
+
   client = new SocketClient(url, 'echo-protocol')
   client.onerror = onerror
   client.onclose = onclose

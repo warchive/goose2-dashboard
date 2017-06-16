@@ -52,12 +52,12 @@ let data = {
   speed: [[0, 0]],
   acceleration: [[0, 0]],
   battery: [[0, 0]],
-  temp: [],
-  airTankLevel: [],
-  airTankPressure: [],
-  distance: [],
-  imu: [],
-  imuRotation: []
+  temp: [[0, 0]],
+  airTankLevel: [[0, 0]],
+  airTankPressure: [[0, 0]],
+  distance: [[0, 0]],
+  imu: [[0, 0, 0, 0]],
+  imuRotation: [[0, 0, 0, 0]]
 }
 
 /**
