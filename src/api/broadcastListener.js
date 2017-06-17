@@ -3,16 +3,24 @@ import * as Actions from '../store/Actions'
 
 const BroadcastListener = (dispatch) => {
   return (broadcast) => {
-    let name, val
-    try {
-      const data = JSON.parse(broadcast.data)
-      name = data.name
-      val = data.value
-    } catch (e) {
-      console.error(e)
-    }
+    broadcast = JSON.parse(broadcast)
+    console.log(broadcast)
 
-    switch (name) {
+    let {time, sensor, data} = broadcast
+    let val = 2
+    let name = 'pp'
+
+    console.log(sensor)
+    console.log(time)
+    console.log(data)
+
+    switch (sensor) {
+      case 'gyro': {
+        return dispatch({type: 'gyro', data: [time, data]})
+      }
+      case 'photo': {
+        return dispatch({type: 'photo', data: [time, data]})
+      }
       case Broadcasts.ACCELERATION:
         return dispatch({type: Actions.UPDATE_ACCELERATION, data: dateValPair(val)})
       case Broadcasts.AIR_TANK_LEVEL:

@@ -20,7 +20,7 @@ import { connect as WSConnect } from './api/api'
 import BroadcastListener from './api/broadcastListener.js'
 
 class App extends React.Component {
-  render () {
+  render() {
     return (
       <Grid fluid>
         <Network />
@@ -38,7 +38,7 @@ class App extends React.Component {
 
 let store
 
-if (DEBUG){   // eslint-disable-line
+if (DEBUG) {   // eslint-disable-line
   store = createStore(
     Reducer,
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
@@ -49,10 +49,13 @@ if (DEBUG){   // eslint-disable-line
 
 const broadcastListener = BroadcastListener(store.dispatch)
 
-WSConnect(() => store.dispatch({
-  type: Actions.UPDATE_CONNECTION_STATE,
-  data: true
-}),
+WSConnect(() => {
+  console.log('connected')
+  store.dispatch({
+    type: Actions.UPDATE_CONNECTION_STATE,
+    data: true
+  })
+},
   broadcastListener
   , (error) => {
     console.error(error)

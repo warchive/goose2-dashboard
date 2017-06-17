@@ -1,7 +1,7 @@
 import * as Actions from './src/store/Actions'
 import * as Commands from './events/commands'
 
-export const URL = 'ws://localhost:8080/'
+export const URL = 'ws://192.168.1.142:8002/'
 export const PROMPT_FOR_URL = true
 
 export const CACHE_LAST_DATA = true
@@ -47,7 +47,7 @@ export const SliderDefinitions = [
  * @property {Integer} bufferSize How many values will be displayed
  * @property {Function} getvalFromState return the date val tuple from state
  *  at once
- */
+ *
 export const GaugeDefinitions = [
   {
     title: 'Speed',
@@ -109,5 +109,21 @@ export const GaugeDefinitions = [
     bufferSize: 200,
     getValFromState: (state) =>
       state.data.distance[state.data.distance.length - 1]
+  }
+]*/
+
+export const GaugeDefinitions = [
+  {
+    title: 'Photo',
+    unit: '',
+    height: 200,
+    column: 12,
+    min: 0,
+    max: 1000,
+    bufferSize: 200,
+    getValFromState: (state) => {
+      let currData = state.data.photo[state.data.photo.length - 1]
+      return [currData[0], currData[1][0]]
+    }
   }
 ]

@@ -1,5 +1,5 @@
-import { w3cwebsocket as SocketClient } from 'websocket'
 import {URL as defaultURL, PROMPT_FOR_URL} from '../../config'
+const SocketIO = require('socket.io-client')
 
 /**
  * connection used to send/recieve messages from the server
@@ -18,11 +18,16 @@ export function connect (
     url = window.prompt('Please input the server url', url)
   }
 
-  client = new SocketClient(url, 'echo-protocol')
-  client.onerror = onerror
-  client.onclose = onclose
-  client.onmessage = onmessage
-  client.onopen = onopen
+  console.log(SocketIO)
+
+  client = SocketIO(url)
+  client.on('connect', onopen)
+  client.on('pi', onmessage)
+  client.on('disconnect', onclose)
+  // client.onerror = onerror
+  // client.onclose = onclose
+  // client.onmessage = onmessage
+  // client.onopen = onopen
 }
 
 export function sendMessage (message) {

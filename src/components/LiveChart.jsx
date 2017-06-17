@@ -7,7 +7,7 @@ export default class LiveChart extends React.Component {
   constructor (props) {
     super()
     this.state = {
-      data: [new TimeEvent(Date.now(), 0)]
+      data: [new TimeEvent(0, 0)]
     }
     this.buff = new CircularBuffer(props.bufferSize)
   }
@@ -32,7 +32,12 @@ export default class LiveChart extends React.Component {
     const name = this.props.title
     const events = this.state.data
     const series = new TimeSeries({ name, events })
-    let timeRange = new TimeRange(events.length > 0 ? events[0].toPoint()[0] : 0, Date.now())
+    let timeRange
+    if(events.length > 0){
+      timeRange = new TimeRange(events[0].toPoint()[0], events[events.length - 1].toPoint()[0])
+    }else {
+      timeRange = new TimeRange(0,0)
+    }
     return (
 
       <ChartContainer timeRange={timeRange}>

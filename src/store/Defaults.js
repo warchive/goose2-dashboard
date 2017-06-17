@@ -57,7 +57,9 @@ let data = {
   airTankPressure: [[0, 0]],
   distance: [[0, 0]],
   imu: [[0, 0, 0, 0]],
-  imuRotation: [[0, 0, 0, 0]]
+  imuRotation: [[0, 0, 0, 0]],
+  gyro: [[0, [0, 0, 0]]],
+  photo: [[0, [0]]]
 }
 
 /**

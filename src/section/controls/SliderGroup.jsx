@@ -9,7 +9,6 @@ const SliderGroup = ({ manual, changeControl }) => {
   let connectedSliders = SliderDefinitions.map(v => {
     let comp = ({ val, instantChange, manual }) =>
       <Slider
-        key={v.title}
         instantChange={instantChange}
         onChange={val => changeControl(v.action, v.command, val)}
         title={v.title}
@@ -27,11 +26,12 @@ const SliderGroup = ({ manual, changeControl }) => {
       }
     })(comp)
 
-    return <Connected />
+    return <Connected
+      key={v.title} />
   })
   return (
     <Row className='slider-group'>
-      { connectedSliders }
+      {connectedSliders}
     </Row>
   )
 }

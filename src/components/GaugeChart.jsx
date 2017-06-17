@@ -26,8 +26,8 @@ const GaugeChart = ({value, height, min, max, title, unit, bufferSize}) => {
       <LiveChart
         tile={title}
         unit={unit}
-        min={0}
-        max={100}
+        min={min}
+        max={max}
         value={value}
         bufferSize={bufferSize}
         height={height}
