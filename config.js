@@ -33,14 +33,6 @@ export const SliderDefinitions = [
     action: Actions.CHANGE_SPEED,
     command: Commands.SPEED,
     getValFromState: (state) => state.controls.speed
-  }, {
-    title: 'Speed',
-    min: 0,
-    max: 100,
-    default: 0,
-    action: Actions.CHANGE_SPEED,
-    command: Commands.SPEED,
-    getValFromState: (state) => state.controls.speed
   }
 ]
 
