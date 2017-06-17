@@ -52,7 +52,6 @@ let Reducer = (state = Defaults, { type, data }) => {
 
     /** Data updates */
     case Actions.UPDATE_SPEED: {
-      console.log('Update speed')
       return addToData(state, data, 'speed')
     }
     case Actions.UPDATE_ACCELERATION: {
@@ -62,7 +61,7 @@ let Reducer = (state = Defaults, { type, data }) => {
       return addToData(state, data, 'battery')
     }
     case Actions.UPDATE_TEMP: {
-      return addToData(state, data, 'battery')
+      return addToData(state, data, 'temp')
     }
     case Actions.UPDATE_AIR_TANK_LEVEL: {
       return addToData(state, data, 'airTankLevel')

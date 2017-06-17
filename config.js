@@ -6,38 +6,70 @@ export const PROMPT_FOR_URL = true
 
 export const CACHE_LAST_DATA = true
 
+/**
+ * @typedef {Object} SliderConfig
+ * @property {String} title The title for the slider
+ * @property {Integer} min The minmum value
+ * @property {Integer} max The maximum value
+ * @property {Integer} default The default value
+ * @property {String} action The redux action that will be emitted on change
+ * @property {String} command The command that will be sent to the pod
+ * @property {Function} valueFromControl Getting the value from state.control
+ */
 export const SliderDefinitions = [
   {
-    name: 'Acceleration',
+    title: 'Acceleration',
     min: 0,
     max: 100,
     default: 0,
     action: Actions.CHANGE_ACCELERATION,
     command: Commands.ACCELERATION,
-    valueFromControl: (controls) => controls.acceleration
+    getValFromState: (state) => state.controls.acceleration
   }, {
-    name: 'Speed',
+    title: 'Speed',
     min: 0,
     max: 100,
     default: 0,
     action: Actions.CHANGE_SPEED,
     command: Commands.SPEED,
-    valueFromControl: (controls) => controls.speed
+    getValFromState: (state) => state.controls.speed
+  }, {
+    title: 'Speed',
+    min: 0,
+    max: 100,
+    default: 0,
+    action: Actions.CHANGE_SPEED,
+    command: Commands.SPEED,
+    getValFromState: (state) => state.controls.speed
   }
 ]
 
-export const GaugeConfig = [
+/**
+ * @typedef {Object} GaugeConfig
+ * @property {String} title Name of the display
+ * @property {String} unit Units of the display
+ * @property {Integer} height Height of the display in px
+ * @property {Integer} column About of bootstrap grid columns
+ * @property {Integer} min Minimum value
+ * @property {Integer} max Maximum value
+ * @property {Integer} bufferSize How many values will be displayed
+ * @property {Function} getvalFromState return the date val tuple from state
+ *  at once
+ */
+export const GaugeDefinitions = [
   {
-    height: 200,
-    min: 0,
-    max: 100,
     title: 'Speed',
     unit: 'm/s',
+    height: 200,
+    column: 4,
+    min: 0,
+    max: 100,
     bufferSize: 200,
     getValFromState: (state) =>
       state.data.speed[state.data.speed.length - 1]
   }, {
     height: 200,
+    column: 4,
     min: 0,
     max: 100,
     title: 'Acceleration',
@@ -47,6 +79,7 @@ export const GaugeConfig = [
       state.data.acceleration[state.data.acceleration.length - 1]
   }, {
     height: 200,
+    column: 4,
     min: 0,
     max: 100,
     title: 'Battery',
@@ -54,5 +87,35 @@ export const GaugeConfig = [
     bufferSize: 200,
     getValFromState: (state) =>
       state.data.battery[state.data.battery.length - 1]
+  }, {
+    height: 200,
+    column: 4,
+    min: 0,
+    max: 100,
+    title: 'Temperature',
+    unit: 'percentage',
+    bufferSize: 200,
+    getValFromState: (state) =>
+      state.data.temp[state.data.temp.length - 1]
+  }, {
+    height: 200,
+    column: 4,
+    min: 0,
+    max: 100,
+    title: 'Air Tank Level',
+    unit: 'percentage',
+    bufferSize: 200,
+    getValFromState: (state) =>
+      state.data.airTankLevel[state.data.airTankLevel.length - 1]
+  }, {
+    height: 200,
+    column: 4,
+    min: 0,
+    max: 100,
+    title: 'distance',
+    unit: 'percentage',
+    bufferSize: 200,
+    getValFromState: (state) =>
+      state.data.distance[state.data.distance.length - 1]
   }
 ]

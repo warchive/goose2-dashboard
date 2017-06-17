@@ -2,26 +2,36 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Row } from 'react-bootstrap'
 import { sendCommand } from '../../api/api'
-import Slide from '../../components/Slider'
+import Slider from '../../components/Slider'
 import { SliderDefinitions } from '../../../config'
 
-const SliderGroup = ({ instantChange, manual, controls, changeControl }) => {
+const SliderGroup = ({ manual, changeControl }) => {
+  let connectedSliders = SliderDefinitions.map(v => {
+    let comp = ({ val, instantChange, manual }) =>
+      <Slider
+        key={v.title}
+        instantChange={instantChange}
+        onChange={val => changeControl(v.action, v.command, val)}
+        title={v.title}
+        min={v.min}
+        max={v.max}
+        defaultVal={v.default}
+        disabled={!manual}
+        val={val} />
+
+    let Connected = connect((state) => {
+      return {
+        val: v.getValFromState(state),
+        instantChange: state.controlSettings.instantChange,
+        manual: state.controlSettings.manualControl
+      }
+    })(comp)
+
+    return <Connected />
+  })
   return (
     <Row className='slider-group'>
-      {
-        SliderDefinitions.map(v =>
-          <Slide
-            key={v.name}
-            instantChange={instantChange}
-            onChange={val => changeControl(v.action, v.command, val)}
-            title={v.name}
-            min={v.min}
-            max={v.max}
-            defaultVal={v.default}
-            disabled={!manual}
-            val={v.valueFromControl(controls)} />
-        )
-      }
+      { connectedSliders }
     </Row>
   )
 }
@@ -29,9 +39,6 @@ const SliderGroup = ({ instantChange, manual, controls, changeControl }) => {
 const SliderGroupConnected = connect(
   (state) => {
     return {
-      instantChange: state.controlSettings.instantChange,
-      manual: state.controlSettings.manualControl,
-      controls: state.controls
     }
   },
   (dispatch) => {

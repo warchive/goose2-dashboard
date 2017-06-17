@@ -7,7 +7,6 @@ import * as Actions from '../../store/Actions'
 import * as Commands from '../../../events/commands'
 
 const LabelSwitch = ({ label, checked, onToggle }) => {
-  console.log('checked: ' + checked)
   return (
     <div style={{
       display: 'flex',
@@ -24,7 +23,7 @@ const LabelSwitch = ({ label, checked, onToggle }) => {
 }
 
 const Settings = ({ manualControl, instantChange,
-  onlyKeepLastData,
+  keepLastData,
   changeManualControl, changeInstantControl,
   changeKeepLastData }) => {
   return (
@@ -45,7 +44,7 @@ const Settings = ({ manualControl, instantChange,
       <Row>
         <LabelSwitch
           label='Only Cache Last Data'
-          checked={onlyKeepLastData}
+          checked={keepLastData}
           onToggle={(evt) => changeKeepLastData(evt)} />
       </Row>
 
@@ -58,15 +57,14 @@ const SettingsConnected = connect(
     return {
       manualControl: state.controlSettings.manualControl,
       instantChange: state.controlSettings.instantChange,
-      onlyKeepLastData: state.controlSettings.onlyKeepLastData
+      keepLastData: state.controlSettings.keepLastData
     }
   },
   (dispatch) => {
     return {
       changeManualControl: (val) => {
-        console.log('val ' + val)
         dispatch({ type: Actions.CHANGE_CONTROL_MANUAL, data: val })
-        sendCommand(Commands.MANUAL_CONTROL)
+        sendCommand(Commands.MANUAL_CONTROL, val)
       },
       changeInstantControl: (val) => {
         dispatch({ type: Actions.CHANGE_CONTROL_INSTANT, data: val })

@@ -24,6 +24,26 @@ function command (input, connection) {
     return connection.sendUTF(packet(sections[1], Number(sections[2])))
   }
 
+  if (input.startsWith('$')) {
+    let sections = input.split(' ')
+    let [, name, min, max, time] = sections
+
+    clearInterval(intervalId[name])
+    intervalId[name] = setInterval(() => connection.sendUTF(
+      packet(name, Math.random() * (max - min) + min)),
+      time
+    )
+    return
+  }
+
+  if (input.startsWith('%')) {
+    let sections = input.split(' ')
+
+    let [, name] = sections
+    clearInterval(intervalId[name])
+    return
+  }
+
   switch (input) {
     case 'speed': {
       clearInterval(intervalId['speed'])

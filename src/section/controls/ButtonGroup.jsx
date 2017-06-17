@@ -12,8 +12,6 @@ const ButtonGroup = ({
   manual,
   emergencyStop, start, brake, levitation,
   changeEmergencyStop, changeStart, changeBrake, changeLevitation }) => {
-  console.log('start: ' + start)
-  console.log(typeof start)
   return (
     <div>
       <Row>
