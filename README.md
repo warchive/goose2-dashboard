@@ -19,12 +19,33 @@ Front end HTML page for controlling the pod
 
 ## Steps to run
 
+### For Linux / OSX
+
+```bash
+# Change config.js if necessary
+# Install yarn if necessary:
+# sudo npm i -g yarn
+# Make sure you're in the root directory of the project
+
+yarn
+npm run build:prod
+```
+
+### For windows
+
 ```bash
 # Change config.js if necessary
 # Install yarn if necessary:
 # npm i -g yarn
+# Make sure you're in the root directory of the project
+# Uninstall windows and install linux and see above
+# Or,
+
 yarn
-npm run build:prod
+set NODE_ENV=development
+webpack
+
+# But seriously stop using windows
 ```
 
 Then open dist/index.html
