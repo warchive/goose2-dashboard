@@ -17,10 +17,10 @@ import Network from './section/Network'
 import Dashboard from './section/Dashboard'
 
 import { connect as WSConnect } from './api/api'
-import BroadcastListener from './api/broadcastListener.js'
+import {BroadcastListener} from './api/Listener.js'
 
 class App extends React.Component {
-  render() {
+  render () {
     return (
       <Grid fluid>
         <Network />

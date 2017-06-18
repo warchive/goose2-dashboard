@@ -1,4 +1,5 @@
 # Events
+
 Provides a temporary API for all the commands that can be sent to the pod
 And all of the data that can be recieved from the pod
 
@@ -39,8 +40,9 @@ Definitions saved in broadcast.js
 ```js
 // Not really sure what format these are going to be in yet
 {
-  "name": "speed"
-  "value": 90
+  "sensor": "speed",
+  "time": 1235,
+  "data": [90]
 }
 ```
 
@@ -58,3 +60,4 @@ Definitions saved in broadcast.js
 | temp          | Float              |          | Maybe we have to account for different sensors |
 | distance      | Float              | [0, ...] | From photo electric sensors                    |
 | IMU           | Array[3]\<Float> ? |          | Data from inertial measurements sensor         |
+| gyro          | Array[3]           | ??       | Gyro sensor                                    |

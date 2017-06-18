@@ -38,26 +38,30 @@ let controlSettings = {
 
 /**
  * @typedef {Object} Data
- * @property {Array<Array<float>>} speed Speed history of the pod
- * @property {Array<Array<float>>} acceleration acceleration history of the pod
- * @property {Array<Array<float>>} battery battery history of the pod
- * @property {Array<Array<float>>} temp temp history of the pod
- * @property {Array<Array<float>>} airTankLevel airTankLevel history of the pod
- * @property {Array<Array<float>>} airTankPressure airTankPressure history of the pod
- * @property {Array<Array<float>>} distance distance history of the pod
- * @property {Array<Array<float>[3]>} imu Inertial history
- * @property {Array<Array<float>[3]>} imuRotation Inertial rotation history
+ * @property {Array} speed Speed history of the pod
+ * @property {Array} acceleration acceleration history of the pod
+ * @property {Array} battery battery history of the pod
+ * @property {Array} temp temp history of the pod
+ * @property {Array} airTankLevel airTankLevel history of the pod
+ * @property {Array} airTankPressure airTankPressure history of the pod
+ * @property {Array} distance distance history of the pod
+ * @property {Array} imu Inertial history
+ * @property {Array} imuRotation Inertial rotation history
+ *
+ * Array of 2 Tuples where the first index is the time in milliseconds
+ * reported by the pod and the second is a k tuple depending on the
+ * amount of dimensions of information
  */
 let data = {
-  speed: [[0, 0]],
-  acceleration: [[0, 0]],
-  battery: [[0, 0]],
-  temp: [[0, 0]],
-  airTankLevel: [[0, 0]],
-  airTankPressure: [[0, 0]],
-  distance: [[0, 0]],
-  imu: [[0, 0, 0, 0]],
-  imuRotation: [[0, 0, 0, 0]],
+  speed: [[0, [0]]],
+  acceleration: [[0, [0]]],
+  battery: [[0, [0]]],
+  temp: [[0, [0]]],
+  airTankLevel: [[0, [0]]],
+  airTankPressure: [[0, [0]]],
+  distance: [[0, [0]]],
+  imu: [[0, [0, 0, 0]]],
+  imuRotation: [[0, [0, 0, 0]]],
   gyro: [[0, [0, 0, 0]]],
   photo: [[0, [0]]]
 }

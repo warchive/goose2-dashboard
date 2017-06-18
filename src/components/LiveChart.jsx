@@ -33,10 +33,10 @@ export default class LiveChart extends React.Component {
     const events = this.state.data
     const series = new TimeSeries({ name, events })
     let timeRange
-    if(events.length > 0){
+    if (events.length > 0) {
       timeRange = new TimeRange(events[0].toPoint()[0], events[events.length - 1].toPoint()[0])
-    }else {
-      timeRange = new TimeRange(0,0)
+    } else {
+      timeRange = new TimeRange(0, 0)
     }
     return (
 
