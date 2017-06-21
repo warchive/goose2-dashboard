@@ -5,3 +5,5 @@ script:
   - npm run lint
   - npm run test
   - npm run build:prod
+notifications:
+  slack: waterloop:tGYXhPI1vjmfbWUqqHtxHX7t
