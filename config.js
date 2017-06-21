@@ -12,6 +12,8 @@ export const PROMPT_FOR_URL = true
 // If we want to cache all recieved data in the redux store
 export const CACHE_LAST_DATA = true
 
+export const HEART_BEAT_POLLING_DELAY = 200
+
 /**
  * @typedef {Object} SliderConfig
  * @property {String} title The title for the slider

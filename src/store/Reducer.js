@@ -52,7 +52,12 @@ let Reducer = (state = Defaults, { type, data }) => {
 
     /** Data updates */
     case Actions.UPDATE_SPEED: {
-      return addToData(state, data, 'speed')
+      // Add the heart beat from the speed data
+      return Object.assign({}, state, {
+        data: Object.assign({}, state.data, {
+          speed: state.data.speed.concat([data]),
+          heartBeat: state.data.heartBeat.concat([data[0]])
+        })})
     }
     case Actions.UPDATE_ACCELERATION: {
       return addToData(state, data, 'acceleration')
@@ -78,7 +83,6 @@ let Reducer = (state = Defaults, { type, data }) => {
     case Actions.UPDATE_IMU_ROTATION: {
       return addToData(state, data, 'imuRotation')
     }
-
     case 'gyro': {
       return addToData(state, data, 'gyro')
     }

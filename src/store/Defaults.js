@@ -63,7 +63,8 @@ let data = {
   imu: [[0, [0, 0, 0]]],
   imuRotation: [[0, [0, 0, 0]]],
   gyro: [[0, [0, 0, 0]]],
-  photo: [[0, [0]]]
+  photo: [[0, [0]]],
+  heartBeat: []
 }
 
 /**
