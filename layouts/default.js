@@ -6,16 +6,21 @@ export const GaugeDefinitions = [
     title: 'Speed',
     unit: 'm/s',
     height: 200,
+    width: 400,
     column: 4,
     min: 0,
     max: 100,
     bufferSize: 200,
     getValFromState: (state) => {
+      if (state.data.speed.length < 1) {
+        return [-1, 0] // Return default data
+      }
       let latestData = state.data.speed[state.data.speed.length - 1]
       return [latestData[0], latestData[1][0]]
     }
   }, {
     height: 200,
+    width: 400,
     column: 4,
     min: 0,
     max: 100,
@@ -23,11 +28,15 @@ export const GaugeDefinitions = [
     unit: 'm/s/2',
     bufferSize: 200,
     getValFromState: (state) => {
+      if (state.data.acceleration.length < 1) {
+        return [-1, 0] // Return default data
+      }
       let latestData = state.data.acceleration[state.data.acceleration.length - 1]
       return [latestData[0], latestData[1][0]]
     }
   }, {
     height: 200,
+    width: 400,
     column: 4,
     min: 0,
     max: 100,
@@ -35,11 +44,15 @@ export const GaugeDefinitions = [
     unit: 'percentage',
     bufferSize: 200,
     getValFromState: (state) => {
+      if (state.data.battery.length < 1) {
+        return [-1, 0] // Return default data
+      }
       let latestData = state.data.battery[state.data.battery.length - 1]
       return [latestData[0], latestData[1][0]]
     }
   }, {
     height: 200,
+    width: 400,
     column: 4,
     min: 0,
     max: 100,
@@ -47,11 +60,15 @@ export const GaugeDefinitions = [
     unit: 'percentage',
     bufferSize: 200,
     getValFromState: (state) => {
+      if (state.data.temp.length < 1) {
+        return [-1, 0] // Return default data
+      }
       let latestData = state.data.temp[state.data.temp.length - 1]
       return [latestData[0], latestData[1][0]]
     }
   }, {
     height: 200,
+    width: 400,
     column: 4,
     min: 0,
     max: 100,
@@ -59,11 +76,15 @@ export const GaugeDefinitions = [
     unit: 'percentage',
     bufferSize: 200,
     getValFromState: (state) => {
+      if (state.data.airTankLevel.length < 1) {
+        return [-1, 0] // Return default data
+      }
       let latestData = state.data.airTankLevel[state.data.airTankLevel.length - 1]
       return [latestData[0], latestData[1][0]]
     }
   }, {
     height: 200,
+    width: 400,
     column: 4,
     min: 0,
     max: 100,
@@ -71,6 +92,9 @@ export const GaugeDefinitions = [
     unit: 'percentage',
     bufferSize: 200,
     getValFromState: (state) => {
+      if (state.data.distance.length < 1) {
+        return [-1, 0] // Return default data
+      }
       let latestData = state.data.distance[state.data.distance.length - 1]
       return [latestData[0], latestData[1][0]]
     }

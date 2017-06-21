@@ -12,6 +12,7 @@ export const PROMPT_FOR_URL = true
 // If we want to cache all recieved data in the redux store
 export const CACHE_LAST_DATA = true
 
+// Expected time delay between heart beats
 export const HEART_BEAT_POLLING_DELAY = 200
 
 /**

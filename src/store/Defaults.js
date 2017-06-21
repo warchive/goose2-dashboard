@@ -53,17 +53,17 @@ let controlSettings = {
  * amount of dimensions of information
  */
 let data = {
-  speed: [[0, [0]]],
-  acceleration: [[0, [0]]],
-  battery: [[0, [0]]],
-  temp: [[0, [0]]],
-  airTankLevel: [[0, [0]]],
-  airTankPressure: [[0, [0]]],
-  distance: [[0, [0]]],
-  imu: [[0, [0, 0, 0]]],
-  imuRotation: [[0, [0, 0, 0]]],
-  gyro: [[0, [0, 0, 0]]],
-  photo: [[0, [0]]],
+  speed: [],
+  acceleration: [],
+  battery: [],
+  temp: [],
+  airTankLevel: [],
+  airTankPressure: [],
+  distance: [],
+  imu: [],
+  imuRotation: [],
+  gyro: [],
+  photo: [],
   heartBeat: []
 }
 

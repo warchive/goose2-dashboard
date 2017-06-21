@@ -7,22 +7,24 @@ export default class LiveChart extends React.Component {
   constructor (props) {
     super()
     this.state = {
-      data: [new TimeEvent(0, 0)]
+      data: []
     }
     this.buff = new CircularBuffer(props.bufferSize)
   }
 
   componentWillReceiveProps (nextProps) {
-    let value = nextProps.value
-    if (value[0] === 0) {
-      return
-    }
-    let lastEventTime = this.state.data[this.state.data.length - 1].toPoint()[0]
-    if (value[0] <= lastEventTime) {
+    let nextVal = nextProps.value
+    let currData = this.state.data
+
+    if (nextVal[0] < 0) return  // If time is less than 0 return
+
+    // Don't want new data if it has already been recorded
+    if (currData.length > 0 &&
+        currData[currData.length - 1].toPoint[0] >= nextVal[0]) {
       return
     }
 
-    this.buff.push(new TimeEvent(value[0], value[1]))
+    this.buff.push(new TimeEvent(nextVal[0], nextVal[1]))
 
     this.setState(Object.assign({},
       this.state, {data: this.buff.toarray()}))
@@ -34,14 +36,19 @@ export default class LiveChart extends React.Component {
     const series = new TimeSeries({ name, events })
     let timeRange
     if (events.length > 0) {
-      timeRange = new TimeRange(events[0].toPoint()[0], events[events.length - 1].toPoint()[0])
+      timeRange = new TimeRange(
+        events[0].toPoint()[0],
+        events[events.length - 1].toPoint()[0]
+      )
     } else {
       timeRange = new TimeRange(0, 0)
     }
     return (
-
-      <ChartContainer timeRange={timeRange}>
-        <ChartRow height={this.props.height}>
+      <ChartContainer
+        timeRange={timeRange}
+        width={this.props.width}>
+        <ChartRow
+          height={this.props.height}>
           <YAxis
             id='y'
             label='Value'

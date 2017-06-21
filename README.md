@@ -49,3 +49,21 @@ webpack
 ```
 
 Then open dist/index.html
+
+## File Structure
+
+```text
+├── dist              - Built files
+├── events            - Names of broadcasts (from the pod) and commands (to the pod)
+├── layouts           - Configuration files for the layout of the control panel
+├── src
+│   ├── api           - Code for communcation to and from pod
+│   ├── components    - React components
+│   ├── scss          - Sass styles
+│   ├── section       - Sections of the control panel
+│   │   ├── controls
+│   │   └── visuals
+│   └── store         - Redux code (reducer, actions, defaults)
+└── test              - Code for testing (test server)
+
+```

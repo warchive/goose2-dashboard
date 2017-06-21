@@ -11,6 +11,7 @@ const GaugeChartGroup = ({ speed, acceleration }) => {
         key={v.title}
         value={val}
         height={v.height}
+        width={v.width}
         min={v.min}
         max={v.max}
         title={v.title}

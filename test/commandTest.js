@@ -51,7 +51,6 @@ function packet (name, value) {
     time: Date.now() - startTime,
     sensor: name,
     data: [value]})
-  console.log(json)
   return json
 }
 

@@ -1,18 +1,11 @@
 import React from 'react'
 import LiveChart from './LiveChart'
 import Gauge from './Gauge'
+import '../scss/GaugeChart.scss'
 
-const styles = {
-  gaugeChart: {
-    display: 'flex',
-    alignItems: 'center',
-    alignContent: 'center'
-  }
-}
-
-const GaugeChart = ({value, height, min, max, title, unit, bufferSize}) => {
+const GaugeChart = ({value, height, width, min, max, title, unit, bufferSize}) => {
   return (
-    <div className='gauge-chart' style={styles.gaugeChart}>
+    <div className='gauge-chart'>
       <Gauge
         width={200}
         height={height}
@@ -30,8 +23,9 @@ const GaugeChart = ({value, height, min, max, title, unit, bufferSize}) => {
         max={max}
         value={value}
         bufferSize={bufferSize}
+        default={0}
         height={height}
-        default={0} />
+        width={width} />
     </div>
   )
 }

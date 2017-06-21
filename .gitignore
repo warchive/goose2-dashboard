@@ -58,3 +58,5 @@ typings/
 .env
 
 dist/main.min.js
+dist/main.css
+.vscode
