@@ -20,6 +20,10 @@ import { connect as WSConnect } from './api/api'
 import {BroadcastListener} from './api/Listener.js'
 
 class App extends React.Component {
+  shouldComponentUpdate () {
+    return false
+  }
+  
   render () {
     return (
       <Grid fluid>

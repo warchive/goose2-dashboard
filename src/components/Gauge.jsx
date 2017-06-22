@@ -40,7 +40,6 @@ class Gauge extends React.Component {
 
   render () {
     return (
-
       <canvas id={this.id} />
     )
   }

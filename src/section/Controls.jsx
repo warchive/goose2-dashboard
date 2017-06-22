@@ -7,6 +7,9 @@ import SliderGroup from './controls/SliderGroup'
 import Settings from './controls/Settings'
 
 class Control extends React.Component {
+  shouldComponentUpdate () {
+    return false
+  }
   render () {
     return (
       <Row>

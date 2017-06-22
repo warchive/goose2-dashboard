@@ -18,8 +18,6 @@ export function connect (
     url = window.prompt('Please input the server url', url)
   }
 
-  console.log(SocketIO)
-
   client = SocketIO(url)
   client.on('connect', onopen)
   client.on('pi', onmessage)
