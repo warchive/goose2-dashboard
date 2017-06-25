@@ -22,44 +22,34 @@ const styles = {
 }
 
 class Slide extends React.Component {
-  constructor () {
-    super()
-    this.state = {
-      val: 0
-    }
-  }
-
   onChange (evt) {
-    this.setState(Object.assign({},
-      this.state, { val: evt }))
-
     if (this.props.instantChange) {
-      this.props.onChange(this.state.val)
+      this.props.onChange(evt)
+    } else {
+      this.props.updateControlState(evt)
     }
   }
 
   onAfterChange (evt) {
-    this.props.onChange(this.state.val)
+    this.props.onChange(evt)
   }
 
   onButtonChange (up) {
-    let newVal = this.state.val + (up ? 1 : -1)
+    let newVal = this.props.val + (up ? 1 : -1)
 
     if (newVal > this.props.max || newVal < this.props.min) {
       return
     }
 
-    this.setState(Object.assign({}, this.state, { val: newVal }))
-
     this.props.onChange(newVal)
   }
 
-  // componentWillRecieveProps (nextProps) {
-  //   if (nextProps.val !== this.state.val) {
-  //     this.setState(Object.assign({}, this.state,
-  //       {val: nextProps.val}))
-  //   }
-  // }
+  shouldComponentUpdate (nextProps) {
+    return (
+      nextProps.val !== this.props.val ||
+      nextProps.disabled !== this.props.disabled
+    )
+  }
 
   render () {
     return (
@@ -76,7 +66,7 @@ class Slide extends React.Component {
                 min={this.props.min}
                 max={this.props.max}
                 default={this.props.defaultVal}
-                value={this.state.val}
+                value={this.props.val}
                 handleStyle={[styles.handleStyle]}
                 disabled={this.props.disabled} />
             </div>
@@ -88,7 +78,7 @@ class Slide extends React.Component {
                 disabled={this.props.disabled}>
                 Up</Button>
 
-              <p> {this.state.val} </p>
+              <p> {this.props.val} </p>
 
               <Button bsStyle='info' bsSize='small' block
                 onClick={() => this.onButtonChange(false)}

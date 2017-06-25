@@ -12,16 +12,18 @@ export default class SliderGroup extends React.Component {
 
   render () {
     let connectedSliders = SliderDefinitions.map(v => {
-      let comp = ({ val, instantChange, manual, changeControl }) =>
-        <Slider
-          instantChange={instantChange}
-          onChange={val => changeControl(val)}
-          title={v.title}
-          min={v.min}
-          max={v.max}
-          defaultVal={v.default}
-          disabled={!manual}
-          val={val} />
+      let comp = ({ val, instantChange, manual,
+        changeControl, updateControlState }) =>
+          <Slider
+            instantChange={instantChange}
+            title={v.title}
+            min={v.min}
+            max={v.max}
+            defaultVal={v.default}
+            disabled={!manual}
+            val={val}
+            onChange={changeControl}
+            updateControlState={updateControlState} />
 
       let Connected = connect((state) => {
         return {
@@ -33,6 +35,9 @@ export default class SliderGroup extends React.Component {
         return {
           changeControl: (val) => {
             sendCommand(v.command, val)
+            dispatch({ type: v.action, data: val })
+          },
+          updateControlState: val => {
             dispatch({ type: v.action, data: val })
           }
         }
