@@ -21,7 +21,7 @@ const ButtonGroup = ({
             active={start}
             onClick={() => changeStart(!start)}>
             Start
-      </Button>
+          </Button>
         </Col>
         <Col sm={8}>
           <Button bsStyle='danger' bsSize='large' block
@@ -29,7 +29,7 @@ const ButtonGroup = ({
             active={emergencyStop}
             onClick={() => changeEmergencyStop(!emergencyStop)}>
             Emergency Stop
-      </Button>
+          </Button>
         </Col>
       </Row>
       <hr />
@@ -50,7 +50,7 @@ const ButtonGroup = ({
             onClick={() => changeBrake(!brake)}
             disabled={!manual} >
             Engage Brakes
-      </Button>
+          </Button>
         </Col>
       </Row>
     </div>
