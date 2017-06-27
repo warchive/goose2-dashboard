@@ -38,7 +38,7 @@ export function sendMessage (message) {
     throw new Error('socket not connected yet')
   }
 
-  client.send(message)
+  client.emit('command', message)
 }
 
 export function sendJSON (obj) {
