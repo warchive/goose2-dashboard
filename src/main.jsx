@@ -19,6 +19,8 @@ import Dashboard from './section/Dashboard'
 import { connect as WSConnect } from './api/api'
 import {BroadcastListener} from './api/Listener.js'
 
+import ControllerInit from './api/controller'
+
 class App extends React.Component {
   shouldComponentUpdate () {
     return false
@@ -69,6 +71,8 @@ WSConnect(() => {
       data: false
     })
   })
+
+ControllerInit(store.dispatch)
 
 ReactDom.render(
   <Provider store={store}>

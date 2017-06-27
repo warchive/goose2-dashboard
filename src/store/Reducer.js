@@ -20,8 +20,14 @@ let Reducer = (state = Defaults, { type, data }) => {
     case Actions.CHANGE_SPEED: {
       return changeControl(state, data, 'speed')
     }
+    case 'CHANGE_SPEED_REL': {
+      return changeControl(state, state.controls.speed + data, 'speed')
+    }
     case Actions.CHANGE_ACCELERATION: {
       return changeControl(state, data, 'acceleration')
+    }
+    case 'CHANGE_ACCELERATION_REL': {
+      return changeControl(state, state.controls.acceleration + data, 'acceleration')
     }
     case Actions.CHANGE_BRAKE: {
       return changeControl(state, data, 'brake')

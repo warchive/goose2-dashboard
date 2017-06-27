@@ -78,7 +78,7 @@ class Slide extends React.Component {
                 disabled={this.props.disabled}>
                 Up</Button>
 
-              <p> {this.props.val} </p>
+              <p> {Math.round(this.props.val * 10) / 10} </p>
 
               <Button bsStyle='info' bsSize='small' block
                 onClick={() => this.onButtonChange(false)}
