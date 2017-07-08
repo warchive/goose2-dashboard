@@ -12,10 +12,11 @@ export const GaugeDefinitions = [
     max: 245,
     bufferSize: 200,
     getValFromState: (state) => {
-      if (state.data.speed.length < 1) {
+      if (state.data.gyro.length < 1) {
         return [-1, 0] // Return default data
       }
       let latestData = state.data.gyro[state.data.gyro.length - 1]
+
       return [latestData[0], latestData[1][0]]
     }
   }, {
@@ -28,7 +29,7 @@ export const GaugeDefinitions = [
     max: 245,
     bufferSize: 200,
     getValFromState: (state) => {
-      if (state.data.speed.length < 1) {
+      if (state.data.gyro.length < 1) {
         return [-1, 0] // Return default data
       }
       let latestData = state.data.gyro[state.data.gyro.length - 1]
@@ -44,7 +45,7 @@ export const GaugeDefinitions = [
     max: 245,
     bufferSize: 200,
     getValFromState: (state) => {
-      if (state.data.speed.length < 1) {
+      if (state.data.gyro.length < 1) {
         return [-1, 0] // Return default data
       }
       let latestData = state.data.gyro[state.data.gyro.length - 1]
