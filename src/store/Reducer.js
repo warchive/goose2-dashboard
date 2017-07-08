@@ -83,13 +83,12 @@ let Reducer = (state = Defaults, { type, data }) => {
     case Actions.UPDATE_IMU_ROTATION: {
       return addToData(state, data, 'imuRotation')
     }
-    case 'gyro': {
+    case Actions.UPDATE_GYRO: {
       return addToData(state, data, 'gyro')
     }
-    case 'photo': {
-      return addToData(state, data, 'photo')
+    case Actions.UPDATE_MAGNETOMETER: {
+      return addToData(state, data, 'magnetometer')
     }
-
     /** Network */
     case Actions.UPDATE_CONNECTION_STATE: {
       return changeConnection(state, data, 'connected')

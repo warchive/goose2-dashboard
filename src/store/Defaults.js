@@ -55,6 +55,8 @@ let controlSettings = {
 let data = {
   speed: [],
   acceleration: [],
+  magnetometer: [],
+  gyro: [],
   battery: [],
   temp: [],
   airTankLevel: [],
@@ -62,7 +64,6 @@ let data = {
   distance: [],
   imu: [],
   imuRotation: [],
-  gyro: [],
   photo: [],
   heartBeat: []
 }

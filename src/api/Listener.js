@@ -12,6 +12,8 @@ export const BroadcastListener = (dispatch) => {
         return dispatch({type: Actions.UPDATE_GYRO, data: [time, data]})
       case Broadcasts.ACCELERATION:
         return dispatch({type: Actions.UPDATE_ACCELERATION, data: [time, data]})
+      case Broadcasts.MAGNETOMETER:
+        return dispatch({type: Actions.UPDATE_MAGNETOMETER, data: [time, data]})
       case Broadcasts.AIR_TANK_LEVEL:
         return dispatch({type: Actions.UPDATE_AIR_TANK_LEVEL, data: [time, data]})
       case Broadcasts.BATTERY_LEVEL:

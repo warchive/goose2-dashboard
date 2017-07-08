@@ -43,4 +43,4 @@ export const HEART_BEAT_POLLING_DELAY = 200
 /**
  * Import Gauge and Slider definitions from a layout file and re-export them
  */
-export {GaugeDefinitions, SliderDefinitions} from './layouts/default' // eslint-disable-line
+export {GaugeDefinitions, SliderDefinitions} from './layouts/threeAxisTest' // eslint-disable-line

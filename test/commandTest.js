@@ -30,7 +30,23 @@ function command (input, io) {
 
     clearInterval(intervalId[name])
     intervalId[name] = setInterval(() => io.emit('pi',
-      packet(name, Math.random() * (max - min) + min)),
+      packet(name, [Math.random() * (max - min) + min])),
+      time
+    )
+    return
+  }
+
+  if (input.startsWith('^')) {
+    let sections = input.split(' ')
+    let [, name, min, max, time] = sections
+
+    clearInterval(intervalId[name])
+    intervalId[name] = setInterval(() => io.emit('pi',
+      packet(name, [
+        Math.random() * (max - min) + min,
+        Math.random() * (max - min) + min,
+        Math.random() * (max - min) + min
+        ])),
       time
     )
     return
@@ -50,7 +66,7 @@ function packet (name, value) {
   let json = JSON.stringify({
     time: Date.now() - startTime,
     sensor: name,
-    data: [value]})
+    data: value})
   return json
 }
 
