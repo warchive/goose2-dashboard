@@ -4,7 +4,7 @@ import * as Commands from '../events/commands'
 export const GaugeDefinitions = [
   {
     title: 'Gyro X',
-    unit: 'degrees',
+    unit: 'degrees/sec',
     height: 200,
     width: 400,
     column: 4,
@@ -21,7 +21,7 @@ export const GaugeDefinitions = [
     }
   }, {
     title: 'Gyro Y',
-    unit: 'degrees',
+    unit: 'degrees/sec',
     height: 200,
     width: 400,
     column: 4,
@@ -37,7 +37,7 @@ export const GaugeDefinitions = [
     }
   },{
     title: 'Gyro Z',
-    unit: 'degrees',
+    unit: 'degrees/sec',
     height: 200,
     width: 400,
     column: 4,
