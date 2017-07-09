@@ -1,4 +1,4 @@
-export const ACCELERATION = 'acceleration'
+export const ACCELERATION = 'accel'
 export const BRAKE = 'brake'
 export const EMERGENCY_STOP = 'emergencyStop'
 export const LEVITATION = 'levitation'
