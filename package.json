@@ -9,7 +9,8 @@
     "testServer": "node test/index.js",
     "lint": "node_modules/.bin/standard",
     "lint:fix": "node_modules/.bin/standard --fix",
-    "test": "echo no tests yet"
+    "test": "echo no tests yet",
+    "dev": "./node_modules/.bin/webpack-dev-server --open"
   },
   "author": "",
   "license": "ISC",
@@ -34,7 +35,8 @@
     "socket.io": "^2.0.3",
     "socket.io-client": "^2.0.3",
     "standard": "^10.0.2",
-    "webpack": "^2.6.1",
+    "webpack": "^3.3.0",
+    "webpack-dev-server": "^2.5.1",
     "websocket": "^1.0.24"
   },
   "devDependencies": {
