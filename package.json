@@ -17,6 +17,7 @@
     "babel-polyfill": "^6.23.0",
     "canvas-gauges": "^2.1.4",
     "circular-buffer": "^1.0.2",
+    "createjs-easeljs": "^0.8.2",
     "express": "^4.15.3",
     "pondjs": "^0.8.6",
     "prop-types": "^15.5.10",

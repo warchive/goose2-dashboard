@@ -1309,6 +1309,10 @@ create-react-class@15.x, create-react-class@^15.5.3:
     loose-envify "^1.3.1"
     object-assign "^4.1.1"
 
+createjs-easeljs@^0.8.2:
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/createjs-easeljs/-/createjs-easeljs-0.8.2.tgz#4a30629cdfdd60628400ea48521dc5edfade97b9"
+
 cross-spawn@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-3.0.1.tgz#1256037ecb9f0c5f79e3d6ef135e30770184b982"
