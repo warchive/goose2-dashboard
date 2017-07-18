@@ -10,7 +10,7 @@
     "lint": "node_modules/.bin/standard",
     "lint:fix": "node_modules/.bin/standard --fix",
     "test": "echo no tests yet",
-    "dev": "./node_modules/.bin/webpack-dev-server --open"
+    "dev": "node_modules/.bin/webpack-dev-server --open"
   },
   "author": "",
   "license": "ISC",

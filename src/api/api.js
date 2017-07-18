@@ -5,29 +5,24 @@ const SocketIO = require('socket.io-client')
  * connection used to send/recieve messages from the server
  * @type {Connection}
  */
-
 let client
 
 /**
  * Establishes connection with socket
  * @param {String} url
  */
-export function connect (
-  onopen, onmessage, onerror, onclose, url = defaultURL) {
+export function connect (listeners, onopen, onerror, 
+  onclose, url = defaultURL) {
+  
   if (PROMPT_FOR_URL) {
     url = window.prompt('Please input the server url', url)
   }
 
-  console.log(SocketIO)
-
   client = SocketIO(url)
   client.on('connect', onopen)
-  client.on('pi', onmessage)
   client.on('disconnect', onclose)
-  // client.onerror = onerror
-  // client.onclose = onclose
-  // client.onmessage = onmessage
-  // client.onopen = onopen
+
+  Object.keys(listeners).forEach(v => client.on(v, listeners[v]))
 }
 
 export function sendMessage (message) {
@@ -46,9 +41,9 @@ export function sendJSON (obj) {
   sendMessage(message)
 }
 
-export function sendCommand (command, value) {
+export function sendCommand (cmd, val) {
   sendJSON({
-    command,
-    value
+    cmd,
+    val
   })
 }

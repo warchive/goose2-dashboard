@@ -85,23 +85,23 @@ const ButtonGroupConnected = connect(
   (dispatch) => {
     return {
       changeEmergencyStop: (val) => {
-        sendCommand(Commands.EMERGENCY_STOP, val)
+        sendCommand(Commands.EMERGENCY_STOP, [Number(val)])
         dispatch({ type: Actions.CHANGE_EMERGENCY_STOP, data: val })
       },
       changeStart: (val) => {
-        sendCommand(Commands.START, val)
+        sendCommand(Commands.START, [Number(val)])
         dispatch({ type: Actions.CHANGE_POD_START, data: val })
       },
       changeBrake: (val) => {
-        sendCommand(Commands.BRAKE, val)
+        sendCommand(Commands.BRAKE, [Number(val)])
         dispatch({ type: Actions.CHANGE_BRAKE, data: val })
       },
       changeBallValve: (val) => {
-        sendCommand(Commands.BALL_VALVE, val)
+        sendCommand(Commands.BALL_VALVE, [Number(val)])
         dispatch({ type: Actions.CHANGE_BALL_VALVE, data: val })
       },
       changeDPR: (val) => {
-        sendCommand(Commands.DPR, val)
+        sendCommand(Commands.DPR, [Number(val)])
         dispatch({ type: Actions.CHANGE_DPR, data: val })
       }
     }

@@ -16,6 +16,7 @@ let controls = {
   emergencyStop: false,
   speed: 0,
   acceleration: 0,
+  magwheel: 0,
   brake: false,
   ballValve: false,
   DPR: false,
@@ -26,7 +27,10 @@ let controls = {
   accelerationActual: 0,
   brakeActual: false,
   ballValveActual: false,
-  DPRActual: false
+  DPRActual: false,
+  speedActual: 0,
+  accelerationActual: 0,
+  magwheelActual: 0
 }
 
 /**

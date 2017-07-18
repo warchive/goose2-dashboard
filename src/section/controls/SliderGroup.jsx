@@ -38,13 +38,11 @@ const SliderGroup = ({ manual, changeControl }) => {
 
 const SliderGroupConnected = connect(
   (state) => {
-    return {
-    }
   },
   (dispatch) => {
     return {
       changeControl: (action, command, val) => {
-        sendCommand(command, val)
+        sendCommand(command, [val])
         dispatch({ type: action, data: val })
       }
     }
