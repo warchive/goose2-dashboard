@@ -103,20 +103,20 @@ export const GaugeDefinitions = [
 
 export const SliderDefinitions = [
   {
-    title: 'Acceleration',
+    title: 'Speed - Drive',
     min: 0,
     max: 100,
     default: 0,
-    action: Actions.CHANGE_ACCELERATION,
-    command: Commands.ACCELERATION,
+    action: Actions.CHANGE_DRIVETRAIN_SPEED,
+    command: Commands.DRIVE_TRAIN_SPEED,
     getValFromState: (state) => state.controls.acceleration
   }, {
-    title: 'Speed',
+    title: 'Speed - Mag',
     min: 0,
     max: 100,
     default: 0,
-    action: Actions.CHANGE_SPEED,
-    command: Commands.SPEED,
+    action: Actions.CHANGE_MAGWHEEL_SPEED,
+    command: Commands.MAGWHEEL_SPEED,
     getValFromState: (state) => state.controls.speed
   }
 ]

@@ -36,8 +36,6 @@ export default class LiveChart extends React.Component {
 
 
     window.addEventListener('resize', () => {
-      console.log('resize')
-      console.log(this.container.offsetWidth)
       this.setState({
         width: this.container.offsetWidth
       })

@@ -39,7 +39,9 @@ let controls = {
  * @property {boolean} instantChange If controls should be changed immediately
  */
 let controlSettings = {
-  manualControl: false,
+  manualControlMode: false,
+  scriptControlMode: false,
+  autoControlMode: true,
   instantChange: false,
   keepLastData: false
 }
