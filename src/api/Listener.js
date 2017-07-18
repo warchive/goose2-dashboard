@@ -1,7 +1,7 @@
 import * as Broadcasts from '../../events/broadcasts'
 import * as Actions from '../store/Actions'
 
-export const BroadcastListener = (dispatch) => {
+export const SensorListener = (dispatch) => {
   return (broadcast) => {
     broadcast = JSON.parse(broadcast)
 
@@ -34,7 +34,30 @@ export const BroadcastListener = (dispatch) => {
         return dispatch({type: Actions.UPDATE_POD_START, data: data[0]})
       case Broadcasts.TEMPERATURE:
         return dispatch({type: Actions.UPDATE_TEMP, data: [time, data]})
+      case Broadcasts.BALL_VALVE:
+        return dispatch({type: Actions.UPDATE_BALL_VALVE, data})
+      case Broadcasts.DPR:
+        return dispatch({type: Actions.UPDATE_DPR, data})
       default: console.error(`Unrecognized name: ${sensor}, data: ${data}`)
     }
+  }
+}
+
+export const CommandRecievedListener = (dispatch) => {
+  return (broadcast) => {
+    broadcast = JSON.stringify(broadcast)
+
+    let time = broadcast.time
+    let cmd = broadcast.recieved.cmd
+    let val = broadcast.recieved.val
+
+  }
+}
+
+export const MessageListener = (dispatch) => {
+  return (broadcast) => {
+    broadcast = JSON.stringify(broadcast)
+
+    let {time, message} = broadcast
   }
 }

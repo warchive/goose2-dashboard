@@ -17,7 +17,7 @@ import Network from './section/Network'
 import Dashboard from './section/Dashboard'
 
 import { connect as WSConnect } from './api/api'
-import {BroadcastListener} from './api/Listener.js'
+import {SensorListener} from './api/Listener.js'
 
 class App extends React.Component {
   render () {
@@ -47,7 +47,7 @@ if (DEBUG) {   // eslint-disable-line
   store = createStore(Reducer)
 }
 
-const broadcastListener = BroadcastListener(store.dispatch)
+const broadcastListener = SensorListener(store.dispatch)
 
 WSConnect(() => {
   console.log('connected')

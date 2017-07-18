@@ -26,6 +26,12 @@ let Reducer = (state = Defaults, { type, data }) => {
     case Actions.CHANGE_BRAKE: {
       return changeControl(state, data, 'brake')
     }
+    case Actions.CHANGE_BALL_VALVE: {
+      return changeControl(state, data, 'ballValve')
+    }
+    case Actions.CHANGE_DPR: {
+      return changeControl(staet, data, 'DPR')
+    }
     case Actions.CHANGE_CONTROL_INSTANT: {
       return changeSetting(state, data, 'instantChange')
     }
@@ -48,6 +54,12 @@ let Reducer = (state = Defaults, { type, data }) => {
     }
     case Actions.UPDATE_BRAKE: {
       return changeControl(state, data, 'brakeActual')
+    }
+    case Actions.UPDATE_BALL_VALVE: {
+      return changeControl(state, data, 'ballValveActual')
+    }
+    case Actions.UPDATE_DPR: {
+      return changeControl(state, data, 'DPRActual')
     }
 
     /** Data updates */
@@ -82,12 +94,6 @@ let Reducer = (state = Defaults, { type, data }) => {
     }
     case Actions.UPDATE_IMU_ROTATION: {
       return addToData(state, data, 'imuRotation')
-    }
-    case 'gyro': {
-      return addToData(state, data, 'gyro')
-    }
-    case 'photo': {
-      return addToData(state, data, 'photo')
     }
 
     /** Network */

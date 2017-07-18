@@ -10,14 +10,15 @@ const GROUP_TWO_HEIGHT = 70
 
 const ButtonGroup = ({
   manual,
-  emergencyStop, start, brake, levitation,
-  changeEmergencyStop, changeStart, changeBrake, changeLevitation }) => {
+  emergencyStop, start, brake, levitation, ballValve, DPR,
+  changeEmergencyStop, changeStart, changeBrake, changeLevitation,
+  changeBallValve, changeDPR }) => {
   return (
     <div>
       <Row>
         <Col sm={4}>
           <Button bsStyle='success' bsSize='large' block
-            style={{minHeight: GROUP_ONE_HEIGHT}}
+            style={{ minHeight: GROUP_ONE_HEIGHT }}
             active={start}
             onClick={() => changeStart(!start)}>
             Start
@@ -25,7 +26,7 @@ const ButtonGroup = ({
         </Col>
         <Col sm={8}>
           <Button bsStyle='danger' bsSize='large' block
-            style={{minHeight: GROUP_ONE_HEIGHT}}
+            style={{ minHeight: GROUP_ONE_HEIGHT }}
             active={emergencyStop}
             onClick={() => changeEmergencyStop(!emergencyStop)}>
             Emergency Stop
@@ -36,20 +37,32 @@ const ButtonGroup = ({
       <Row>
         <Col sm={6}>
           <Button bsStyle='info' bsSize='large' block
-            style={{minHeight: GROUP_TWO_HEIGHT}}
-            active={levitation}
-            onClick={() => changeLevitation(!levitation)}
-            disabled={!manual} >
-            Engage Levitation
-          </Button>
-        </Col>
-        <Col sm={6}>
-          <Button bsStyle='info' bsSize='large' block
-            style={{minHeight: GROUP_TWO_HEIGHT}}
+            style={{ minHeight: GROUP_TWO_HEIGHT }}
             active={brake}
             onClick={() => changeBrake(!brake)}
             disabled={!manual} >
             Engage Brakes
+          </Button>
+        </Col>
+      </Row>
+      <hr />
+      <Row>
+        <Col sm={6}>
+          <Button bsStyle='info' bsSize='large' block
+            style={{ minHeight: GROUP_TWO_HEIGHT }}
+            active={ballValve}
+            onClick={() => changeBallValve(!ballValve)}
+            disabled={!manual} >
+            Ball Valve
+          </Button>
+        </Col>
+        <Col sm={6}>
+          <Button bsStyle='info' bsSize='large' block
+            style={{ minHeight: GROUP_TWO_HEIGHT }}
+            active={DPR}
+            onClick={() => changeDPR(!DPR)}
+            disabled={!manual} >
+            DPR
           </Button>
         </Col>
       </Row>
@@ -64,6 +77,8 @@ const ButtonGroupConnected = connect(
       start: state.controls.startActual,
       levitation: state.controls.levitationActual,
       brake: state.controls.brakeActual,
+      ballValve: state.controls.ballValueActual,
+      DPR: state.controls.DPRActual,
       manual: state.controlSettings.manualControl
     }
   },
@@ -71,19 +86,23 @@ const ButtonGroupConnected = connect(
     return {
       changeEmergencyStop: (val) => {
         sendCommand(Commands.EMERGENCY_STOP, val)
-        dispatch({type: Actions.CHANGE_EMERGENCY_STOP, data: val})
+        dispatch({ type: Actions.CHANGE_EMERGENCY_STOP, data: val })
       },
       changeStart: (val) => {
         sendCommand(Commands.START, val)
-        dispatch({type: Actions.CHANGE_POD_START, data: val})
+        dispatch({ type: Actions.CHANGE_POD_START, data: val })
       },
       changeBrake: (val) => {
         sendCommand(Commands.BRAKE, val)
-        dispatch({type: Actions.CHANGE_BRAKE, data: val})
+        dispatch({ type: Actions.CHANGE_BRAKE, data: val })
       },
-      changeLevitation: (val) => {
-        sendCommand(Commands.LEVITATION, val)
-        dispatch({type: Actions.CHANGE_LEVITATION, data: val})
+      changeBallValve: (val) => {
+        sendCommand(Commands.BALL_VALVE, val)
+        dispatch({ type: Actions.CHANGE_BALL_VALVE, data: val })
+      },
+      changeDPR: (val) => {
+        sendCommand(Commands.DPR, val)
+        dispatch({ type: Actions.CHANGE_DPR, data: val })
       }
     }
   }
