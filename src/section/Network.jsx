@@ -21,6 +21,7 @@ const Network = ({ connected, strength, beatLatency }) => {
       </p>
       <p> Expected Polling Rate: {HEART_BEAT_POLLING_DELAY} </p>
       <p className={beatClass}> Last Beat Latency: {beatLatency} </p>
+      <p> Ping: {ping} ms</p>
     </Row>
   )
 }
@@ -29,6 +30,7 @@ export default connect(
   (state) => {
     let beatLatency
     let heartBeatLen = state.data.heartBeat.length
+    let ping = state.data.ping
     if (heartBeatLen >= 2) {
       beatLatency = state.data.heartBeat[heartBeatLen - 1] -
         state.data.heartBeat[heartBeatLen - 2]

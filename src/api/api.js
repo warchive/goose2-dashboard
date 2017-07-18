@@ -1,4 +1,6 @@
 import {URL as defaultURL, PROMPT_FOR_URL} from '../../config'
+import {BroadcastListener} from './api/Listener.js'
+import * as Actions from '../store/Actions'
 const SocketIO = require('socket.io-client')
 
 /**
@@ -17,17 +19,30 @@ export function connect (
   if (PROMPT_FOR_URL) {
     url = window.prompt('Please input the server url', url)
   }
-
+  var pingReceived = true
   console.log(SocketIO)
-
+  setInterval(200, sendPing)
   client = SocketIO(url)
   client.on('connect', onopen)
   client.on('pi', onmessage)
   client.on('disconnect', onclose)
+  client.on('ping', receivePing)
   // client.onerror = onerror
   // client.onclose = onclose
   // client.onmessage = onmessage
   // client.onopen = onopen
+}
+
+export function sendPing(){
+  if(pingReceived){
+    client.emit('ping', {timeSent: Date.now()})
+    pingReceived = false;
+  }
+}
+export function receivePing(data){
+    var latency = Date.now - data.timeSent
+    dispatchEvent({type: Actions.UPDATE_CONNECTION_LATENCY, data: latency})
+    pingReceived = true;
 }
 
 export function sendMessage (message) {

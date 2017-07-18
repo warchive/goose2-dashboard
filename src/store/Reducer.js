@@ -49,7 +49,7 @@ let Reducer = (state = Defaults, { type, data }) => {
     case Actions.UPDATE_BRAKE: {
       return changeControl(state, data, 'brakeActual')
     }
-
+    
     /** Data updates */
     case Actions.UPDATE_SPEED: {
       // Add the heart beat from the speed data
@@ -94,6 +94,10 @@ let Reducer = (state = Defaults, { type, data }) => {
     case Actions.UPDATE_CONNECTION_STATE: {
       return changeConnection(state, data, 'connected')
     }
+     case Actions.UPDATE_CONNECTION_LATENCY: {
+      return updatePing(state, data, 'ping')
+    }
+
     default:
       return state
   }
@@ -117,6 +121,13 @@ function changeSetting (state, data, field) {
 
 function changeConnection (state, data, field) {
   let newConnection = Object.assign({}, state.connection, {
+    [field]: data
+  })
+
+  return Object.assign({}, state, {connection: newConnection})
+}
+function updatePing (state, data, field) {
+  let newPing = Object.assign({}, state.ping, {
     [field]: data
   })
 
