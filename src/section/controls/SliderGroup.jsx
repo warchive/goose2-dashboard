@@ -22,7 +22,7 @@ const SliderGroup = ({ manual, changeControl }) => {
       return {
         val: v.getValFromState(state),
         instantChange: state.controlSettings.instantChange,
-        manual: state.controlSettings.manualControl
+        manual: state.controlSettings.manualControlMode
       }
     })(comp)
 

@@ -79,7 +79,7 @@ const ButtonGroupConnected = connect(
       brake: state.controls.brakeActual,
       ballValve: state.controls.ballValueActual,
       DPR: state.controls.DPRActual,
-      manual: state.controlSettings.manualControl
+      manual: state.controlSettings.manualControlMode
     }
   },
   (dispatch) => {
