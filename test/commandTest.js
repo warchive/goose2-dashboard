@@ -9,7 +9,15 @@ function command (input, io) {
   if (input.startsWith('!')) {
     let sections = input.split(' ')
 
-    return io.emit('pi', packet(sections[1], sections[2].toLowerCase() === 't'))
+    return io.emit('command_received', JSON.stringify({
+      time: Date.now(),
+      received: {
+        cmd: sections[1],
+        val: [
+          sections[2].toLowerCase() == 't'? 1 : 0
+        ]
+      }
+    }))
   }
 
   if (input.startsWith('@')) {

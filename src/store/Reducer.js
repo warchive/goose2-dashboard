@@ -43,22 +43,22 @@ let Reducer = (state = Defaults, { type, data }) => {
     }
 
     /** Pod reported 'actual' values */
-    case Actions.UPDATE_EMERGENCY_STOP: {
+    case Actions.UPDATE_CONTROL_EMERGENCY_STOP: {
       return changeControl(state, data, 'emergencyStopActual')
     }
-    case Actions.UPDATE_POD_START: {
+    case Actions.UPDATE_CONTROL_POD_START: {
       return changeControl(state, data, 'startActual')
     }
-    case Actions.UPDATE_LEVITATION: {
+    case Actions.UPDATE_CONTROL_LEVITATION: {
       return changeControl(state, data, 'levitationActual')
     }
-    case Actions.UPDATE_BRAKE: {
+    case Actions.UPDATE_CONTROL_BRAKE: {
       return changeControl(state, data, 'brakeActual')
     }
-    case Actions.UPDATE_BALL_VALVE: {
+    case Actions.UPDATE_CONTROL_BALL_VALVE: {
       return changeControl(state, data, 'ballValveActual')
     }
-    case Actions.UPDATE_DPR: {
+    case Actions.UPDATE_CONTROL_DPR: {
       return changeControl(state, data, 'DPRActual')
     }
 

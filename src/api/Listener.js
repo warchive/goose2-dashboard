@@ -32,29 +32,31 @@ export const SensorListener = (dispatch) => {
 
 export const CommandRecievedListener = (dispatch) => {
   return (broadcast) => {
-    broadcast = JSON.stringify(broadcast)
+    broadcast = JSON.parse(broadcast)
+
+    console.log(broadcast)
 
     let time = broadcast.time
-    let cmd = broadcast.recieved.cmd
-    let val = broadcast.recieved.val
+    let cmd = broadcast.received.cmd
+    let val = broadcast.received.val
 
     switch(cmd){
       case Commands.EMERGENCY_STOP:
-        return dispatch({type: Actions.UPDATE_CONTROL_EMERGENCY_STOP, data: val[0]})
+        return dispatch({type: Actions.UPDATE_CONTROL_EMERGENCY_STOP, data: Boolean(val[0])})
       case Commands.START:
-        return dispatch({type: Actions.UPDATE_CONTROL_POD_START, data: val[0]})
+        return dispatch({type: Actions.UPDATE_CONTROL_POD_START, data: Boolean(val[0])})
       case Commands.BRAKE:
-        return dispatch({type: Actions.UPDATE_CONTROL_BRAKE, data: val[0]})
+        return dispatch({type: Actions.UPDATE_CONTROL_BRAKE, data: Boolean(val[0])})
       case Commands.BALL_VALVE:
-        return dispatch({type: Actions.UPDATE_CONTROL_BALL_VALVE, data: val[0]})
+        return dispatch({type: Actions.UPDATE_CONTROL_BALL_VALVE, data: Boolean(val[0])})
       case Commands.DPR:
-        return dispatch({type: Actions.UPDATE_CONTROL_DPR, data: val[0]})
+        return dispatch({type: Actions.UPDATE_CONTROL_DPR, data: Boolean(val[0])})
       case Commands.SPEED:
-        return dispatch({type: Actions.UPDATE_CONTROL_SPEED, data: val[0]})
+        return dispatch({type: Actions.UPDATE_CONTROL_SPEED, data: Boolean(val[0])})
       case Commands.ACCELERATION:
-        return dispatch({type: Actions.UPDATE_CONTROL_ACCELERATION, data: val[0]})
+        return dispatch({type: Actions.UPDATE_CONTROL_ACCELERATION, data: Boolean(val[0])})
       case Commands.SPEED:
-        return dispatch({type: Actions.UPDATE_CONTROL_SPEED, data: val[0]})
+        return dispatch({type: Actions.UPDATE_CONTROL_SPEED, data: Boolean(val[0])})
       default: console.error(`Unrecognized cmd: ${cmd}`)
     }
   }
