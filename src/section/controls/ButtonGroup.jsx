@@ -77,7 +77,7 @@ const ButtonGroupConnected = connect(
       start: state.controls.startActual,
       levitation: state.controls.levitationActual,
       brake: state.controls.brakeActual,
-      ballValve: state.controls.ballValueActual,
+      ballValve: state.controls.ballValveActual,
       DPR: state.controls.DPRActual,
       manual: state.controlSettings.manualControlMode
     }
