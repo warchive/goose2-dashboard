@@ -14,15 +14,19 @@
 let controls = {
   start: false,
   emergencyStop: false,
+  connect: false,
   speed: 0,
   acceleration: 0,
   magwheel: 0,
   brake: false,
   ballValve: false,
   DPR: false,
+  magwheel: 0,
+  driveTrain: 0,
   /** Actual values reported from the pod */
   startActual: false,
   emergencyStopActual: false,
+  connectActual: false,
   speedActual: 0,
   accelerationActual: 0,
   brakeActual: false,
@@ -30,7 +34,8 @@ let controls = {
   DPRActual: false,
   speedActual: 0,
   accelerationActual: 0,
-  magwheelActual: 0
+  magwheelActual: 0,
+  driveTrainActual: 0
 }
 
 /**

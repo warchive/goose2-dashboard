@@ -57,6 +57,8 @@ export const CommandRecievedListener = (dispatch) => {
         return dispatch({type: Actions.UPDATE_CONTROL_ACCELERATION, data: Boolean(val[0])})
       case Commands.SPEED:
         return dispatch({type: Actions.UPDATE_CONTROL_SPEED, data: Boolean(val[0])})
+      case Commands.CONNECT_ARDUINO: 
+        return dispatch({type: Actions.UPDATE_CONTROL_CONNECT_ARDUINO, data: Boolean(val[0])})
       default: console.error(`Unrecognized cmd: ${cmd}`)
     }
   }

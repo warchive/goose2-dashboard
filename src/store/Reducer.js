@@ -17,6 +17,9 @@ let Reducer = (state = Defaults, { type, data }) => {
     case Actions.EMERGENCY_STOP: {
       return changeControl(state, data, 'emergencyStop')
     }
+    case Actions.CHANGE_CONNECT_ARDUINO: {
+      return changeControl(state, data, 'connect')
+    }
     case Actions.CHANGE_SPEED: {
       return changeControl(state, data, 'speed')
     }
@@ -30,7 +33,13 @@ let Reducer = (state = Defaults, { type, data }) => {
       return changeControl(state, data, 'ballValve')
     }
     case Actions.CHANGE_DPR: {
-      return changeControl(staet, data, 'DPR')
+      return changeControl(state, data, 'DPR')
+    }
+    case Actions.CHANGE_MAGWHEEL_SPEED: {
+      return changeControl(state, data, 'magwheel')
+    }
+    case Actions.CHANGE_DRIVETRAIN_SPEED: {
+      return changeControl(state, data, 'driveTrain')
     }
     case Actions.CHANGE_CONTROL_INSTANT: {
       return changeSetting(state, data, 'instantChange')
@@ -68,9 +77,13 @@ let Reducer = (state = Defaults, { type, data }) => {
       return changeSetting(state, data, 'keepLastData')
     }
 
+
     /** Pod reported 'actual' values */
     case Actions.UPDATE_CONTROL_EMERGENCY_STOP: {
       return changeControl(state, data, 'emergencyStopActual')
+    }
+    case Actions.UPDATE_CONTROL_CONNECT_ARDUINO: {
+      return changeControl(state, data, 'connectActual')
     }
     case Actions.UPDATE_CONTROL_POD_START: {
       return changeControl(state, data, 'startActual')

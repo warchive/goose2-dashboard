@@ -9,10 +9,10 @@ const GROUP_ONE_HEIGHT = 100
 const GROUP_TWO_HEIGHT = 70
 
 const ButtonGroup = ({
-  manual,
+  manual, connect,
   emergencyStop, start, brake, levitation, ballValve, DPR,
   changeEmergencyStop, changeStart, changeBrake, changeLevitation,
-  changeBallValve, changeDPR }) => {
+  changeBallValve, changeDPR, changeConnect }) => {
   return (
     <div>
       <Row>
@@ -42,6 +42,15 @@ const ButtonGroup = ({
             onClick={() => changeBrake(!brake)}
             disabled={!manual} >
             Engage Brakes
+          </Button>
+        </Col>
+        <Col sm={6}>
+          <Button bsStyle='info' bsSize='large' block
+            style={{ minHeight: GROUP_TWO_HEIGHT }}
+            active={connect}
+            onClick={() => changeConnect(!connect)}
+            disabled={false} >
+            Connect Arduino
           </Button>
         </Col>
       </Row>
@@ -79,7 +88,8 @@ const ButtonGroupConnected = connect(
       brake: state.controls.brakeActual,
       ballValve: state.controls.ballValveActual,
       DPR: state.controls.DPRActual,
-      manual: state.controlSettings.manualControlMode
+      manual: state.controlSettings.manualControlMode,
+      connect: state.controls.connectActual
     }
   },
   (dispatch) => {
@@ -103,6 +113,10 @@ const ButtonGroupConnected = connect(
       changeDPR: (val) => {
         sendCommand(Commands.DPR, [Number(val)])
         dispatch({ type: Actions.CHANGE_DPR, data: val })
+      },
+      changeConnect: (val) => {
+        sendCommand(Commands.CONNECT_ARDUINO, [Number(val)])
+        dispatch({type: Actions.CHANGE_CONNECT_ARDUINO, data: val})
       }
     }
   }
