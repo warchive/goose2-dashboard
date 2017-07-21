@@ -124,8 +124,8 @@ export const GaugeDefinitions = [
 export const SliderDefinitions = [
   {
     title: 'Speed - Drive',
-    min: 0,
-    max: 100,
+    min: -1,
+    max: 1,
     default: 0,
     action: Actions.CHANGE_DRIVETRAIN_SPEED,
     command: Commands.DRIVE_TRAIN_SPEED,
