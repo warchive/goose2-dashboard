@@ -20,7 +20,7 @@ const ButtonGroup = ({
           <Button bsStyle='success' bsSize='large' block
             style={{ minHeight: GROUP_ONE_HEIGHT }}
             active={drop}
-            onClick={() => ChangeDrop(!drop)}>
+            onClick={() => changeDrop(!drop)}>
             Drop
           </Button>
         </Col>

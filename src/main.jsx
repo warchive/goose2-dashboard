@@ -56,7 +56,6 @@ let ConnectedListeners = {
 WSConnect(
   ConnectedListeners,
   () => {
-    console.log('connected')
     store.dispatch({
       type: Actions.UPDATE_CONNECTION_STATE,
       data: true

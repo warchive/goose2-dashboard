@@ -22,9 +22,9 @@ class MessageDisplay extends React.Component {
           this.props.messages.map(v => {
             return (
               <p key={v[0]}>
-                <span style={styles.date}>{v[0]}</span>:
+                <span style={styles.date}>{v[1]}</span>:
                 {
-                  v[1]
+                  v[2]
                 }
               </p>
             )

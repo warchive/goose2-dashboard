@@ -5,7 +5,6 @@ import * as Actions from '../store/Actions'
 export const SensorListener = (dispatch) => {
   return (broadcast) => {
     broadcast = JSON.parse(broadcast)
-    console.log(broadcast)
     let {time, sensor, data} = broadcast
 
     switch (sensor) {
@@ -21,20 +20,18 @@ export const SensorListener = (dispatch) => {
         return dispatch({type: Actions.UPDATE_TEMP, data: [time, data]})
       case Broadcasts.DISTANCE:
         return dispatch({type: Actions.UPDATE_DISTANCE, data: [time, data]})
-      case Broadcasts.GYRO:
-        return dispatch({type: Actions.UPDATE_GYRO, data: [time, data]})
-      case Broadcasts.ACCELEROMETER:
-        return dispatch({type: Actions.UPDATE_ACCELEROMETER, data: [time, data]})
       case Broadcasts.MAGNETOMETER:
         return dispatch({type: Actions.UPDATE_MAGNETOMER, data: [time, data]})
-      case Broadcasts.ROLL_PITCH_YAW:
-        return dispatch({type: Actions.UPDATE_ROLL_PITCH_YAW, data: [time, data]})
-      case Broadcasts.ANGULAR_VELOCITY:
-        return dispatch({type: Actions.UPDATE_ANGULAR_VELOCITY, data: [time, data]})
+      case Broadcasts.ACCELERATION:
+        return dispatch({type: Actions.UPDATE_ACCELERATION, data: [time, data]})
+      case Broadcasts.GYRO:
+        return dispatch({type: Actions.UPDATE_GYRO, data: [time, data]})
+      case Broadcasts.LINEAR_VELOCITY:
+        return dispatch({type: Actions.UPDATE_LINEAR_VELOCITY, data: [time, data]})
       case Broadcasts.LINEAR_DISPLACEMENT:
         return dispatch({type: Actions.UPDATE_LINEAR_DISPLACEMENT, data: [time, data]})
-      case Broadcasts.LINEAR_ACCELERATION:
-        return dispatch({type: Actions.UPDATE_LINEAR_ACCELERATION, data: [time, data]})
+      case Broadcasts.ROLL_PITCH_YAW:
+        return dispatch({type: Actions.UPDATE_ROLL_PITCH_YAW, data: [time, data]})
       default: console.error(`Unrecognized name: ${sensor}, data: ${data}`)
     }
   }
@@ -42,10 +39,8 @@ export const SensorListener = (dispatch) => {
 
 export const CommandRecievedListener = (dispatch) => {
   return (broadcast) => {
-    console.log(broadcast)
     broadcast = JSON.parse(broadcast)
 
-    console.log(broadcast)
 
     let time = broadcast.time
     let cmd = broadcast.received.cmd
@@ -80,10 +75,10 @@ export const MessageListener = (dispatch) => {
     broadcast = JSON.parse(broadcast)
     console.log(broadcast)
     let {time, message} = broadcast
-    
+    let hash = Math.random().toString(36).substring(8)
     dispatch({
       type: Actions.UPDATE_MESSAGE_LOG,
-      data: [time, message]
+      data: [hash, time, message]
     })
   }
 }

@@ -65,9 +65,6 @@ export default class LiveChartMulti extends React.Component {
     } else {
       timeRange = new TimeRange(0, 0)
     }
-    let that = this
-    console.log(this.yAxis)
-    
     return (
       <div
         ref={(ele) => this.container = ele}

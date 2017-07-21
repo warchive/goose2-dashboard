@@ -69,23 +69,19 @@ let controlSettings = {
  */
 let data = {
   speed: [],
-  acceleration: [],
   battery: [],
   temp: [],
   airTankLevel: [],
   airTankPressure: [],
   distance: [],
-  imu: [],
-  imuRotation: [],
-  gyro: [],
   photo: [],
   heartBeat: [],
-  accelerometer: [],
   magnetometer: [],
-  rollPitchYaw: [],
-  angularVelocity: [],
+  acceleration: [],
+  gyro: [],
+  linearVelocity: [],
   linearDisplacement: [],
-  linearAcceleration: [],
+  rollPitchYaw: [],
   messages: []
 }
 

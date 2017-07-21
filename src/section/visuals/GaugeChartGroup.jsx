@@ -13,7 +13,7 @@ const GaugeChartGroup = ({ speed, acceleration }) => {
       comp = ({ val }) => 
         <GaugeChart
           key={v.title}
-          value={val}
+          data={val}
           height={v.height}
           width={v.width}
           min={v.min}
@@ -37,13 +37,14 @@ const GaugeChartGroup = ({ speed, acceleration }) => {
           columnNames={v.columnNames}/>
     } else if(v.type == 'gauge'){
       comp = ({val}) =>
-        <LiveChartMulti
+        <Gauge
           min={v.min}
           max={v.max}
           width={v.width}
           height={v.height}
           title={v.title}
-          unit={v.unit}/>     
+          unit={v.unit}
+          data={val}/>     
     }
 
     let Connected = connect((state) => {

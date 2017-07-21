@@ -131,32 +131,23 @@ let Reducer = (state = Defaults, { type, data }) => {
     case Actions.UPDATE_DISTANCE: {
       return addToData(state, data, 'distance')
     }
-    case Actions.UPDATE_IMU: {
-      return addToData(state, data, 'imu')
-    }
-    case Actions.UPDATE_IMU_ROTATION: {
-      return addToData(state, data, 'imuRotation')
+    case Actions.UPDATE_ACCELERATION: {
+      return addToData(state, data, 'acceleration')
     }
     case Actions.UPDATE_GYRO: {
       return addToData(state, data, 'gyro')
     }
-    case Actions.UPDATE_ACCELEROMETER: {
-      return addToData(state, data, 'accelerometer')
-    }
-    case Actions.UPDATE_MAGNETOMER: {
-      return addToData(state, data, 'magnetometer')
-    }
     case Actions.UPDATE_ROLL_PITCH_YAW: {
       return addToData(state, data, 'rollPitchYaw')
     }
-    case Actions.UPDATE_ANGULAR_VELOCITY: {
-      return addToData(state, data, 'angularVelocity')
+    case Actions.UPDATE_LINEAR_VELOCITY: {
+      return addToData(state, data, 'linearVelocity')
     }
     case Actions.UPDATE_LINEAR_DISPLACEMENT: {
       return addToData(state, data, 'linearDisplacement')
     }
-    case Actions.UPDATE_LINEAR_ACCELERATION: {
-      return addToData(state, data, 'linearAcceleration')
+    case Actions.UPDATE_MAGNETOMER: {
+      return addToData(state, data, 'magnetometer')
     }
 
     case Actions.UPDATE_MESSAGE_LOG: {

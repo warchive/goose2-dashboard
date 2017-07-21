@@ -3,116 +3,43 @@ import * as Commands from '../events/commands'
 
 export const GaugeDefinitions = [
   {
-    title: 'Speed',
-    type: 'chartGauge',
-    unit: 'm/s',
     height: 200,
-    width: 400,
-    column: 4,
+    width: 200,
+    column: 2,
     min: 0,
     max: 100,
-    bufferSize: 200,
+    title: 'Battery',
+    type: 'gauge',
+    unit: 'percentage',
     getValFromState: (state) => {
-      if (state.data.speed.length < 1) {
-        return [-1, 0] // Return default data
+      if (state.data.battery.length < 1) {
+        return 0 // Return default data
       }
-      let latestData = state.data.speed[state.data.speed.length - 1]
-      return [latestData[0], latestData[1][0]]
+      return state.data.battery[state.data.battery.length - 1][1][0]
     }
   }, {
+    height: 200,
+    width: 200,
+    column: 2,
+    min: 0,
+    max: 100,
+    title: 'Temperature',
+    type: 'gauge',
+    unit: 'percentage',
+    getValFromState: (state) => {
+      if (state.data.temp.length < 1) {
+        return 0 // Return default data
+      }
+      return state.data.temp[state.data.temp.length - 1][1][0]
+    }
+  },
+  {
     height: 200,
     width: 400,
     column: 4,
     min: 0,
     max: 100,
     title: 'Acceleration',
-    type: 'chartGauge',
-    unit: 'm/s/2',
-    bufferSize: 200,
-    getValFromState: (state) => {
-      if (state.data.acceleration.length < 1) {
-        return [-1, 0] // Return default data
-      }
-      let latestData = state.data.acceleration[state.data.acceleration.length - 1]
-      return [latestData[0], latestData[1][0]]
-    }
-  }, {
-    height: 200,
-    width: 400,
-    column: 4,
-    min: 0,
-    max: 100,
-    title: 'Battery',
-    type: 'chartGauge',
-    unit: 'percentage',
-    bufferSize: 200,
-    getValFromState: (state) => {
-      if (state.data.battery.length < 1) {
-        return [-1, 0] // Return default data
-      }
-      let latestData = state.data.battery[state.data.battery.length - 1]
-      return [latestData[0], latestData[1][0]]
-    }
-  }, {
-    height: 200,
-    width: 400,
-    column: 4,
-    min: 0,
-    max: 100,
-    title: 'Temperature',
-    type: 'chartGauge',
-    unit: 'percentage',
-    bufferSize: 200,
-    getValFromState: (state) => {
-      if (state.data.temp.length < 1) {
-        return [-1, 0] // Return default data
-      }
-      let latestData = state.data.temp[state.data.temp.length - 1]
-      return [latestData[0], latestData[1][0]]
-    }
-  }, /*{
-    height: 200,
-    width: 400,
-    column: 8,
-    min: 0,
-    max: 100,
-    title: 'Gyro',
-    type: 'multiChart',
-    unit: 'percentage',
-    dimension: 3,
-    bufferSize: 200,
-    columnsDef: [
-      {
-        name: 'x',
-        type: 'linear',
-        min:  0,
-        max: 100,
-      },{
-        name: 'y',
-        type: 'linear',
-        min:  0,
-        max: 100,
-      },{
-        name: 'z',
-        type: 'linear',
-        min:  0,
-        max: 100,
-      }
-    ],
-    getValFromState: (state) => {
-      if (state.data.gyro.length < 1) {
-        return null // Return default data
-      }
-      return state.data.gyro[state.data.gyro.length - 1]
-    }
-  }*/
-  {
-    height: 200,
-    width: 400,
-    column: 8,
-    min: 0,
-    max: 100,
-    title: 'Gyro',
     type: 'multiChart',
     unit: 'percentage',
     bufferSize: 200,
@@ -122,6 +49,40 @@ export const GaugeDefinitions = [
         return null // Return default data
       }
       return state.data.gyro[state.data.gyro.length - 1]
+    }
+  },{
+    height: 200,
+    width: 400,
+    column: 4,
+    min: 0,
+    max: 100,
+    title: 'Roll Pitch Yaw',
+    type: 'multiChart',
+    unit: 'degrees',
+    bufferSize: 200,
+    columnNames: ['Roll', 'Pitch', 'Yaw'],
+    getValFromState: (state) => {
+      if (state.data.rollPitchYaw.length < 1) {
+        return null // Return default data
+      }
+      return state.data.rollPitchYaw[state.data.rollPitchYaw.length - 1]
+    }
+  },{
+    height: 200,
+    width: 400,
+    column: 4,
+    min: 0,
+    max: 100,
+    title: 'Angular Velocity',
+    type: 'multiChart',
+    unit: 'degrees',
+    bufferSize: 200,
+    columnNames: ['x', 'y', 'z'],
+    getValFromState: (state) => {
+      if (state.data.angularVelocity.length < 1) {
+        return null // Return default data
+      }
+      return state.data.angularVelocity[state.data.angularVelocity.length - 1]
     }
   }
 ]
