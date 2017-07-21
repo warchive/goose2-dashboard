@@ -42,7 +42,7 @@ export const GaugeDefinitions = [
     title: 'Acceleration (m/s/s)',
     type: 'multiChart',
     unit: 'percentage',
-    bufferSize: 50,
+    bufferSize: 100,
     columnNames: ['x', 'y', 'z'],
     getValFromState: (state) => {
       if (state.data.acceleration.length < 1) {
@@ -59,7 +59,7 @@ export const GaugeDefinitions = [
     title: 'Roll Pitch Yaw (degrees)',
     type: 'multiChart',
     unit: 'degrees',
-    bufferSize: 50,
+    bufferSize: 100,
     columnNames: ['Roll', 'Pitch', 'Yaw'],
     getValFromState: (state) => {
       if (state.data.rollPitchYaw.length < 1) {
@@ -76,7 +76,7 @@ export const GaugeDefinitions = [
     title: 'Angular Velocity',
     type: 'multiChart',
     unit: 'degrees',
-    bufferSize: 50,
+    bufferSize: 100,
     columnNames: ['x', 'y', 'z'],
     getValFromState: (state) => {
       if (state.data.gyro.length < 1) {
@@ -88,12 +88,12 @@ export const GaugeDefinitions = [
     height: 200,
     width: 400,
     column: 4,
-    min: -1,
-    max: 1,
+    min: -10,
+    max: 10,
     title: 'Linear Velocity (m/s)',
     type: 'multiChart',
     unit: 'degrees',
-    bufferSize: 50,
+    bufferSize: 100,
     columnNames: ['x', 'y', 'z'],
     getValFromState: (state) => {
       if (state.data.linearVelocity.length < 1) {
@@ -110,7 +110,7 @@ export const GaugeDefinitions = [
     title: 'Linear Displacement (m)',
     type: 'multiChart',
     unit: 'degrees',
-    bufferSize: 50,
+    bufferSize: 100,
     columnNames: ['x', 'y', 'z'],
     getValFromState: (state) => {
       if (state.data.linearDisplacement.length < 1) {
