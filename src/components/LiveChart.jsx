@@ -16,7 +16,6 @@ export default class LiveChart extends React.Component {
   componentWillReceiveProps(nextProps) {
     let nextVal = nextProps.value
     let currData = this.state.data
-
     if (nextVal[0] < 0) return  // If time is less than 0 return
 
     // Don't want new data if it has already been recorded

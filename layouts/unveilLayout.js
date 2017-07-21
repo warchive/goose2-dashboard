@@ -70,39 +70,58 @@ export const GaugeDefinitions = [
       let latestData = state.data.temp[state.data.temp.length - 1]
       return [latestData[0], latestData[1][0]]
     }
-  }, {
+  }, /*{
     height: 200,
     width: 400,
-    column: 4,
+    column: 8,
     min: 0,
     max: 100,
-    title: 'Air Tank Level',
-    type: 'chartGauge',
+    title: 'Gyro',
+    type: 'multiChart',
     unit: 'percentage',
+    dimension: 3,
     bufferSize: 200,
-    getValFromState: (state) => {
-      if (state.data.airTankLevel.length < 1) {
-        return [-1, 0] // Return default data
+    columnsDef: [
+      {
+        name: 'x',
+        type: 'linear',
+        min:  0,
+        max: 100,
+      },{
+        name: 'y',
+        type: 'linear',
+        min:  0,
+        max: 100,
+      },{
+        name: 'z',
+        type: 'linear',
+        min:  0,
+        max: 100,
       }
-      let latestData = state.data.airTankLevel[state.data.airTankLevel.length - 1]
-      return [latestData[0], latestData[1][0]]
+    ],
+    getValFromState: (state) => {
+      if (state.data.gyro.length < 1) {
+        return null // Return default data
+      }
+      return state.data.gyro[state.data.gyro.length - 1]
     }
-  }, {
+  }*/
+  {
     height: 200,
     width: 400,
-    column: 4,
+    column: 8,
     min: 0,
     max: 100,
-    title: 'distance',
-    type: 'chartGauge',
+    title: 'Gyro',
+    type: 'multiChart',
     unit: 'percentage',
     bufferSize: 200,
+    columnNames: ['x', 'y', 'z'],
     getValFromState: (state) => {
-      if (state.data.distance.length < 1) {
-        return [-1, 0] // Return default data
+      if (state.data.gyro.length < 1) {
+        return null // Return default data
       }
-      let latestData = state.data.distance[state.data.distance.length - 1]
-      return [latestData[0], latestData[1][0]]
+      return state.data.gyro[state.data.gyro.length - 1]
     }
   }
 ]

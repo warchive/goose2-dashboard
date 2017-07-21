@@ -44,9 +44,9 @@ let controls = {
  * @property {boolean} instantChange If controls should be changed immediately
  */
 let controlSettings = {
-  manualControlMode: false,
+  manualControlMode: true,
   scriptControlMode: false,
-  autoControlMode: true,
+  autoControlMode: false,
   instantChange: false,
   keepLastData: false
 }
@@ -79,7 +79,14 @@ let data = {
   imuRotation: [],
   gyro: [],
   photo: [],
-  heartBeat: []
+  heartBeat: [],
+  accelerometer: [],
+  magnetometer: [],
+  rollPitchYaw: [],
+  angularVelocity: [],
+  linearDisplacement: [],
+  linearAcceleration: [],
+  messages: []
 }
 
 /**

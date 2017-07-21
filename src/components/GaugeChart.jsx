@@ -4,7 +4,6 @@ import Gauge from './Gauge'
 import '../scss/GaugeChart.scss'
 
 const GaugeChart = ({value, height, width, min, max, title, unit, bufferSize}) => {
-  console.log(title)
   return (
     <div className='gauge-chart'>
       <Gauge

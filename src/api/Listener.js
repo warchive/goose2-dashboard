@@ -5,7 +5,7 @@ import * as Actions from '../store/Actions'
 export const SensorListener = (dispatch) => {
   return (broadcast) => {
     broadcast = JSON.parse(broadcast)
-
+    console.log(broadcast)
     let {time, sensor, data} = broadcast
 
     switch (sensor) {
@@ -21,10 +21,20 @@ export const SensorListener = (dispatch) => {
         return dispatch({type: Actions.UPDATE_TEMP, data: [time, data]})
       case Broadcasts.DISTANCE:
         return dispatch({type: Actions.UPDATE_DISTANCE, data: [time, data]})
-      case Broadcasts.IMU:
-        return dispatch({type: Actions.UPDATE_IMU, data: [time, data]})
       case Broadcasts.GYRO:
         return dispatch({type: Actions.UPDATE_GYRO, data: [time, data]})
+      case Broadcasts.ACCELEROMETER:
+        return dispatch({type: Actions.UPDATE_ACCELEROMETER, data: [time, data]})
+      case Broadcasts.MAGNETOMETER:
+        return dispatch({type: Actions.UPDATE_MAGNETOMER, data: [time, data]})
+      case Broadcasts.ROLL_PITCH_YAW:
+        return dispatch({type: Actions.UPDATE_ROLL_PITCH_YAW, data: [time, data]})
+      case Broadcasts.ANGULAR_VELOCITY:
+        return dispatch({type: Actions.UPDATE_ANGULAR_VELOCITY, data: [time, data]})
+      case Broadcasts.LINEAR_DISPLACEMENT:
+        return dispatch({type: Actions.UPDATE_LINEAR_DISPLACEMENT, data: [time, data]})
+      case Broadcasts.LINEAR_ACCELERATION:
+        return dispatch({type: Actions.UPDATE_LINEAR_ACCELERATION, data: [time, data]})
       default: console.error(`Unrecognized name: ${sensor}, data: ${data}`)
     }
   }
@@ -32,6 +42,7 @@ export const SensorListener = (dispatch) => {
 
 export const CommandRecievedListener = (dispatch) => {
   return (broadcast) => {
+    console.log(broadcast)
     broadcast = JSON.parse(broadcast)
 
     console.log(broadcast)
@@ -43,8 +54,8 @@ export const CommandRecievedListener = (dispatch) => {
     switch(cmd){
       case Commands.EMERGENCY_STOP:
         return dispatch({type: Actions.UPDATE_CONTROL_EMERGENCY_STOP, data: Boolean(val[0])})
-      case Commands.START:
-        return dispatch({type: Actions.UPDATE_CONTROL_POD_START, data: Boolean(val[0])})
+      case Commands.DROP:
+        return dispatch({type: Actions.UPDATE_CONTROL_DROP, data: Boolean(val[0])})
       case Commands.BRAKE:
         return dispatch({type: Actions.UPDATE_CONTROL_BRAKE, data: Boolean(val[0])})
       case Commands.BALL_VALVE:
@@ -66,16 +77,13 @@ export const CommandRecievedListener = (dispatch) => {
 
 export const MessageListener = (dispatch) => {
   return (broadcast) => {
-    broadcast = JSON.stringify(broadcast)
-
+    broadcast = JSON.parse(broadcast)
+    console.log(broadcast)
     let {time, message} = broadcast
     
     dispatch({
       type: Actions.UPDATE_MESSAGE_LOG,
-      data: {
-        time,
-        message
-      }
+      data: [time, message]
     })
   }
 }
