@@ -37,29 +37,29 @@ export const GaugeDefinitions = [
     height: 200,
     width: 400,
     column: 4,
-    min: 0,
-    max: 100,
-    title: 'Acceleration',
+    min: -5,
+    max: 5,
+    title: 'Acceleration (m/s/s)',
     type: 'multiChart',
     unit: 'percentage',
-    bufferSize: 200,
+    bufferSize: 50,
     columnNames: ['x', 'y', 'z'],
     getValFromState: (state) => {
-      if (state.data.gyro.length < 1) {
+      if (state.data.acceleration.length < 1) {
         return null // Return default data
       }
-      return state.data.gyro[state.data.gyro.length - 1]
+      return state.data.acceleration[state.data.acceleration.length - 1]
     }
   },{
     height: 200,
     width: 400,
     column: 4,
-    min: 0,
-    max: 100,
-    title: 'Roll Pitch Yaw',
+    min: -8,
+    max: 8,
+    title: 'Roll Pitch Yaw (degrees)',
     type: 'multiChart',
     unit: 'degrees',
-    bufferSize: 200,
+    bufferSize: 50,
     columnNames: ['Roll', 'Pitch', 'Yaw'],
     getValFromState: (state) => {
       if (state.data.rollPitchYaw.length < 1) {
@@ -71,18 +71,52 @@ export const GaugeDefinitions = [
     height: 200,
     width: 400,
     column: 4,
-    min: 0,
-    max: 100,
+    min: -8,
+    max: 8,
     title: 'Angular Velocity',
     type: 'multiChart',
     unit: 'degrees',
-    bufferSize: 200,
+    bufferSize: 50,
     columnNames: ['x', 'y', 'z'],
     getValFromState: (state) => {
-      if (state.data.angularVelocity.length < 1) {
+      if (state.data.gyro.length < 1) {
         return null // Return default data
       }
-      return state.data.angularVelocity[state.data.angularVelocity.length - 1]
+      return state.data.gyro[state.data.gyro.length - 1]
+    }
+  },{
+    height: 200,
+    width: 400,
+    column: 4,
+    min: -1,
+    max: 1,
+    title: 'Linear Velocity (m/s)',
+    type: 'multiChart',
+    unit: 'degrees',
+    bufferSize: 50,
+    columnNames: ['x', 'y', 'z'],
+    getValFromState: (state) => {
+      if (state.data.linearVelocity.length < 1) {
+        return null // Return default data
+      }
+      return state.data.linearVelocity[state.data.linearVelocity.length - 1]
+    }
+  },{
+    height: 200,
+    width: 400,
+    column: 4,
+    min: -1,
+    max: 20,
+    title: 'Linear Displacement (m)',
+    type: 'multiChart',
+    unit: 'degrees',
+    bufferSize: 50,
+    columnNames: ['x', 'y', 'z'],
+    getValFromState: (state) => {
+      if (state.data.linearDisplacement.length < 1) {
+        return null // Return default data
+      }
+      return state.data.linearDisplacement[state.data.linearDisplacement.length - 1]
     }
   }
 ]

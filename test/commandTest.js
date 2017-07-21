@@ -44,6 +44,22 @@ function command (input, io) {
     return
   }
 
+  if(input.startsWith('^')){
+    let sections = input.split(' ')
+    let [, name, dim, min, max, time] = sections
+
+    dim = Number(dim)
+    min = Number(min)
+    max = Number(max)
+    time = Number(time)
+
+    clearInterval(intervalId[name])
+    intervalId[name] = setInterval(() => io.emit('sensor',
+      packet(
+        name, 
+        Array(Number(dim)).fill(0).map(() => Math.random() * (max - min) + min) ))
+      , time)
+  }
   if (input.startsWith('%')) {
     let sections = input.split(' ')
 

@@ -4,10 +4,12 @@
  */
 
 // Default URL for the server
-export const URL = 'ws://192.168.1.142E:8002/'
+//export const URL = 'ws://192.168.1.142:8002/'
+export const URL = 'ws://localhost:8000/'
+
 
 // If we need to prompt for URL every time
-export const PROMPT_FOR_URL = false
+export const PROMPT_FOR_URL = true
 
 // If we want to cache all recieved data in the redux store
 export const CACHE_LAST_DATA = true
