@@ -70,7 +70,8 @@ let controlSettings = {
 let data = {
   speed: [],
   battery: [],
-  temp: [],
+  irtemp: [],
+  contacttemp: [],
   airTankLevel: [],
   airTankPressure: [],
   distance: [],
@@ -82,7 +83,8 @@ let data = {
   linearVelocity: [],
   linearDisplacement: [],
   rollPitchYaw: [],
-  messages: []
+  messages: [],
+  distance: []
 }
 
 /**

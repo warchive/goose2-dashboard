@@ -8,14 +8,14 @@ export const GaugeDefinitions = [
     column: 2,
     min: 0,
     max: 100,
-    title: 'Battery',
+    title: 'Distance',
     type: 'gauge',
-    unit: 'percentage',
+    unit: 'millimeters',
     getValFromState: (state) => {
-      if (state.data.battery.length < 1) {
+      if (state.data.distance.length < 1) {
         return 0 // Return default data
       }
-      return state.data.battery[state.data.battery.length - 1][1][0]
+      return state.data.distance[state.data.distance.length - 1][1][0]
     }
   }, {
     height: 200,
@@ -23,14 +23,14 @@ export const GaugeDefinitions = [
     column: 2,
     min: 0,
     max: 100,
-    title: 'Temperature',
+    title: 'IR Temperature',
     type: 'gauge',
-    unit: 'percentage',
+    unit: 'degrees',
     getValFromState: (state) => {
-      if (state.data.temp.length < 1) {
+      if (state.data.irtemp.length < 1) {
         return 0 // Return default data
       }
-      return state.data.temp[state.data.temp.length - 1][1][0]
+      return state.data.irtemp[state.data.irtemp.length - 1][1][0]
     }
   },
   {

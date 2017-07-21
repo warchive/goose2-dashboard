@@ -16,8 +16,10 @@ export const SensorListener = (dispatch) => {
         return dispatch({type: Actions.UPDATE_AIR_TANK_LEVEL, data: [time* 1000, data]})
       case Broadcasts.BATTERY:
         return dispatch({type: Actions.UPDATE_BATTERY, data: [time* 1000, data]})
-      case Broadcasts.TEMPERATURE:
-        return dispatch({type: Actions.UPDATE_TEMP, data: [time* 1000, data]})
+      case Broadcasts.IR_TEMPERATURE:
+        return dispatch({type: Actions.UPDATE_IRTEMP, data: [time* 1000, data]})
+      case Broadcasts.CONTACT_TEMPERATURE:
+        return dispatch({type: Actions.UPDATE_CONTACTTEMP, data: [time* 1000, data]})
       case Broadcasts.DISTANCE:
         return dispatch({type: Actions.UPDATE_DISTANCE, data: [time* 1000, data]})
       case Broadcasts.MAGNETOMETER:

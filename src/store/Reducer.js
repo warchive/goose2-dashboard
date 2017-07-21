@@ -119,8 +119,11 @@ let Reducer = (state = Defaults, { type, data }) => {
     case Actions.UPDATE_BATTERY: {
       return addToData(state, data, 'battery')
     }
-    case Actions.UPDATE_TEMP: {
-      return addToData(state, data, 'temp')
+    case Actions.UPDATE_IRTEMP: {
+      return addToData(state, data, 'irtemp')
+    }
+    case Actions.UPDATE_CONTACTTEMP: {
+      return addToData(state, data, 'contacttemp')
     }
     case Actions.UPDATE_AIR_TANK_LEVEL: {
       return addToData(state, data, 'airTankLevel')
@@ -157,6 +160,7 @@ let Reducer = (state = Defaults, { type, data }) => {
     case Actions.UPDATE_CONNECTION_STATE: {
       return changeConnection(state, data, 'connected')
     }
+
     default:
       return state
   }

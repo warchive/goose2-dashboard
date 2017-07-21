@@ -32,7 +32,8 @@ The store itself is just a javascript object and looks something like this:
     imuRotation: [],
     gyro: [],
     photo: [],
-    heartBeat: []
+    heartBeat: [],
+    distance: []
   },
   connection: {
     connected: false,
