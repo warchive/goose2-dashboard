@@ -12,10 +12,11 @@ export const GaugeDefinitions = [
     type: 'gauge',
     unit: 'millimeters',
     getValFromState: (state) => {
-      if (state.data.distance.length < 1) {
-        return 0 // Return default data
-      }
-      return state.data.distance[state.data.distance.length - 1][1][0]
+      // if (state.data.distance.length < 1) {
+      //   return 0 // Return default data
+      // }
+      // return state.data.distance[state.data.distance.length - 1][1][0]
+      return 40
     }
   }, {
     height: 200,
@@ -71,9 +72,9 @@ export const GaugeDefinitions = [
     height: 200,
     width: 400,
     column: 4,
-    min: -8,
-    max: 8,
-    title: 'Angular Velocity',
+    min: -10,
+    max: 10,
+    title: 'Angular Velocity (degrees/s)',
     type: 'multiChart',
     unit: 'degrees',
     bufferSize: 100,

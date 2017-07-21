@@ -4,8 +4,8 @@
  */
 
 // Default URL for the server
-//export const URL = 'ws://192.168.1.142:8002/'
-export const URL = 'ws://localhost:8000/'
+export const URL = 'ws://192.168.1.142:8002/'
+//export const URL = 'ws://localhost:8000/'
 
 
 // If we need to prompt for URL every time
