@@ -82,7 +82,6 @@ class Slide extends React.Component {
               onKeyDown={(evt) => this.onKeyDown(evt)}
               onClick={(evt) => this.div.focus()}
               ref={(ele) => { this.div = ele }}>
-
               <Slider vertical included
                 style={styles.sliderStyle}
                 onChange={(evt) => this.onChange(evt)}
