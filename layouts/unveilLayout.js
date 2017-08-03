@@ -51,7 +51,7 @@ export const GaugeDefinitions = [
       }
       return state.data.acceleration[state.data.acceleration.length - 1]
     }
-  },{
+  }, {
     height: 200,
     width: 400,
     column: 4,
@@ -68,7 +68,7 @@ export const GaugeDefinitions = [
       }
       return state.data.rollPitchYaw[state.data.rollPitchYaw.length - 1]
     }
-  },{
+  }, {
     height: 200,
     width: 400,
     column: 4,
@@ -85,7 +85,7 @@ export const GaugeDefinitions = [
       }
       return state.data.gyro[state.data.gyro.length - 1]
     }
-  },{
+  }, {
     height: 200,
     width: 400,
     column: 4,
@@ -102,7 +102,7 @@ export const GaugeDefinitions = [
       }
       return state.data.linearVelocity[state.data.linearVelocity.length - 1]
     }
-  },{
+  }, {
     height: 200,
     width: 400,
     column: 4,

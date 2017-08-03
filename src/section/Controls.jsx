@@ -21,7 +21,7 @@ class Control extends React.Component {
           <ButtonGroup />
         </Col>
         <Col sm={3} style={{flex: 1}}>
-          <MessageDisplay/>
+          <MessageDisplay />
         </Col>
       </Row>
     )

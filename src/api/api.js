@@ -11,9 +11,8 @@ let client
  * Establishes connection with socket
  * @param {String} url
  */
-export function connect (listeners, onopen, onerror, 
+export function connect (listeners, onopen, onerror,
   onclose, url = defaultURL) {
-  
   if (PROMPT_FOR_URL) {
     url = window.prompt('Please input the server url', url)
   }

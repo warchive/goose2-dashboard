@@ -77,7 +77,6 @@ let Reducer = (state = Defaults, { type, data }) => {
       return changeSetting(state, data, 'keepLastData')
     }
 
-
     /** Pod reported 'actual' values */
     case Actions.UPDATE_CONTROL_EMERGENCY_STOP: {
       return changeControl(state, data, 'emergencyStopActual')
@@ -112,9 +111,6 @@ let Reducer = (state = Defaults, { type, data }) => {
           speed: state.data.speed.concat([data]),
           heartBeat: state.data.heartBeat.concat([data[0]])
         })})
-    }
-    case Actions.UPDATE_ACCELERATION: {
-      return addToData(state, data, 'acceleration')
     }
     case Actions.UPDATE_BATTERY: {
       return addToData(state, data, 'battery')

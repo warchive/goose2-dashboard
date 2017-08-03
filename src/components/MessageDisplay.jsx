@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-const styles ={
+const styles = {
   container: {
     overflow: 'scroll',
     height: 300,
@@ -13,9 +13,9 @@ const styles ={
   }
 }
 class MessageDisplay extends React.Component {
-  render(){
+  render () {
     return (
-      <div 
+      <div
         className='container-fluid'
         style={styles.container}>
         {

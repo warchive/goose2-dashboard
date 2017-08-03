@@ -14,14 +14,13 @@ function command (input, io) {
       received: {
         cmd: sections[1],
         val: [
-          sections[2].toLowerCase() == 't'? 1 : 0
+          sections[2].toLowerCase() === 't' ? 1 : 0
         ]
       }
     }))
   }
 
   if (input.startsWith('@')) {
-
     return io.emit('message', JSON.stringify({
       time: Date.now() - startTime,
       message: input.substring(2, input.length)
@@ -46,7 +45,7 @@ function command (input, io) {
     return
   }
 
-  if(input.startsWith('^')){
+  if (input.startsWith('^')) {
     let sections = input.split(' ')
     let [, name, dim, min, max, time] = sections
 
@@ -58,8 +57,8 @@ function command (input, io) {
     clearInterval(intervalId[name])
     intervalId[name] = setInterval(() => io.emit('sensor',
       packet(
-        name, 
-        Array(Number(dim)).fill(0).map(() => Math.random() * (max - min) + min) ))
+        name,
+        Array(Number(dim)).fill(0).map(() => Math.random() * (max - min) + min)))
       , time)
   }
   if (input.startsWith('%')) {

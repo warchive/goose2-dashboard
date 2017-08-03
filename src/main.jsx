@@ -60,10 +60,10 @@ WSConnect(
       type: Actions.UPDATE_CONNECTION_STATE,
       data: true
     })
-  }, 
+  },
   (error) => {
     console.error(error)
-  }, 
+  },
   () => {
     store.dispatch({
       type: Actions.UPDATE_CONNECTION_STATE,

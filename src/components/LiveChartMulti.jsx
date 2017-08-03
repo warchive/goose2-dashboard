@@ -1,6 +1,6 @@
 import React from 'react'
 import { Charts, ChartContainer, ChartRow, YAxis, LineChart, Legend, styler } from 'react-timeseries-charts'
-import { TimeEvent, TimeSeries, TimeRange } from 'pondjs'
+import { TimeSeries, TimeRange } from 'pondjs'
 import CircularBuffer from 'circular-buffer'
 
 const lineColors = [
@@ -13,7 +13,7 @@ const lineColors = [
 ]
 
 export default class LiveChartMulti extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super()
     this.state = {
       width: props.width,
@@ -26,8 +26,8 @@ export default class LiveChartMulti extends React.Component {
         color: lineColors[i]
       }
     }))
-    
-    this.legend = 
+
+    this.legend =
       <Legend
         type='swatch'
         style={this.styles}
@@ -38,31 +38,30 @@ export default class LiveChartMulti extends React.Component {
               label: v
             }
           })
-        }/>
+        } />
 
-    this.buff = new CircularBuffer(props.bufferSize)    
+    this.buff = new CircularBuffer(props.bufferSize)
   }
 
-  componentWillReceiveProps(nextProps){
-    let nextData = nextProps.data;
-    let currData = this.state.data;
+  componentWillReceiveProps (nextProps) {
+    let nextData = nextProps.data
+    let currData = this.state.data
 
-    if(!nextData) return
-    if(nextData[0] <= currData[0]) return
+    if (!nextData) return
+    if (nextData[0] <= currData[0]) return
 
-    let [time, data] = nextData;
+    let [time, data] = nextData
 
     this.buff.push([time].concat(data))
-    
+
     this.setState({
       data: this.buff.toarray()
     })
   }
 
-  componentDidMount(){
+  componentDidMount () {
     let newWidth = this.container.offsetWidth
     this.setState({width: newWidth})
-
 
     window.addEventListener('resize', () => {
       this.setState({
@@ -70,8 +69,8 @@ export default class LiveChartMulti extends React.Component {
       })
     })
   }
-  
-  render() {
+
+  render () {
     let timeSeries = new TimeSeries({
       name: this.props.title,
       columns: ['time', ...this.props.columnNames],
@@ -79,34 +78,34 @@ export default class LiveChartMulti extends React.Component {
     })
     let timeRange
 
-    if(this.state.data.length){
+    if (this.state.data.length) {
       timeRange = new TimeRange(
         this.state.data[0][0],
         this.state.data[this.state.data.length - 1][0]
       )
-    } else timeRange = new TimeRange(0,0)
-    
+    } else timeRange = new TimeRange(0, 0)
+
     return (
       <div
-        ref={(ele) => this.container = ele}
+        ref={(ele) => { this.container = ele }}
         style={{overflow: 'hidden', width: '100%'}}>
         <ChartContainer
           timeRange={timeRange}
           width={this.state.width}>
           <ChartRow
             height={this.props.height}>
-               <YAxis
-                id={'y'}
-                label={this.props.title}
-                min={this.props.min}
-                max={this.props.max}
-                type={'linear'}/>
+            <YAxis
+              id={'y'}
+              label={this.props.title}
+              min={this.props.min}
+              max={this.props.max}
+              type={'linear'} />
             <Charts>
               <LineChart
                 style={this.styles}
                 axis={'y'}
                 series={timeSeries}
-                columns={this.props.columnNames}/>
+                columns={this.props.columnNames} />
             </Charts>
           </ChartRow>
         </ChartContainer>

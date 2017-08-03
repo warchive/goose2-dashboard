@@ -22,11 +22,11 @@ const LabelSwitch = ({ label, checked, onToggle }) => {
   )
 }
 
-const Settings = ({ 
+const Settings = ({
   manualControlMode, scriptControlMode, autoControlMode,
   instantChange, keepLastData,
-  switchToManualControl, switchToScriptControl, switchToAutoControl, 
-  changeInstantControl, changeKeepLastData 
+  switchToManualControl, switchToScriptControl, switchToAutoControl,
+  changeInstantControl, changeKeepLastData
 }) => {
   return (
     <div>
@@ -79,7 +79,7 @@ const SettingsConnected = connect(
   (dispatch) => {
     return {
       switchToManualControl: () => {
-        dispatch({ type: Actions.CHANGE_CONTROL_MANUAL})
+        dispatch({ type: Actions.CHANGE_CONTROL_MANUAL })
         sendCommand(Commands.MANUAL_CONTROL, [1])
       },
       switchToScriptControl: () => {

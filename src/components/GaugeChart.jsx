@@ -3,13 +3,12 @@ import LiveChart from './LiveChart'
 import Gauge from './Gauge'
 import '../scss/GaugeChart.scss'
 
-export default class GaugeChart extends React.Component{
-
-  shouldComponentUpdate(nextProps){
+export default class GaugeChart extends React.Component {
+  shouldComponentUpdate (nextProps) {
     return this.props.data[0] <= nextProps.data[0]
   }
 
-  render(){
+  render () {
     return (
       <div className='gauge-chart'>
         <Gauge

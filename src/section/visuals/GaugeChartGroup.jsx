@@ -9,8 +9,8 @@ import Gauge from '../../components/Gauge'
 const GaugeChartGroup = ({ speed, acceleration }) => {
   let connectedGauges = GaugeDefinitions.map(v => {
     let comp
-    if(v.type == 'chartGauge'){
-      comp = ({ val }) => 
+    if (v.type === 'chartGauge') {
+      comp = ({ val }) =>
         <GaugeChart
           key={v.title}
           data={val}
@@ -21,7 +21,7 @@ const GaugeChartGroup = ({ speed, acceleration }) => {
           title={v.title}
           unit={v.unit}
           bufferSize={v.bufferSize} />
-    } else if(v.type == 'multiChart'){
+    } else if (v.type === 'multiChart') {
       comp = ({val}) =>
         <LiveChartMulti
           min={v.min}
@@ -34,8 +34,8 @@ const GaugeChartGroup = ({ speed, acceleration }) => {
           unit={v.unit}
           bufferSize={v.bufferSize}
           dimension={v.dimension}
-          columnNames={v.columnNames}/>
-    } else if(v.type == 'gauge'){
+          columnNames={v.columnNames} />
+    } else if (v.type === 'gauge') {
       comp = ({val}) =>
         <Gauge
           min={v.min}
@@ -44,7 +44,7 @@ const GaugeChartGroup = ({ speed, acceleration }) => {
           height={v.height}
           title={v.title}
           unit={v.unit}
-          data={val}/>     
+          data={val} />
     }
 
     let Connected = connect((state) => {
