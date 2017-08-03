@@ -24,6 +24,7 @@ let controls = {
   magwheel: 0,
   driveTrain: 0,
   /** Actual values reported from the pod */
+  dropActual: false,
   startActual: false,
   emergencyStopActual: false,
   connectActual: false,

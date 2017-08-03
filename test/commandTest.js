@@ -21,15 +21,17 @@ function command (input, io) {
   }
 
   if (input.startsWith('@')) {
-    let sections = input.split(' ')
 
-    return io.emit('pi', packet(sections[1], sections[2]))
+    return io.emit('message', JSON.stringify({
+      time: Date.now() - startTime,
+      message: input.substring(2, input.length)
+    }))
   }
 
   if (input.startsWith('#')) {
     let sections = input.split(' ')
 
-    return io.emit('pi', packet(sections[1], Number(sections[2])))
+    return io.emit('sensor', packet(sections[1], [Number(sections[2])]))
   }
 
   if (input.startsWith('$')) {
@@ -72,7 +74,7 @@ const startTime = Date.now()
 
 function packet (name, value) {
   let json = JSON.stringify({
-    time: Date.now() - startTime,
+    time: (Date.now() - startTime) / 1000,
     sensor: name,
     data: value})
   return json
