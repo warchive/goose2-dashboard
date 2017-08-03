@@ -55,12 +55,12 @@ class Slide extends React.Component {
   }
 
   onKeyDown (evt) {
-    if (this.props.disabled) return;
+    if (this.props.disabled) return
 
     if (evt.key === 'ArrowUp') {
-      this.onButtonChange(true);
+      this.onButtonChange(true)
     } else if (evt.key === 'ArrowDown') {
-      this.onButtonChange(false);
+      this.onButtonChange(false)
     }
   }
 
@@ -78,11 +78,10 @@ class Slide extends React.Component {
         <Row>
           <Col sm={5}>
             <div className='slider-container'
-            tabIndex='0'
-            onKeyDown={(evt) => this.onKeyDown(evt)}
-            onClick={(evt) => this.div.focus()}
-            ref={(ele) => this.div = ele}>
-
+              tabIndex='0'
+              onKeyDown={(evt) => this.onKeyDown(evt)}
+              onClick={(evt) => this.div.focus()}
+              ref={(ele) => { this.div = ele }}>
               <Slider vertical included
                 style={styles.sliderStyle}
                 onChange={(evt) => this.onChange(evt)}

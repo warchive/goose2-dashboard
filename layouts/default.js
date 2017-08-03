@@ -4,6 +4,7 @@ import * as Commands from '../events/commands'
 export const GaugeDefinitions = [
   {
     title: 'Speed',
+    type: 'chartGauge',
     unit: 'm/s',
     height: 200,
     width: 400,
@@ -25,6 +26,7 @@ export const GaugeDefinitions = [
     min: 0,
     max: 100,
     title: 'Acceleration',
+    type: 'chartGauge',
     unit: 'm/s/2',
     bufferSize: 200,
     getValFromState: (state) => {
@@ -41,6 +43,7 @@ export const GaugeDefinitions = [
     min: 0,
     max: 100,
     title: 'Battery',
+    type: 'chartGauge',
     unit: 'percentage',
     bufferSize: 200,
     getValFromState: (state) => {
@@ -57,6 +60,7 @@ export const GaugeDefinitions = [
     min: 0,
     max: 100,
     title: 'Temperature',
+    type: 'chartGauge',
     unit: 'percentage',
     bufferSize: 200,
     getValFromState: (state) => {
@@ -73,6 +77,7 @@ export const GaugeDefinitions = [
     min: 0,
     max: 100,
     title: 'Air Tank Level',
+    type: 'chartGauge',
     unit: 'percentage',
     bufferSize: 200,
     getValFromState: (state) => {
@@ -89,6 +94,7 @@ export const GaugeDefinitions = [
     min: 0,
     max: 100,
     title: 'distance',
+    type: 'chartGauge',
     unit: 'percentage',
     bufferSize: 200,
     getValFromState: (state) => {
@@ -103,20 +109,20 @@ export const GaugeDefinitions = [
 
 export const SliderDefinitions = [
   {
-    title: 'Acceleration',
+    title: 'Speed - Drive',
     min: 0,
     max: 100,
     default: 0,
-    action: Actions.CHANGE_ACCELERATION,
-    command: Commands.ACCELERATION,
+    action: Actions.CHANGE_DRIVETRAIN_SPEED,
+    command: Commands.DRIVE_TRAIN_SPEED,
     getValFromState: (state) => state.controls.acceleration
   }, {
-    title: 'Speed',
+    title: 'Speed - Mag',
     min: 0,
     max: 100,
     default: 0,
-    action: Actions.CHANGE_SPEED,
-    command: Commands.SPEED,
+    action: Actions.CHANGE_MAGWHEEL_SPEED,
+    command: Commands.MAGWHEEL_SPEED,
     getValFromState: (state) => state.controls.speed
   }
 ]

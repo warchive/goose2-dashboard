@@ -9,7 +9,7 @@ io.on('connection', client => {
   client.on('command', evt => console.log(evt))
 })
 
-io.on('command', evt => console.log(evt))
+io.on('control', evt => console.log(evt))
 io.listen(PORT)
 
 const rl = readLine.createInterface({

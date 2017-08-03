@@ -22,7 +22,7 @@ const SliderGroup = ({ manual, changeControl }) => {
       return {
         val: v.getValFromState(state),
         instantChange: state.controlSettings.instantChange,
-        manual: state.controlSettings.manualControl
+        manual: state.controlSettings.manualControlMode
       }
     })(comp)
 
@@ -38,13 +38,11 @@ const SliderGroup = ({ manual, changeControl }) => {
 
 const SliderGroupConnected = connect(
   (state) => {
-    return {
-    }
   },
   (dispatch) => {
     return {
       changeControl: (action, command, val) => {
-        sendCommand(command, val)
+        sendCommand(command, [val])
         dispatch({ type: action, data: val })
       }
     }

@@ -22,24 +22,38 @@ const LabelSwitch = ({ label, checked, onToggle }) => {
   )
 }
 
-const Settings = ({ manualControl, instantChange,
-  keepLastData,
-  changeManualControl, changeInstantControl,
-  changeKeepLastData }) => {
+const Settings = ({
+  manualControlMode, scriptControlMode, autoControlMode,
+  instantChange, keepLastData,
+  switchToManualControl, switchToScriptControl, switchToAutoControl,
+  changeInstantControl, changeKeepLastData
+}) => {
   return (
     <div>
       <Row>
         <LabelSwitch
           label='Manual control'
-          checked={manualControl}
-          onToggle={(evt) => changeManualControl(evt)} />
+          checked={manualControlMode}
+          onToggle={switchToManualControl} />
+      </Row>
+      <Row>
+        <LabelSwitch
+          label='Script Mode'
+          checked={scriptControlMode}
+          onToggle={switchToScriptControl} />
+      </Row>
+      <Row>
+        <LabelSwitch
+          label='Auto Mode'
+          checked={autoControlMode}
+          onToggle={switchToAutoControl} />
       </Row>
       <hr />
       <Row>
         <LabelSwitch
           label='Instant Change'
           checked={instantChange}
-          onToggle={(evt) => changeInstantControl(evt)} />
+          onToggle={changeInstantControl} />
       </Row>
       <Row>
         <LabelSwitch
@@ -55,16 +69,26 @@ const Settings = ({ manualControl, instantChange,
 const SettingsConnected = connect(
   (state) => {
     return {
-      manualControl: state.controlSettings.manualControl,
+      manualControlMode: state.controlSettings.manualControlMode,
+      scriptControlMode: state.controlSettings.scriptControlMode,
+      autoControlMode: state.controlSettings.autoControlMode,
       instantChange: state.controlSettings.instantChange,
       keepLastData: state.controlSettings.keepLastData
     }
   },
   (dispatch) => {
     return {
-      changeManualControl: (val) => {
-        dispatch({ type: Actions.CHANGE_CONTROL_MANUAL, data: val })
-        sendCommand(Commands.MANUAL_CONTROL, val)
+      switchToManualControl: () => {
+        dispatch({ type: Actions.CHANGE_CONTROL_MANUAL })
+        sendCommand(Commands.MANUAL_CONTROL, [1])
+      },
+      switchToScriptControl: () => {
+        dispatch({ type: Actions.CHANGE_CONTROL_SCRIPT })
+        sendCommand(Commands.SCRIPT_CONTROL, [1])
+      },
+      switchToAutoControl: () => {
+        dispatch({ type: Actions.CHANGE_CONTROL_AUTO })
+        sendCommand(Commands.AUTO_CONTROL, [1])
       },
       changeInstantControl: (val) => {
         dispatch({ type: Actions.CHANGE_CONTROL_INSTANT, data: val })

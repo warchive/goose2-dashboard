@@ -4,7 +4,7 @@ import { TimeEvent, TimeSeries, TimeRange } from 'pondjs'
 import CircularBuffer from 'circular-buffer'
 
 export default class LiveChart extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super()
     this.state = {
       data: [],
@@ -13,10 +13,9 @@ export default class LiveChart extends React.Component {
     this.buff = new CircularBuffer(props.bufferSize)
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     let nextVal = nextProps.value
     let currData = this.state.data
-
     if (nextVal[0] < 0) return  // If time is less than 0 return
 
     // Don't want new data if it has already been recorded
@@ -30,21 +29,18 @@ export default class LiveChart extends React.Component {
     this.setState({ data: this.buff.toarray() })
   }
 
-  componentDidMount(){
+  componentDidMount () {
     let newWidth = this.container.offsetWidth
     this.setState({width: newWidth})
 
-
     window.addEventListener('resize', () => {
-      console.log('resize')
-      console.log(this.container.offsetWidth)
       this.setState({
         width: this.container.offsetWidth
       })
     })
   }
-  
-  render() {
+
+  render () {
     const name = this.props.title
     const events = this.state.data
     const series = new TimeSeries({ name, events })
@@ -59,7 +55,7 @@ export default class LiveChart extends React.Component {
     }
     return (
       <div
-        ref={(ele) => this.container = ele}
+        ref={(ele) => { this.container = ele }}
         style={{overflow: 'hidden', width: '100%'}}>
         <ChartContainer
           timeRange={timeRange}

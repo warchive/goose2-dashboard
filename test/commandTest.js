@@ -9,19 +9,28 @@ function command (input, io) {
   if (input.startsWith('!')) {
     let sections = input.split(' ')
 
-    return io.emit('pi', packet(sections[1], sections[2].toLowerCase() === 't'))
+    return io.emit('command_received', JSON.stringify({
+      time: Date.now(),
+      received: {
+        cmd: sections[1],
+        val: [
+          sections[2].toLowerCase() === 't' ? 1 : 0
+        ]
+      }
+    }))
   }
 
   if (input.startsWith('@')) {
-    let sections = input.split(' ')
-
-    return io.emit('pi', packet(sections[1], sections[2]))
+    return io.emit('message', JSON.stringify({
+      time: Date.now() - startTime,
+      message: input.substring(2, input.length)
+    }))
   }
 
   if (input.startsWith('#')) {
     let sections = input.split(' ')
 
-    return io.emit('pi', packet(sections[1], Number(sections[2])))
+    return io.emit('sensor', packet(sections[1], [Number(sections[2])]))
   }
 
   if (input.startsWith('$')) {
@@ -29,13 +38,29 @@ function command (input, io) {
     let [, name, min, max, time] = sections
 
     clearInterval(intervalId[name])
-    intervalId[name] = setInterval(() => io.emit('pi',
-      packet(name, Math.random() * (max - min) + min)),
+    intervalId[name] = setInterval(() => io.emit('sensor',
+      packet(name, [Math.random() * (max - min) + min])),
       time
     )
     return
   }
 
+  if (input.startsWith('^')) {
+    let sections = input.split(' ')
+    let [, name, dim, min, max, time] = sections
+
+    dim = Number(dim)
+    min = Number(min)
+    max = Number(max)
+    time = Number(time)
+
+    clearInterval(intervalId[name])
+    intervalId[name] = setInterval(() => io.emit('sensor',
+      packet(
+        name,
+        Array(Number(dim)).fill(0).map(() => Math.random() * (max - min) + min)))
+      , time)
+  }
   if (input.startsWith('%')) {
     let sections = input.split(' ')
 
@@ -48,9 +73,9 @@ const startTime = Date.now()
 
 function packet (name, value) {
   let json = JSON.stringify({
-    time: Date.now() - startTime,
+    time: (Date.now() - startTime) / 1000,
     sensor: name,
-    data: [value]})
+    data: value})
   return json
 }
 
