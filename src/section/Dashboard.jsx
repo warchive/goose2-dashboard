@@ -10,24 +10,24 @@ class Dashboard extends React.Component {
         <Col sm={12}>
           <CentralCluster
             height={600}
-            data={[this.props.input1, this.props.input2, 30]}
+            data={[this.props.input1, this.props.input2, 10]}
             settings={[
               {
-                color: 0xff0000,
+                color: 0x99FD77,
                 min: 0,
                 max: 100,
                 label: 'Speed',
                 unit: 'm/s'
               },
               {
-                color: 0x00ff00,
+                color: 0x8ADCFF,
                 min: 0,
                 max: 100,
                 label: 'Accel',
                 unit: 'm/s/s'
               },
               {
-                color: 0x0000ff,
+                color: 0xFF7575,
                 min: 0,
                 max: 100,
                 label: 'something',
