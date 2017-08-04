@@ -6,41 +6,41 @@ const settings = {
   backgroundColor: 0xf0f0f0
 }
 
-
 export default class CentralCluster extends React.Component {
-  constructor(props){
+  constructor (props) {
     super()
 
     this.state = {}
+    this.gauges = []
   }
 
-  renderGauges(){
+  initiateGauges () {
     let data = this.props.data
-    console.log(data)
-    console.log(this.props.settings)
     let gauges = data.map((v, i) => {
       let gaugeSettings = this.props.settings[i]
-      let currGauge = new PIXI.Graphics()
+      let currGauge = new PIXI.Graphics()   //eslint-disable-line
       currGauge.beginFill(gaugeSettings.color)
+      /**
+       * For some reason the (x,y) coordinates (which are the first two arguments in the call below)
+       * needs to be specified after. This should be looked into
+       * @todo: research why we need this work around
+       */
       currGauge.arc(
         0,
         0,
         this.state.height - (i * settings.gaugeWidth),
         0,
-        Math.PI//this.calculateAngle(gaugeSettings.min, gaugeSettings.max, v)
+        Math.PI
       )
-      // currGauge.pivot.x = currGauge.width/2
-      // currGauge.pivot.y = currGauge.height
       currGauge.position.x = this.state.center.x
       currGauge.position.y = this.state.height
-
-      window.gauge = currGauge
-
       currGauge.endFill()
 
-      let that = this;
-
-      currGauge.update = function(val){
+      /**
+       * Give an easy method to call to update the gauge as a property
+       */
+      let that = this
+      currGauge.update = function (val) {
         this.rotation = that.calculateAngle(
           gaugeSettings.min,
           gaugeSettings.max,
@@ -49,48 +49,61 @@ export default class CentralCluster extends React.Component {
       }
       this.app.stage.addChild(currGauge)
 
-      // let spacer = new PIXI.Graphics()
-      // spacer.beginFill(settings.backgroundColor)
-      // spacer.arc(
-      //   this.state.center.x,
-      //   this.state.height,
-      //   this.state.height - ((i + 1) * settings.gaugeWidth),
-      //   Math.PI,
-      //   Math.PI * 2
-      // )
-      // this.app.stage.addChild(spacer)
+      // So that only the border of each gauge is shown
+      let spacer = new PIXI.Graphics() //eslint-disable-line
+      spacer.beginFill(settings.backgroundColor)
+      spacer.arc(
+        this.state.center.x,
+        this.state.height,
+        this.state.height - ((i + 1) * settings.gaugeWidth),
+        Math.PI,
+        Math.PI * 2
+      )
+      this.app.stage.addChild(spacer)
 
-      return currGauge
+      let currLabel = new PIXI.Text('', {  //eslint-disable-line
+        align: 'center',
+        fontSize: settings.gaugeWidth
+      })
+
+      currLabel.x = this.state.center.x
+      currLabel.y = i * settings.gaugeWidth
+      this.app.stage.addChild(currLabel)
+
+      currLabel.update = function (val) {
+        this.text = `${gaugeSettings.label}: ${val} ${gaugeSettings.unit}`
+      }
+
+      currGauge.update(v)
+      currLabel.update(v)
+
+      return {
+        gauge: currGauge,
+        label: currLabel
+      }
     })
+
     this.gauges = gauges
-
-    // let gauge = new PIXI.Graphics()
-    // gauge.beginFill(0xFFFFff)
-    // gauge.arc(
-    //   this.state.center.x,
-    //   this.state.height,
-    //   this.state.height,
-    //   Math.PI,
-    //   Math.PI * 1.8)
-    
-    // this.app.stage.addChild(gauge)
-    
   }
 
-  shouldComponentUpdate(nextProps){
-    nextProps.data.forEach((v,i) => 
-      this.gauges[i].update(v)
-    )
+  shouldComponentUpdate (nextProps) {
+    if (this.gauges.length === 0) return true
 
-    return false;
+    nextProps.data.forEach((v, i) => {
+      this.gauges[i].label.update(v)
+      this.gauges[i].gauge.update(v)
+    })
+
+    return false
   }
 
-  componentDidMount(){
+  componentDidMount () {
     let width = this.container.offsetWidth
     let height = this.container.offsetHeight
 
-    this.app = new PIXI.Application(width, height, {
-      backgroundColor: settings.backgroundColor
+    this.app = new PIXI.Application(width, height, { //eslint-disable-line
+      backgroundColor: settings.backgroundColor,
+      antialias: true
     })
 
     this.container.appendChild(this.app.view)
@@ -102,19 +115,18 @@ export default class CentralCluster extends React.Component {
         x: width / 2,
         y: height / 2
       }
-    }, () => this.renderGauges())
+    }, () => this.initiateGauges())
   }
 
-  calculateAngle(min, max, val){
+  calculateAngle (min, max, val) {
     return Math.PI * (val / (max - min))
   }
 
-  render(){
+  render () {
     return (
       <div
-        ref={container => this.container = container}
-        style={{height: this.props.height}}>
-      </div>
+        ref={container => { this.container = container }}
+        style={{ height: this.props.height }} />
     )
   }
 }

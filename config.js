@@ -4,10 +4,10 @@
  */
 
 // Default URL for the server
-export const URL = 'ws://localhost:8080/'
+export const URL = 'ws://localhost:8000/'
 
 // If we need to prompt for URL every time
-export const PROMPT_FOR_URL = true
+export const PROMPT_FOR_URL = false
 
 // If we want to cache all recieved data in the redux store
 export const CACHE_LAST_DATA = true
@@ -43,4 +43,4 @@ export const HEART_BEAT_POLLING_DELAY = 200
 /**
  * Import Gauge and Slider definitions from a layout file and re-export them
  */
-export {GaugeDefinitions, SliderDefinitions} from './layouts/default' // eslint-disable-line
+export { GaugeDefinitions, SliderDefinitions } from './layouts/default' // eslint-disable-line
