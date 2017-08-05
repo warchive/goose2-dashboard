@@ -15,6 +15,8 @@ export default class CentralCluster extends React.Component {
   }
 
   initiateGauges () {
+
+    console.log(this.state.radius)
     let data = this.props.data
     let gauges = data.map((v, i) => {
       let gaugeSettings = this.props.settings[i]
@@ -28,7 +30,7 @@ export default class CentralCluster extends React.Component {
       currGauge.arc(
         0,
         0,
-        this.state.height - (i * settings.gaugeWidth),
+        this.state.radius - (i * settings.gaugeWidth),
         0,
         Math.PI
       )
@@ -55,7 +57,7 @@ export default class CentralCluster extends React.Component {
       spacer.arc(
         this.state.center.x,
         this.state.height,
-        this.state.height - ((i + 1) * settings.gaugeWidth),
+        this.state.radius - ((i + 1) * settings.gaugeWidth),
         Math.PI,
         Math.PI * 2
       )
@@ -67,7 +69,7 @@ export default class CentralCluster extends React.Component {
       })
 
       currLabel.x = this.state.center.x
-      currLabel.y = i * settings.gaugeWidth
+      currLabel.y = this.state.height - this.state.radius + i * settings.gaugeWidth
       this.app.stage.addChild(currLabel)
 
       currLabel.update = function (val) {
@@ -111,6 +113,7 @@ export default class CentralCluster extends React.Component {
     this.setState({
       width,
       height,
+      radius: Math.min(width/2, height),
       center: {
         x: width / 2,
         y: height / 2
@@ -123,10 +126,18 @@ export default class CentralCluster extends React.Component {
   }
 
   render () {
+    let innerRadius = this.state.radius 
+      - (this.props.settings.length * settings.gaugeWidth)
+    
+    let getY = (x) => Math.sqrt(innerRadius**2 - x**2)
+    let getYPrime = (x) => (1/2) * (innerRadius ** 2 - x) 
     return (
       <div
         ref={container => { this.container = container }}
-        style={{ height: this.props.height }} />
+        style={{ height: this.props.height }}>
+        
+        <div style={{border: '1px solid black'}}/>
+      </div>
     )
   }
 }
