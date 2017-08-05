@@ -129,14 +129,33 @@ export default class CentralCluster extends React.Component {
     let innerRadius = this.state.radius 
       - (this.props.settings.length * settings.gaugeWidth)
     
+    
     let getY = (x) => Math.sqrt(innerRadius**2 - x**2)
-    let getYPrime = (x) => (1/2) * (innerRadius ** 2 - x) 
+
+    let x = innerRadius / 2
+    let y = getY(x)
+    console.log(innerRadius)
+    console.log(x)
+    console.log(y)
+
     return (
       <div
-        ref={container => { this.container = container }}
-        style={{ height: this.props.height }}>
-        
-        <div style={{border: '1px solid black'}}/>
+        style={{height: this.props.height}}>
+        <div
+          ref={container => { this.container = container }}
+          style={{ height: this.props.height }}/>        
+        {
+          !this.state.center ? "" :
+          <div style={{
+            border: '1px solid black', 
+            position: 'absolute', 
+            bottom: 0, 
+            left: this.state.center.x - innerRadius + x,
+            height: y,
+            width: (innerRadius - x) * 2 }}>
+            {this.props.children}
+          </div>
+        } 
       </div>
     )
   }

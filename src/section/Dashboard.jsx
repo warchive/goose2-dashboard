@@ -10,7 +10,7 @@ class Dashboard extends React.Component {
         <Col sm={12}>
           <CentralCluster
             height={600}
-            data={[this.props.input1, this.props.input2, 10]}
+            data={[this.props.input1, this.props.input2, 100]}
             settings={[
               {
                 color: 0x99FD77,
@@ -33,7 +33,14 @@ class Dashboard extends React.Component {
                 label: 'something',
                 unit: 'blah'
               }
-            ]} />
+            ]}>
+            <div className="container-fluid">
+              <div className="row">
+                <p>State:</p>
+              </div>
+            </div>
+
+          </CentralCluster>
         </Col>
       </Row>
     )
