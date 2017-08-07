@@ -10,7 +10,7 @@ class Dashboard extends React.Component {
         <Col sm={12}>
           <CentralCluster
             height={600}
-            data={[this.props.input1, this.props.input2, 100]}
+            data={[this.props.speed, this.props.accel, this.props.distance]}
             settings={[
               {
                 color: 0x99FD77,
@@ -47,9 +47,17 @@ class Dashboard extends React.Component {
   }
 }
 
+function getLastPairValue (array, idx) {
+  let lastIdx = array.length - 1
+  if(lastIdx == -1) return null
+
+  return array[lastIdx][1][idx]
+}
+
 export default connect(
   (state) => Object({
-    input1: state.controls.speed,
-    input2: state.controls.acceleration
+    speed: getLastPairValue(state.data.speed, 0),
+    accel: getLastPairValue(state.data.acceleration, 0),
+    distance: getLastPairValue(state.data.distance, 0)
   })
 )(Dashboard)

@@ -54,6 +54,16 @@ class Slide extends React.Component {
     this.props.onChange(newVal)
   }
 
+  onKeyDown (evt) {
+    if (this.props.disabled) return
+
+    if (evt.key === 'ArrowUp') {
+      this.onButtonChange(true)
+    } else if (evt.key === 'ArrowDown') {
+      this.onButtonChange(false)
+    }
+  }
+
   // componentWillRecieveProps (nextProps) {
   //   if (nextProps.val !== this.state.val) {
   //     this.setState(Object.assign({}, this.state,
@@ -67,8 +77,11 @@ class Slide extends React.Component {
         <Row><p className='text-center' >{this.props.title}</p></Row>
         <Row>
           <Col sm={5}>
-            <div className='slider-container'>
-
+            <div className='slider-container'
+              tabIndex='0'
+              onKeyDown={(evt) => this.onKeyDown(evt)}
+              onClick={(evt) => this.div.focus()}
+              ref={(ele) => { this.div = ele }}>
               <Slider vertical included
                 style={styles.sliderStyle}
                 onChange={(evt) => this.onChange(evt)}

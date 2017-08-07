@@ -5,5 +5,8 @@ script:
   - npm run lint
   - npm run test
   - npm run build:prod
+cache:
+  directories:
+    - node_modules
 notifications:
   slack: waterloop:tGYXhPI1vjmfbWUqqHtxHX7t

@@ -3,32 +3,35 @@ import LiveChart from './LiveChart'
 import Gauge from './Gauge'
 import '../scss/GaugeChart.scss'
 
-const GaugeChart = ({value, height, width, min, max, title, unit, bufferSize}) => {
-  console.log(title)
-  return (
-    <div className='gauge-chart'>
-      <Gauge
-        width={200}
-        height={height}
-        min={min}
-        max={max}
-        value={value[1]}
-        default={0}
-        unit={unit}
-        title={title}
-      />
-      <LiveChart
-        tile={title}
-        unit={unit}
-        min={min}
-        max={max}
-        value={value}
-        bufferSize={bufferSize}
-        default={0}
-        height={height}
-        width={width} />
-    </div>
-  )
-}
+export default class GaugeChart extends React.Component {
+  shouldComponentUpdate (nextProps) {
+    return this.props.data[0] <= nextProps.data[0]
+  }
 
-export default GaugeChart
+  render () {
+    return (
+      <div className='gauge-chart'>
+        <Gauge
+          width={200}
+          height={this.props.height}
+          min={this.props.min}
+          max={this.props.max}
+          data={this.props.data[1]}
+          default={0}
+          unit={this.props.unit}
+          title={this.props.title}
+        />
+        <LiveChart
+          tile={this.props.title}
+          unit={this.props.unit}
+          min={this.props.min}
+          max={this.props.max}
+          value={this.props.data}
+          bufferSize={this.props.bufferSize}
+          default={0}
+          height={this.props.height}
+          width={this.props.width} />
+      </div>
+    )
+  }
+}

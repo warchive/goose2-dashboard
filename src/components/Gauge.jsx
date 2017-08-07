@@ -11,7 +11,7 @@ class Gauge extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    this.value = nextProps.value
+    this.value = nextProps.data
     this.gauge.value = this.value
   }
 

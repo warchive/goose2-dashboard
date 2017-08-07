@@ -28,7 +28,7 @@ Front end HTML page for controlling the pod
 # Make sure you're in the root directory of the project
 
 yarn
-npm run build:prod
+npm run dev
 ```
 
 ### For windows
