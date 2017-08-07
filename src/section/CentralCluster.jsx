@@ -15,7 +15,6 @@ export default class CentralCluster extends React.Component {
   }
 
   initiateGauges () {
-
     console.log(this.state.radius)
     let data = this.props.data
     let gauges = data.map((v, i) => {
@@ -113,7 +112,7 @@ export default class CentralCluster extends React.Component {
     this.setState({
       width,
       height,
-      radius: Math.min(width/2, height),
+      radius: Math.min(width / 2, height),
       center: {
         x: width / 2,
         y: height / 2
@@ -126,11 +125,10 @@ export default class CentralCluster extends React.Component {
   }
 
   render () {
-    let innerRadius = this.state.radius 
-      - (this.props.settings.length * settings.gaugeWidth)
-    
-    
-    let getY = (x) => Math.sqrt(innerRadius**2 - x**2)
+    let innerRadius = this.state.radius -
+      (this.props.settings.length * settings.gaugeWidth)
+
+    let getY = (x) => Math.sqrt(innerRadius ** 2 - x ** 2)
 
     let x = innerRadius / 2
     let y = getY(x)
@@ -143,19 +141,19 @@ export default class CentralCluster extends React.Component {
         style={{height: this.props.height}}>
         <div
           ref={container => { this.container = container }}
-          style={{ height: this.props.height }}/>        
+          style={{ height: this.props.height }} />
         {
-          !this.state.center ? "" :
-          <div style={{
-            border: '1px solid black', 
-            position: 'absolute', 
-            bottom: 0, 
+          !this.state.center ? ''
+          : <div style={{
+            border: '1px solid black',
+            position: 'absolute',
+            bottom: 0,
             left: this.state.center.x - innerRadius + x,
             height: y,
             width: (innerRadius - x) * 2 }}>
             {this.props.children}
           </div>
-        } 
+        }
       </div>
     )
   }

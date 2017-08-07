@@ -34,8 +34,8 @@ class Dashboard extends React.Component {
                 unit: 'blah'
               }
             ]}>
-            <div className="container-fluid">
-              <div className="row">
+            <div className='container-fluid'>
+              <div className='row'>
                 <p>State:</p>
               </div>
             </div>
@@ -49,7 +49,7 @@ class Dashboard extends React.Component {
 
 function getLastPairValue (array, idx) {
   let lastIdx = array.length - 1
-  if(lastIdx == -1) return null
+  if (lastIdx === -1) return null
 
   return array[lastIdx][1][idx]
 }
