@@ -1,10 +1,9 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
 const styles = {
   container: {
     overflow: 'scroll',
-    height: 300,
     backgroundcolor: 'white',
     fontFamily: 'mono'
   },
@@ -17,7 +16,7 @@ class MessageDisplay extends React.Component {
     return (
       <div
         className='container-fluid'
-        style={styles.container}>
+        style={Object.assign({}, styles.container, { height: this.props.height })}>
         {
           this.props.messages.map(v => {
             return (

@@ -3,12 +3,17 @@ import { Row, Col } from 'react-bootstrap'
 import CentralCluster from './CentralCluster'
 import { connect } from 'react-redux'
 import InnerCluster from './visuals/InnerCluster'
+import RollPitchYaw from './visuals/RollPitchYaw'
+import MessageDisplay from '../components/MessageDisplay'
 
 class Dashboard extends React.Component {
   render () {
     return (
       <Row className='dashboard'>
-        <Col sm={12}>
+        <Col sm={2}>
+          <RollPitchYaw />
+        </Col>
+        <Col sm={7}>
           <CentralCluster
             height={500}
             data={[this.props.speed, this.props.accel, 100]}
@@ -37,6 +42,10 @@ class Dashboard extends React.Component {
             ]}>
             <InnerCluster />
           </CentralCluster>
+        </Col>
+        <Col sm={3}>
+          <MessageDisplay
+            height={500} />
         </Col>
       </Row>
     )

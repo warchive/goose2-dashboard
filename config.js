@@ -15,6 +15,11 @@ export const CACHE_LAST_DATA = true
 // Expected time delay between heart beats
 export const HEART_BEAT_POLLING_DELAY = 200
 
+// How many decimal places values should be rounded to
+export const ROUNDING = 1
+
+export const roundValue = (val) => Math.round(val * (10 ** ROUNDING)) / 10 ** ROUNDING
+
 /**
  * @typedef {Object} SliderConfig
  * @property {String} title The title for the slider
@@ -38,9 +43,13 @@ export const HEART_BEAT_POLLING_DELAY = 200
  * @property {Function} getvalFromState return the date val tuple from state
  *  at once
  *
-*/
+ */
 
 /**
  * Import Gauge and Slider definitions from a layout file and re-export them
  */
-export {GaugeDefinitions, SliderDefinitions} from './layouts/unveilLayout' // eslint-disable-line
+export {
+  GaugeDefinitions,
+  SliderDefinitions
+}
+from './layouts/unveilLayout' // eslint-disable-line

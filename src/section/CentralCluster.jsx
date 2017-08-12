@@ -1,5 +1,6 @@
 import React from 'react'
 import '../lib/pixi.min.js'
+import { roundValue } from '../../config.js'
 
 const settings = {
   gaugeWidth: 15,
@@ -73,7 +74,7 @@ export default class CentralCluster extends React.Component {
       this.app.stage.addChild(currLabel)
 
       currLabel.update = function (val) {
-        this.text = `${gaugeSettings.label}: ${val} ${gaugeSettings.unit}`
+        this.text = `${gaugeSettings.label}: ${roundValue(val)} ${gaugeSettings.unit}`
       }
 
       currGauge.update(v)
@@ -99,7 +100,7 @@ export default class CentralCluster extends React.Component {
     return false
   }
 
-  componentDidMount () {
+  initializeComponent () {
     let width = this.container.offsetWidth
     let height = this.container.offsetHeight
 
@@ -119,6 +120,19 @@ export default class CentralCluster extends React.Component {
         y: height / 2
       }
     }, () => this.initiateGauges())
+  }
+
+  componentDidMount () {
+    /**
+     * Such a fucking hack but i have no idea how to fix this issue
+     * basically:
+     * - This component mounts, initialize component gets the dimensions of the div
+     *    and renders everything
+     * - The parent component & this component resizes
+     * - The dimensions are completely fucking wrong now
+     * @todo fix this shit
+     */
+    setTimeout(this.initializeComponent.bind(this), 500)
   }
 
   calculateAngle (min, max, val) {
