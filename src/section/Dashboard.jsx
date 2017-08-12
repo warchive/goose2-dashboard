@@ -10,7 +10,7 @@ class Dashboard extends React.Component {
         <Col sm={12}>
           <CentralCluster
             height={600}
-            data={[this.props.speed, this.props.accel, this.props.distance]}
+            data={[this.props.speed, this.props.accel, 100]}
             settings={[
               {
                 color: 0x99FD77,
@@ -36,7 +36,9 @@ class Dashboard extends React.Component {
             ]}>
             <div className='container-fluid'>
               <div className='row'>
-                <p>State:</p>
+                <div style={{ margin: 'auto' }}>
+                  <p>State:</p>
+                </div>
               </div>
             </div>
 

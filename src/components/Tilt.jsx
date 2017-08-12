@@ -1,5 +1,5 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
 class Tilt extends React.Component {
   constructor (props) {
@@ -11,8 +11,8 @@ class Tilt extends React.Component {
 
   render () {
     return (
-      <div style={{width: 100, height: 100, backgroundColor: 'black', borderRadius: 50}}>
-        <div style={{margin: '1px 0px 0px 1px', width: 98, height: 49, backgroundColor: 'white', borderRadius: '49px 49px 0px 0px', transform: `rotate(${this.props.tilt * 1.8 - 90}deg)`, transformOrigin: '50% 100%'}} />
+      <div style={{ width: 100, height: 100, backgroundColor: 'black', borderRadius: 50 }}>
+        <div style={{ margin: '1px 0px 0px 1px', width: 98, height: 49, backgroundColor: 'white', borderRadius: '49px 49px 0px 0px', transform: `rotate(${this.props.tilt * 1.8 - 90}deg)`, transformOrigin: '50% 100%' }} />
       </div>
     )
   }
