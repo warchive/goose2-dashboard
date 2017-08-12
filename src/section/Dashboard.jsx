@@ -2,6 +2,7 @@ import React from 'react'
 import { Row, Col } from 'react-bootstrap'
 import CentralCluster from './CentralCluster'
 import { connect } from 'react-redux'
+import InnerCluster from './visuals/InnerCluster'
 
 class Dashboard extends React.Component {
   render () {
@@ -9,7 +10,7 @@ class Dashboard extends React.Component {
       <Row className='dashboard'>
         <Col sm={12}>
           <CentralCluster
-            height={600}
+            height={500}
             data={[this.props.speed, this.props.accel, 100]}
             settings={[
               {
@@ -34,14 +35,7 @@ class Dashboard extends React.Component {
                 unit: 'blah'
               }
             ]}>
-            <div className='container-fluid'>
-              <div className='row'>
-                <div style={{ margin: 'auto' }}>
-                  <p>State:</p>
-                </div>
-              </div>
-            </div>
-
+            <InnerCluster />
           </CentralCluster>
         </Col>
       </Row>
