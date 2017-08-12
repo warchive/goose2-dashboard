@@ -2,7 +2,8 @@ import React from 'react'
 import '../lib/pixi.min.js'
 
 const settings = {
-  gaugeWidth: 10,
+  gaugeWidth: 15,
+  textSize: 12,
   backgroundColor: 0xf0f0f0
 }
 
@@ -64,11 +65,11 @@ export default class CentralCluster extends React.Component {
 
       let currLabel = new PIXI.Text('', {  //eslint-disable-line
         align: 'center',
-        fontSize: settings.gaugeWidth
+        fontSize: settings.textSize
       })
 
       currLabel.x = this.state.center.x
-      currLabel.y = this.state.height - this.state.radius + i * settings.gaugeWidth
+      currLabel.y = this.state.height - this.state.radius + i * settings.gaugeWidth + (settings.gaugeWidth - settings.textSize)
       this.app.stage.addChild(currLabel)
 
       currLabel.update = function (val) {
