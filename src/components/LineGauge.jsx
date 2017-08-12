@@ -1,5 +1,6 @@
 import React from 'react'
 import { Line } from 'react-progressbar.js'
+import { roundValue } from '../../config'
 
 const options = {
   strokeWidth: 4,
@@ -12,10 +13,11 @@ const options = {
 }
 
 export default ({ min, max, label, unit, value, width }) => {
+  value = value || 0
   return (
     <Line
       progress={value / (max - min)}
-      text={`${label}: ${value} ${unit}`}
+      text={`${label}: ${roundValue(value)} ${unit}`}
       options={options}
       containerStyle={{
         width,

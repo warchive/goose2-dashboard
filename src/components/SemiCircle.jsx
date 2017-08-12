@@ -12,6 +12,7 @@ const options = {
 }
 
 export default ({ min, max, label, unit, value, width }) => {
+  value = value || 0
   return (
     <SemiCircle
       progress={value / (max - min)}

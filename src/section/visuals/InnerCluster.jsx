@@ -7,9 +7,16 @@ import '../../scss/InnerCluster.scss'
 const InnerCluster = ({
   state,
   pressure,
-  battery48,
-  battery24,
-  battery5 }) => {
+  battery
+}) => {
+  let battery48, battery24, battery5
+
+  if (!battery) {
+    battery48 = battery24 = battery5 = null
+  } else {
+    [battery48, battery24, battery5] = battery[1]
+  }
+
   return (
     <div className='container-fluid' id='inner-cluster'>
       <div className='row'>
@@ -31,7 +38,7 @@ const InnerCluster = ({
         <Line
           min={0}
           max={100}
-          value={pressure}
+          value={battery48}
           label='48V'
           unit=''
           width={200} />
@@ -40,7 +47,7 @@ const InnerCluster = ({
         <Line
           min={0}
           max={100}
-          value={pressure}
+          value={battery24}
           label='24V'
           unit=''
           width={200} />
@@ -49,7 +56,7 @@ const InnerCluster = ({
         <Line
           min={0}
           max={100}
-          value={pressure}
+          value={battery5}
           label='5V'
           unit=''
           width={200} />
@@ -59,5 +66,6 @@ const InnerCluster = ({
 }
 
 export default connect(state => Object({
-  pressure: state.controls.magwheel
+  pressure: state.controls.magwheel,
+  battery: state.data.battery.slice(-1)[0]
 }))(InnerCluster)

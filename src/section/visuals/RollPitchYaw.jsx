@@ -4,14 +4,12 @@ import { connect } from 'react-redux'
 import Tilt from '../../components/Tilt'
 
 const RollPitchYaw = ({ rollPitchYaw }) => {
+  let roll, pitch, yaw
   if (!rollPitchYaw) {
-    rollPitchYaw = [0, [0, 0, 0]]
+    roll = pitch = yaw = null
+  } else {
+    [roll, pitch, yaw] = rollPitchYaw[1]
   }
-
-  // let time = rollPitchYaw[0]
-  let data = rollPitchYaw[1]
-
-  let [roll, pitch, yaw] = data
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
