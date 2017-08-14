@@ -53,6 +53,13 @@ let ConnectedListeners = {
   message: Listeners.MessageListener(store.dispatch)
 }
 
+export function updatePing(data){
+store.dispatch({
+      type: Actions.UPDATE_CONNECTION_LATENCY,
+      data: data
+    })
+}
+
 WSConnect(
   ConnectedListeners,
   () => {

@@ -1,4 +1,6 @@
 import {URL as defaultURL, PROMPT_FOR_URL} from '../../config'
+import updatePing from "../main.jsx"
+
 const SocketIO = require('socket.io-client')
 
 /**
@@ -16,8 +18,12 @@ export function connect (listeners, onopen, onerror,
   if (PROMPT_FOR_URL) {
     url = window.prompt('Please input the server url', url)
   }
+  var pingReceived= true;
 
   client = SocketIO(url)
+  setInterval(200, sendPing)
+  
+  client.on('ping', receivePing);
   client.on('connect', onopen)
   client.on('disconnect', onclose)
 
@@ -45,4 +51,17 @@ export function sendCommand (cmd, val) {
     cmd,
     val
   })
+}
+
+export function sendPing(){
+  if(pingReceived){
+    client.emit('ping', {timeSent: Date.now()})
+    pingReceived = false;
+  }
+}
+
+export function receivePing(data){
+    var latency = Date.now - data.timeSent
+    updatePing(latency)
+    pingReceived = true;
 }
