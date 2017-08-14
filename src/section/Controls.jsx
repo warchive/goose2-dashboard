@@ -1,24 +1,21 @@
 import React from 'react'
-import { Row, Col } from 'react-bootstrap'
+import { Row } from 'react-bootstrap'
 
 /** Components */
-import ButtonGroup from './controls/ButtonGroup'
-import SliderGroup from './controls/SliderGroup'
 import Settings from './controls/Settings'
+
+import LevControl from './controls/LevControl'
 
 class Control extends React.Component {
   render () {
     return (
-      <Row style={{ display: 'flex' }}>
-        <Col sm={2}>
-          <Settings />
-        </Col>
-        <Col sm={3} style={{ display: 'flex' }}>
-          <SliderGroup />
-        </Col>
-        <Col sm={4}>
-          <ButtonGroup />
-        </Col>
+
+      <Row id='control-container'>
+        <Settings style={{ gridArea: 'settings', padding: 10 }} />
+        <LevControl style={{ gridArea: 'lev-control' }} />
+        <LevControl style={{ gridArea: 'ec-control' }} />
+        <LevControl style={{ gridArea: 'mw-control' }} />
+        <LevControl style={{ gridArea: 'drive-control' }} />
       </Row>
     )
   }

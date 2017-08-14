@@ -13,23 +13,25 @@ const LabelSwitch = ({ label, checked, onToggle }) => {
       flexDirection: 'row',
       alignItems: 'center',
       alignContent: 'center',
-      margin: 10}}>
+      margin: 10
+    }}>
       <Switch
         on={checked}
         onClick={() => onToggle(!checked)} />
-      <p style={{marginBottom: 0, marginLeft: 10}}>{label}</p>
+      <p style={{ marginBottom: 0, marginLeft: 10 }}>{label}</p>
     </div>
   )
 }
 
 const Settings = ({
+  style,
   manualControlMode, scriptControlMode, autoControlMode,
   instantChange, keepLastData,
   switchToManualControl, switchToScriptControl, switchToAutoControl,
   changeInstantControl, changeKeepLastData
 }) => {
   return (
-    <div>
+    <div style={style}>
       <Row>
         <LabelSwitch
           label='Manual control'
