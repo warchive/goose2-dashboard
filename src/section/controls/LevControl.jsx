@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Button } from 'react-bootstrap'
-import HorizontalSlider from '../../components/HorizonalSlider'
-
+import * as Commands from '../../../events/commands'
+import * as Actions from '../../store/Actions'
+import { sendCommand } from '../../api/api'
 const LevControl = ({
   style, manual,
   DPR, ballValve, // Input States
@@ -34,16 +35,6 @@ const LevControl = ({
         bsSize='normal'
         disabled={!manual}
         onClick={() => stop()}> Stop </Button>
-
-      <HorizontalSlider
-        min={0}
-        max={100}
-        defaultVal={50}
-        actual={5}
-        disabled={!manual}
-        onChange={console.log}
-        onAfterChange={console.log}
-        title='Levitation' />
     </div>
   )
 }
@@ -52,5 +43,15 @@ export default connect(state => Object({
   DPR: state.controls.DPRActual,
   ballValve: state.controls.ballValveActual,
   manual: state.controlSettings.manualControlMode
-
+}), (dispatch) => Object({
+  changeBallValve: (val) => {
+    sendCommand(Commands.BALL_VALVE, [Number(val)])
+    dispatch({ type: Actions.CHANGE_BALL_VALVE, data: val })
+  },
+  changeDPR: (val) => {
+    sendCommand(Commands.DPR, [Number(val)])
+    dispatch({ type: Actions.CHANGE_DPR, data: val })
+  },
+  stop: (val) => {
+  }
 }))(LevControl)
