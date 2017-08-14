@@ -4565,6 +4565,12 @@ react-smooth@0.3.0:
     raf "^3.2.0"
     react-transition-group "^1.1.1"
 
+react-sparklines@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/react-sparklines/-/react-sparklines-1.7.0.tgz#9b1d97e8c8610095eeb2ad658d2e1fcf91f91a60"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-svg-gauge@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/react-svg-gauge/-/react-svg-gauge-1.0.5.tgz#883bc843b0b31f809210553a0ebd5d9120909abf"

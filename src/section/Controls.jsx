@@ -5,6 +5,7 @@ import { Row } from 'react-bootstrap'
 import Settings from './controls/Settings'
 
 import LevControl from './controls/LevControl'
+import MagwheelControl from './controls/MagwheelControl'
 
 class Control extends React.Component {
   render () {
@@ -14,7 +15,7 @@ class Control extends React.Component {
         <Settings style={{ gridArea: 'settings', padding: 10 }} />
         <LevControl style={{ gridArea: 'lev-control' }} />
         <LevControl style={{ gridArea: 'ec-control' }} />
-        <LevControl style={{ gridArea: 'mw-control' }} />
+        <MagwheelControl style={{ gridArea: 'mw-control' }} />
         <LevControl style={{ gridArea: 'drive-control' }} />
       </Row>
     )
