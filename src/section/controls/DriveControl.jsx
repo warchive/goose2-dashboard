@@ -6,21 +6,21 @@ import * as Actions from '../../store/Actions'
 import { sendCommand } from '../../api/api'
 import HorizontalSlider from '../../components/HorizonalSlider'
 
-const MagwheelControl = ({
+const DriveControl = ({
   style, manual,
-  magwheel,
-  changeMagwheel, stop  // Commands
+  drive,
+  changeDriveTrain, stop  // Commands
 }) => {
   return (
     <div className='control-group' style={style}>
-      <h6> Magwheel </h6>
+      <h6> Drive </h6>
       <HorizontalSlider
         min={0}
         max={100}
         defaultVal={50}
-        actual={magwheel}
+        actual={drive}
         disabled={!manual}
-        onChange={changeMagwheel}
+        onChange={changeDriveTrain}
         title='Magwheel' />
       <Button
         block
@@ -33,16 +33,16 @@ const MagwheelControl = ({
 }
 
 export default connect(state => Object({
-  magwheel: state.controls.magwheelActual,
+  drive: state.controls.driveTrainActual,
   manual: state.controlSettings.manualControlMode
 }), (dispatch) => Object({
-  changeMagwheel: (val) => {
-    sendCommand(Commands.MAGWHEEL_SPEED, val)
+  changeDriveTrain: (val) => {
+    sendCommand(Commands.DRIVE_TRAIN_SPEED, val)
     dispatch({
-      type: Actions.CHANGE_MAGWHEEL_SPEED,
+      type: Actions.CHANGE_DRIVETRAIN_SPEED,
       data: val
     })
   },
   stop: (val) => {
   }
-}))(MagwheelControl)
+}))(DriveControl)

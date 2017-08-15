@@ -35,7 +35,7 @@ p {
 
 #control-container {
   display: grid;
-  grid-template-columns: auto 2fr 5fr 2fr 5fr;
+  grid-template-columns: auto 3fr 5fr 3fr 5fr;
   grid-template-rows: auto auto;
   grid-template-areas: "settings   lev-control   lev-graph   ec-control      ec-graph" "settings   mw-control    mw-graph    drive-control   drive-graph";
   max-width: 100vw;

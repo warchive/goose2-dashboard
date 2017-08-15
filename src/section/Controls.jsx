@@ -6,6 +6,8 @@ import Settings from './controls/Settings'
 
 import LevControl from './controls/LevControl'
 import MagwheelControl from './controls/MagwheelControl'
+import DriveControl from './controls/DriveControl'
+import ECControl from './controls/ECControl'
 
 class Control extends React.Component {
   render () {
@@ -14,9 +16,9 @@ class Control extends React.Component {
       <Row id='control-container'>
         <Settings style={{ gridArea: 'settings', padding: 10 }} />
         <LevControl style={{ gridArea: 'lev-control' }} />
-        <LevControl style={{ gridArea: 'ec-control' }} />
+        <ECControl style={{ gridArea: 'ec-control' }} />
         <MagwheelControl style={{ gridArea: 'mw-control' }} />
-        <LevControl style={{ gridArea: 'drive-control' }} />
+        <DriveControl style={{ gridArea: 'drive-control' }} />
       </Row>
     )
   }

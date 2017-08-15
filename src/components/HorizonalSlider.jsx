@@ -63,10 +63,12 @@ class Slide extends React.Component {
           <Button
             bsSize='sm'
             bsStyle='info'
+            disabled={this.props.disabled}
             onClick={() => this.onButtonChange(true)}>↑</Button>
           <Button
             bsSize='sm'
             bsStyle='info'
+            disabled={this.props.disabled}
             onClick={() => this.onButtonChange(false)}>↓</Button>
           <p>{this.props.title}</p>
         </div>
@@ -85,6 +87,7 @@ class Slide extends React.Component {
           <Button
             bsSize='sm'
             bsStyle='success'
+            disabled={this.props.disabled}
             onClick={this.onSetValue.bind(this)}
           >✔</Button>
         </div>
