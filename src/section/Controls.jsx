@@ -2,6 +2,8 @@ import React from 'react'
 import { Row } from 'react-bootstrap'
 
 /** Components */
+import Tabs from '../components/Tabs'
+
 import Settings from './controls/Settings'
 
 import LevControl from './controls/LevControl'
@@ -19,7 +21,10 @@ class Control extends React.Component {
         <Settings style={{ gridArea: 'settings', padding: 10 }} />
         <LevControl style={{ gridArea: 'lev-control' }} />
         <ECControl style={{ gridArea: 'ec-control' }} />
-        <ECGraphs style={{ gridArea: 'ec-graph' }} />
+        <Tabs style={{ gridArea: 'ec-graph' }}>
+          <ECGraphs />
+          <h1>Tab 2</h1>
+        </Tabs>
         <MagwheelControl style={{ gridArea: 'mw-control' }} />
         <DriveControl style={{ gridArea: 'drive-control' }} />
       </Row>
