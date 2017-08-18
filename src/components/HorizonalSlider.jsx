@@ -16,10 +16,10 @@ const styles = {
 }
 
 class Slide extends React.Component {
-  constructor () {
+  constructor (props) {
     super()
     this.state = {
-      val: 0
+      val: props.defaultVal
     }
   }
 
@@ -78,7 +78,6 @@ class Slide extends React.Component {
               value={this.state.val}
               min={this.props.min}
               max={this.props.max}
-              default={this.props.defaultVal}
               disabled={this.props.disabled}
               onChange={this.onChange.bind(this)}
               handleStyle={styles.handleStyle}

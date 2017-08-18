@@ -1,21 +1,16 @@
 .network-bar {
-  margin: 0 0 20px 0;
   padding: 0 10px 0 10px;
   background-color: lightgray;
-
   * {
     margin-left: 10px;
     margin-right: 10px;
   }
-
   .good {
     color: green
   }
-
   .warn {
     color: orange
   }
-
   .error {
     color: red
   }

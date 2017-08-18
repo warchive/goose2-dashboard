@@ -17,7 +17,7 @@ const MagwheelControl = ({
       <HorizontalSlider
         min={0}
         max={100}
-        defaultVal={50}
+        defaultVal={0}
         actual={magwheel}
         disabled={!manual}
         onChange={changeMagwheel}

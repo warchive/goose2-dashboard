@@ -25,7 +25,6 @@ class App extends React.Component {
       <Grid fluid>
         <Network />
         <Dashboard />
-        <hr />
         <Row>
           <Col md={12}>
             <Control />
