@@ -1,5 +1,6 @@
 import React from 'react'
 import { Sparklines, SparklinesLine } from 'react-sparklines'
+import { TabView } from '../../components/Tabs'
 
 const SparkLineProps = {
   limit: 20,
@@ -13,9 +14,11 @@ class ECGraphs extends React.Component {
   render () {
     let ecHistory = [0, 1, 2, 4, 9, 16, 25, 36, 49, 64, 81, 100, 90, 80, 70, 60, 50, 40, 30, 20, 10]
     return (
-      <Sparklines data={ecHistory} {...SparkLineProps}>
-        <SparklinesLine color='red' />
-      </Sparklines>
+      <TabView tabNames={['1', '2', '3']}>
+        <Sparklines data={ecHistory} {...SparkLineProps}>
+          <SparklinesLine color='red' />
+        </Sparklines>
+      </TabView >
     )
   }
 }
