@@ -5,34 +5,75 @@ import * as Actions from '../store/Actions'
 export const SensorListener = (dispatch) => {
   return (broadcast) => {
     broadcast = JSON.parse(broadcast)
-    let {time, sensor, data} = broadcast
+    let {
+      time,
+      sensor,
+      data
+    } = broadcast
 
     switch (sensor) {
       case Broadcasts.SPEED:
-        return dispatch({type: Actions.UPDATE_SPEED, data: [time * 1000, data]})
+        return dispatch({
+          type: Actions.UPDATE_SPEED,
+          data: [time * 1000, data]
+        })
       case Broadcasts.AIR_TANK_LEVEL:
-        return dispatch({type: Actions.UPDATE_AIR_TANK_LEVEL, data: [time * 1000, data]})
+        return dispatch({
+          type: Actions.UPDATE_AIR_TANK_LEVEL,
+          data: [time * 1000, data]
+        })
       case Broadcasts.BATTERY:
-        return dispatch({type: Actions.UPDATE_BATTERY, data: [time * 1000, data]})
+        return dispatch({
+          type: Actions.UPDATE_BATTERY,
+          data: [time * 1000, data]
+        })
       case Broadcasts.IR_TEMPERATURE:
-        return dispatch({type: Actions.UPDATE_IRTEMP, data: [time * 1000, data]})
+        return dispatch({
+          type: Actions.UPDATE_IRTEMP,
+          data: [time * 1000, data]
+        })
       case Broadcasts.CONTACT_TEMPERATURE:
-        return dispatch({type: Actions.UPDATE_CONTACTTEMP, data: [time * 1000, data]})
+        return dispatch({
+          type: Actions.UPDATE_CONTACTTEMP,
+          data: [time * 1000, data]
+        })
       case Broadcasts.DISTANCE:
-        return dispatch({type: Actions.UPDATE_DISTANCE, data: [time * 1000, data]})
+        return dispatch({
+          type: Actions.UPDATE_DISTANCE,
+          data: [time * 1000, data]
+        })
       case Broadcasts.MAGNETOMETER:
-        return dispatch({type: Actions.UPDATE_MAGNETOMER, data: [time * 1000, data]})
+        return dispatch({
+          type: Actions.UPDATE_MAGNETOMER,
+          data: [time * 1000, data]
+        })
       case Broadcasts.ACCELERATION:
-        return dispatch({type: Actions.UPDATE_ACCELERATION, data: [time * 1000, data]})
+        return dispatch({
+          type: Actions.UPDATE_ACCELERATION,
+          data: [time * 1000, data]
+        })
       case Broadcasts.GYRO:
-        return dispatch({type: Actions.UPDATE_GYRO, data: [time * 1000, data]})
+        return dispatch({
+          type: Actions.UPDATE_GYRO,
+          data: [time * 1000, data]
+        })
       case Broadcasts.LINEAR_VELOCITY:
-        return dispatch({type: Actions.UPDATE_LINEAR_VELOCITY, data: [time * 1000, data]})
+        return dispatch({
+          type: Actions.UPDATE_LINEAR_VELOCITY,
+          data: [time * 1000, data]
+        })
       case Broadcasts.LINEAR_DISPLACEMENT:
-        return dispatch({type: Actions.UPDATE_LINEAR_DISPLACEMENT, data: [time * 1000, data]})
+        return dispatch({
+          type: Actions.UPDATE_LINEAR_DISPLACEMENT,
+          data: [time * 1000, data]
+        })
       case Broadcasts.ROLL_PITCH_YAW:
-        return dispatch({type: Actions.UPDATE_ROLL_PITCH_YAW, data: [time * 1000, data]})
-      default: console.error(`Unrecognized name: ${sensor}, data: ${data}`)
+        return dispatch({
+          type: Actions.UPDATE_ROLL_PITCH_YAW,
+          data: [time * 1000, data]
+        })
+      default:
+        console.error(`Unrecognized name: ${sensor}, data: ${data}`)
     }
   }
 }
@@ -46,22 +87,72 @@ export const CommandRecievedListener = (dispatch) => {
 
     switch (cmd) {
       case Commands.EMERGENCY_STOP:
-        return dispatch({type: Actions.UPDATE_CONTROL_EMERGENCY_STOP, data: Boolean(val[0])})
+        return dispatch({
+          type: Actions.UPDATE_CONTROL_EMERGENCY_STOP,
+          data: Boolean(val[0])
+        })
       case Commands.DROP:
-        return dispatch({type: Actions.UPDATE_CONTROL_DROP, data: Boolean(val[0])})
+        return dispatch({
+          type: Actions.UPDATE_CONTROL_DROP,
+          data: Boolean(val[0])
+        })
       case Commands.BRAKE:
-        return dispatch({type: Actions.UPDATE_CONTROL_BRAKE, data: Boolean(val[0])})
+        return dispatch({
+          type: Actions.UPDATE_CONTROL_BRAKE,
+          data: Boolean(val[0])
+        })
       case Commands.BALL_VALVE:
-        return dispatch({type: Actions.UPDATE_CONTROL_BALL_VALVE, data: Boolean(val[0])})
+        return dispatch({
+          type: Actions.UPDATE_CONTROL_BALL_VALVE,
+          data: Boolean(val[0])
+        })
       case Commands.DPR:
-        return dispatch({type: Actions.UPDATE_CONTROL_DPR, data: Boolean(val[0])})
+        return dispatch({
+          type: Actions.UPDATE_CONTROL_DPR,
+          data: Boolean(val[0])
+        })
       case Commands.ACCELERATION:
-        return dispatch({type: Actions.UPDATE_CONTROL_ACCELERATION, data: Boolean(val[0])})
+        return dispatch({
+          type: Actions.UPDATE_CONTROL_ACCELERATION,
+          data: Boolean(val[0])
+        })
       case Commands.SPEED:
-        return dispatch({type: Actions.UPDATE_CONTROL_SPEED, data: Boolean(val[0])})
+        return dispatch({
+          type: Actions.UPDATE_CONTROL_SPEED,
+          data: Boolean(val[0])
+        })
       case Commands.CONNECT_ARDUINO:
-        return dispatch({type: Actions.UPDATE_CONTROL_CONNECT_ARDUINO, data: Boolean(val[0])})
-      default: console.error(`Unrecognized cmd: ${cmd}`)
+        return dispatch({
+          type: Actions.UPDATE_CONTROL_CONNECT_ARDUINO,
+          data: Boolean(val[0])
+        })
+      case Commands.MTV:
+        return dispatch({
+          type: Actions.UPDATE_CONTROL_MTV,
+          data: Boolean(val[0])
+        })
+      case Commands.EC_SOLENOID:
+        return dispatch({
+          type: Actions.UPDATE_CONTROL_EC_SOLENOID,
+          data: Boolean(val[0])
+        })
+      case Commands.DRIVE_SOLENOID:
+        return dispatch({
+          type: Actions.UPDATE_CONTROL_DRIVE_SOLENOID,
+          data: Boolean(val[0])
+        })
+      case Commands.DRIVE_SAFETY:
+        return dispatch({
+          type: Actions.UPDATE_CONTROL_DRIVE_SAFETY,
+          data: Boolean(val[0])
+        })
+      case Commands.LAUNCH:
+        return dispatch({
+          type: Actions.UPDATE_CONTROL_LAUNCH,
+          data: Boolean(val[0])
+        })
+      default:
+        console.error(`Unrecognized cmd: ${cmd}`)
     }
   }
 }
@@ -70,7 +161,10 @@ export const MessageListener = (dispatch) => {
   return (broadcast) => {
     broadcast = JSON.parse(broadcast)
     console.log(broadcast)
-    let {time, message} = broadcast
+    let {
+      time,
+      message
+    } = broadcast
     let hash = Math.random().toString(36).substring(8)
     dispatch({
       type: Actions.UPDATE_MESSAGE_LOG,

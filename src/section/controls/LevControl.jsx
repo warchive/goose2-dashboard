@@ -6,52 +6,42 @@ import * as Actions from '../../store/Actions'
 import { sendCommand } from '../../api/api'
 const LevControl = ({
   style, manual,
-  DPR, ballValve, // Input States
-  changeDPR, changeBallValve, stop  // Commands
+  DPR, MTV, // Input States
+  changeDPR, changeMTV, stop  // Commands
 }) => {
   return (
     <div className='control-group' style={style}>
       <h6> Lev </h6>
-      <div className='r'>
-        <Button
-          bsStyle='info'
-          bsSize='sm'
-          active={DPR}
-          disabled={!manual}
-          onClick={() => changeDPR(!DPR)}>
-          DPR </Button>
-
-        <Button
-          bsStyle='info'
-          bsSize='sm'
-          active={ballValve}
-          disabled={!manual}
-          onClick={() => changeBallValve(!DPR)}>
-          Ball Valve </Button>
-      </div>
       <Button
-        block
-        bsStyle='danger'
-        bsSize='normal'
+        bsStyle='info'
+        bsSize='sm'
+        active={DPR}
         disabled={!manual}
-        onClick={() => stop()}> Stop </Button>
+        onClick={() => changeDPR(!DPR)}>
+        DPR </Button>
+
+      <Button
+        bsStyle='info'
+        bsSize='sm'
+        active={MTV}
+        disabled={!manual}
+        onClick={() => changeMTV(!MTV)}>
+        MTV </Button>
     </div>
   )
 }
 
 export default connect(state => Object({
   DPR: state.controls.DPRActual,
-  ballValve: state.controls.ballValveActual,
+  MTV: state.controls.MTVActual,
   manual: state.controlSettings.manualControlMode
 }), (dispatch) => Object({
-  changeBallValve: (val) => {
-    sendCommand(Commands.BALL_VALVE, [Number(val)])
-    dispatch({ type: Actions.CHANGE_BALL_VALVE, data: val })
-  },
   changeDPR: (val) => {
     sendCommand(Commands.DPR, [Number(val)])
     dispatch({ type: Actions.CHANGE_DPR, data: val })
   },
-  stop: (val) => {
+  changeMTV: (val) => {
+    sendCommand(Commands.MTV, [Number(val)])
+    dispatch({ type: Actions.CHANGE_MTV, data: val })
   }
 }))(LevControl)

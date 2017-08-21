@@ -7,13 +7,20 @@ import { sendCommand } from '../../api/api'
 import HorizontalSlider from '../../components/HorizonalSlider'
 
 const MagwheelControl = ({
-  style, manual,
-  magwheel,
-  changeMagwheel, stop  // Commands
+  style, manual, launch,
+  magwheel, brake,
+  changeMagwheel, changeBrake, changeLaunch  // Commands
 }) => {
   return (
     <div className='control-group' style={style}>
       <h6> Magwheel </h6>
+      <Button
+        block
+        bsStyle='success'
+        bsSize='sm'
+        disabled={!manual}
+        active={launch}
+        onClick={() => changeLaunch(!launch)}> Launch </Button>
       <HorizontalSlider
         min={0}
         max={100}
@@ -27,22 +34,37 @@ const MagwheelControl = ({
         bsStyle='danger'
         bsSize='normal'
         disabled={!manual}
-        onClick={() => stop()}> Stop </Button>
+        active={brake}
+        onClick={() => changeBrake(!brake)}> Brake </Button>
     </div>
   )
 }
 
 export default connect(state => Object({
   magwheel: state.controls.magwheelActual,
+  launch: state.controls.launchActual,
+  brake: state.controls.brakeActual,
   manual: state.controlSettings.manualControlMode
 }), (dispatch) => Object({
   changeMagwheel: (val) => {
-    sendCommand(Commands.MAGWHEEL_SPEED, val)
+    sendCommand(Commands.MAGWHEEL_SPEED, [val])
     dispatch({
       type: Actions.CHANGE_MAGWHEEL_SPEED,
       data: val
     })
   },
-  stop: (val) => {
+  changeLaunch: (val) => {
+    sendCommand(Commands.LAUNCH, [Number(val)])
+    dispatch({
+      type: Actions.CHANGE_LAUNCH,
+      data: val
+    })
+  },
+  changeBrake: (val) => {
+    sendCommand(Commands.BRAKE, [Number(val)])
+    dispatch({
+      type: Actions.CHANGE_BRAKE,
+      data: val
+    })
   }
 }))(MagwheelControl)

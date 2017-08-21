@@ -20,20 +20,30 @@ let controls = {
   brake: false,
   ballValve: false,
   DPR: false,
+  MTV: false,
+  ECSolenoid: false,
   magwheel: 0,
   driveTrain: 0,
+  driveSolenoid: false,
+  driveSafety: false,
+  launch: false,
   /** Actual values reported from the pod */
   dropActual: false,
   startActual: false,
   emergencyStopActual: false,
   connectActual: false,
+  speedActual: 0,
+  accelerationActual: 0,
   brakeActual: false,
   ballValveActual: false,
   DPRActual: false,
-  speedActual: 0,
-  accelerationActual: 0,
+  MTVActual: false,
+  ECSolenoidActual: false,
   magwheelActual: 0,
-  driveTrainActual: 0
+  driveTrainActual: 0,
+  driveSolenoidActual: false,
+  driveSafetyActual: false,
+  launchActual: false
 }
 
 /**

@@ -6,7 +6,7 @@ const PORT = 8000
 
 io.on('connection', client => {
   console.log('client connected')
-  client.on('command', evt => console.log(evt))
+  client.on('control', evt => console.log(evt))
 })
 
 io.on('control', evt => console.log(evt))
