@@ -1,7 +1,7 @@
 import React from 'react'
+import { LARGE_GRAPH_POINTS } from '../../config'
 import { Charts, ChartContainer, ChartRow, YAxis, LineChart, Legend, styler } from 'react-timeseries-charts'
 import { TimeSeries, TimeRange } from 'pondjs'
-import CircularBuffer from 'circular-buffer'
 
 const lineColors = [
   'orange',
@@ -15,10 +15,7 @@ const lineColors = [
 export default class LiveChartMulti extends React.Component {
   constructor (props) {
     super()
-    this.state = {
-      width: props.width,
-      data: []
-    }
+    this.state = { width: props.width }
 
     this.styles = styler(props.columnNames.map((v, i) => {
       return {
@@ -27,41 +24,23 @@ export default class LiveChartMulti extends React.Component {
       }
     }))
 
-    this.legend =
-      <Legend
-        type='swatch'
-        style={this.styles}
-        categories={
-          props.columnNames.map(v => {
-            return {
-              key: v,
-              label: v
-            }
-          })
-        } />
-
-    this.buff = new CircularBuffer(props.bufferSize)
-  }
-
-  componentWillReceiveProps (nextProps) {
-    let nextData = nextProps.data
-    let currData = this.state.data
-
-    if (!nextData) return
-    if (nextData[0] <= currData[0]) return
-
-    let [time, data] = nextData
-
-    this.buff.push([time].concat(data))
-
-    this.setState({
-      data: this.buff.toarray()
-    })
+    this.legend = ''
+    // <Legend
+    //   type='swatch'
+    //   style={this.styles}
+    //   categories={
+    //     props.columnNames.map(v => {
+    //       return {
+    //         key: v,
+    //         label: v
+    //       }
+    //     })
+    //   } />
   }
 
   componentDidMount () {
     let newWidth = this.container.offsetWidth
-    this.setState({width: newWidth})
+    this.setState({ width: newWidth })
 
     window.addEventListener('resize', () => {
       this.setState({
@@ -71,14 +50,19 @@ export default class LiveChartMulti extends React.Component {
   }
 
   render () {
+    console.log(this.props)
+
+    let data = this.props.data.slice(LARGE_GRAPH_POINTS)
+      .map(v => [v[0]].concat(v[1]))
+
     let timeSeries = new TimeSeries({
       name: this.props.title,
       columns: ['time', ...this.props.columnNames],
-      points: this.state.data
+      points: data
     })
     let timeRange
 
-    if (this.state.data.length) {
+    if (data.length) {
       timeRange = new TimeRange(
         this.state.data[0][0],
         this.state.data[this.state.data.length - 1][0]
@@ -88,10 +72,11 @@ export default class LiveChartMulti extends React.Component {
     return (
       <div
         ref={(ele) => { this.container = ele }}
-        style={{overflow: 'hidden', width: '100%'}}>
+        style={{ width: '100%' }}>
         <ChartContainer
           timeRange={timeRange}
-          width={this.state.width}>
+          width={this.state.width}
+          height={this.props.height}>
           <ChartRow
             height={this.props.height}>
             <YAxis

@@ -25,7 +25,7 @@ const LevControl = ({
         bsSize='sm'
         active={MTV}
         disabled={!manual}
-        onClick={() => changeMTV(!MTV)}>
+        onClick={(evt) => console.log(evt.shiftKey)}>
         MTV </Button>
     </div>
   )

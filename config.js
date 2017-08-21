@@ -18,6 +18,12 @@ export const HEART_BEAT_POLLING_DELAY = 200
 // How many decimal places values should be rounded to
 export const ROUNDING = 1
 
+// How many data points big graphs should show
+export const LARGE_GRAPH_POINTS = 100
+
+// How many data points small graphs hould show
+export const SMALL_GRAPH_POINTS = 20
+
 export const roundValue = (val) => Math.round(val * (10 ** ROUNDING)) / 10 ** ROUNDING
 
 /**

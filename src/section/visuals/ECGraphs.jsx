@@ -1,26 +1,25 @@
 import React from 'react'
-import { Sparklines, SparklinesLine } from 'react-sparklines'
 import { TabView } from '../../components/Tabs'
+import { connect } from 'react-redux'
+import LiveChart from '../../components/LiveChartMulti'
 
-const SparkLineProps = {
-  limit: 20,
-  width: 150,
-  height: 100,
-  margin: 2,
-  style: { flexGrow: 0, flexShrink: 0, width: 150, height: 100 }
+const ECGraph = ({ style, data }) => {
+  return (
+    <TabView tabNames={['1', '2', '3']} style={style}>
+      <LiveChart
+        height={130}
+        title='Pressure'
+        min={0}
+        max={100}
+        columnNames={['1', '2']}
+        data={data}
+      />
+    </TabView >
+  )
 }
 
-class ECGraphs extends React.Component {
-  render () {
-    let ecHistory = [0, 1, 2, 4, 9, 16, 25, 36, 49, 64, 81, 100, 90, 80, 70, 60, 50, 40, 30, 20, 10]
-    return (
-      <TabView tabNames={['1', '2', '3']} style={this.props.style}>
-        <Sparklines data={ecHistory} {...SparkLineProps}>
-          <SparklinesLine color='red' />
-        </Sparklines>
-      </TabView >
-    )
-  }
-}
-
-export default ECGraphs
+export default connect(
+  state => Object({
+    data: state.data.airTankPressure
+  })
+)(ECGraph)
