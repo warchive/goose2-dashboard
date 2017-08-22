@@ -19,7 +19,6 @@ class Control extends React.Component {
     return (
 
       <Row id='control-container'>
-        <Settings style={{ gridArea: 'settings', padding: 10 }} />
         <LevControl style={{ gridArea: 'lev-control' }} />
         <LevGraphs style={{ gridArea: 'lev-graph' }} />
         <ECControl style={{ gridArea: 'ec-control' }} />

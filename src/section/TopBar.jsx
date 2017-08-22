@@ -2,9 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Row } from 'react-bootstrap'
 import { HEART_BEAT_POLLING_DELAY } from '../../config'
-import '../scss/network.scss'
+import Settings from '../section/controls/Settings'
+import '../scss/topbar.scss'
 
-const Network = ({ connected, strength, beatLatency }) => {
+const TopBar = ({ connected, strength, beatLatency }) => {
   let beatDelta = beatLatency - HEART_BEAT_POLLING_DELAY
   let beatClass
 
@@ -15,12 +16,15 @@ const Network = ({ connected, strength, beatLatency }) => {
   } else beatClass = 'good'
 
   return (
-    <Row className='network-bar'>
-      <p className={connected ? 'good' : 'error'}>
-        Connected: {connected ? 'yes' : 'no'}
-      </p>
-      <p> Expected Polling Rate: {HEART_BEAT_POLLING_DELAY} </p>
-      <p className={beatClass}> Last Beat Latency: {beatLatency} </p>
+    <Row>
+      <div id='top-bar'>
+        <Settings />
+        <p className={connected ? 'good' : 'error'}>
+          Connected: {connected ? 'yes' : 'no'}
+        </p>
+        <p> Expected Polling Rate: {HEART_BEAT_POLLING_DELAY} </p>
+        <p className={beatClass}> Last Beat Latency: {beatLatency} </p>
+      </div>
     </Row>
   )
 }
@@ -32,4 +36,4 @@ export default connect(
       strength: state.connection.strength
     }
   }
-)(Network)
+)(TopBar)

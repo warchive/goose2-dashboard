@@ -13,7 +13,7 @@ import { Grid, Row, Col } from 'react-bootstrap'
 
 /** Other components */
 import Control from './section/Controls'
-import Network from './section/Network'
+import TopBar from './section/TopBar'
 import Dashboard from './section/Dashboard'
 import HealthCheck from './section/HealthCheck'
 
@@ -24,7 +24,7 @@ class App extends React.Component {
   render () {
     return (
       <Grid fluid>
-        <Network />
+        <TopBar />
         <Dashboard />
         <Row>
           <Col md={12}>
