@@ -74,9 +74,9 @@ function getLastPairValue (array, idx) {
  */
 
 export default connect(
-  (state) => Object({
-    speed: 0,
-    accel: 0,
-    distance: 0
+  (state) => ({
+    speed: getLastPairValue(state.podData.color, 0),
+    accel: getLastPairValue(state.podData.IMU, 4),
+    distance: getLastPairValue(state.podData.color, 0)
   })
 )(Dashboard)

@@ -2,8 +2,6 @@ import React from 'react'
 import { Row } from 'react-bootstrap'
 
 /** Components */
-import Settings from './controls/Settings'
-
 import LevControl from './controls/LevControl'
 import MagwheelControl from './controls/MagwheelControl'
 import DriveControl from './controls/DriveControl'

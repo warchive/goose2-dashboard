@@ -67,9 +67,7 @@ const RollPitchYaw = ({ roll, pitch, yaw }) => {
     </div >
   )
 }
-/**
- * @todo: implement this
- */
+
 export default connect(state => {
   let lastIMUDataPoints = state.podData.IMU.slice(-SMALL_GRAPH_POINTS)
   let roll = []

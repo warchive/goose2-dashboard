@@ -1,11 +1,7 @@
 import React from 'react'
 
 export default class SensorHealth extends React.Component {
-  constructor (props) {
-    super(props)
-  }
-
-  getColor() {
+  getColor () {
     if (this.props.error(this.props.val)) {
       return 'red'
     } else if (this.props.warning(this.props.val)) {
@@ -15,7 +11,7 @@ export default class SensorHealth extends React.Component {
     }
   }
 
-  getStyle() {
+  getStyle () {
     return {
       backgroundColor: this.getColor()
     }
