@@ -11,6 +11,8 @@ import ECControl from './controls/ECControl'
 
 import ECGraphs from './visuals/ECGraphs'
 import LevGraphs from './visuals/LevGraphs'
+import MWGraphs from './visuals/MagwheelGraphs'
+import DriveGraphs from './visuals/DriveGraphs'
 
 class Control extends React.Component {
   render () {
@@ -23,7 +25,9 @@ class Control extends React.Component {
         <ECControl style={{ gridArea: 'ec-control' }} />
         <ECGraphs style={{ gridArea: 'ec-graph' }} />
         <MagwheelControl style={{ gridArea: 'mw-control' }} />
+        <MWGraphs style={{ gridArea: 'mw-graph' }} />
         <DriveControl style={{ gridArea: 'drive-control' }} />
+        <DriveGraphs style={{ gridArea: 'drive-graph' }} />
       </Row>
     )
   }
