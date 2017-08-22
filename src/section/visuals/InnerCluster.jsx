@@ -79,6 +79,6 @@ const InnerCluster = ({
 export default connect(state => Object({
   state: state.podData.state,
   tankPressure: state.levData.tankPressure,
-  regulatorOutput: state.levData.regulatorPressure,
+  regulatorOutput: state.levData.regulatorOutput,
   batteryTemp: state.podData.batteryVolt.slice(-1)[0]
 }))(InnerCluster)

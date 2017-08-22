@@ -76,9 +76,10 @@ export default connect(state => {
   let pitch = []
   let yaw = []
   lastIMUDataPoints.forEach(v => {
-    roll.push(v[7])
-    pitch.push(v[8])
-    yaw.push(v[9])
+    let data = v[1]
+    roll.push(data[6])
+    pitch.push(data[7])
+    yaw.push(data[8])
   })
   return { roll, pitch, yaw }
 })(RollPitchYaw)

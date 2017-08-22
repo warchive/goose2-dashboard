@@ -1,6 +1,6 @@
 import React from 'react'
 import { LARGE_GRAPH_POINTS } from '../../config'
-import { Charts, ChartContainer, ChartRow, YAxis, LineChart, Legend, styler } from 'react-timeseries-charts'
+import { Charts, ChartContainer, ChartRow, YAxis, LineChart, styler } from 'react-timeseries-charts'
 import { TimeSeries, TimeRange } from 'pondjs'
 
 const lineColors = [
@@ -13,6 +13,7 @@ const lineColors = [
 
 const Style = {
   containerStyle: { flex: 1, display: 'flex', flexDirection: 'row' },
+  innerContainerStyle: { flex: 1 },
   legendStyle: { display: 'flex', flexDirection: 'column', marginLeft: 5, marginRight: 5 }
 }
 
@@ -39,6 +40,7 @@ export default class LiveChartMulti extends React.Component {
 
   adjustSize () {
     let newWidth = this.container.offsetWidth
+    console.log('width: ' + newWidth)
     this.setState({ width: newWidth, loaded: true })
   }
 
@@ -66,37 +68,39 @@ export default class LiveChartMulti extends React.Component {
     } else timeRange = new TimeRange(0, 0)
 
     return (
-      <div
-        ref={(ele) => { this.container = ele }}
-        style={Style.containerStyle}>
-        {
-          !this.state.loaded ? ''
-            : <ChartContainer
-              timeRange={timeRange}
-              width={this.state.width}
-              height={this.props.height}>
-              <ChartRow
+      <div style={Style.containerStyle}>
+        <div
+          ref={(ele) => { this.container = ele }}
+          style={Style.innerContainerStyle}>
+          {
+            !this.state.loaded ? ''
+              : <ChartContainer
+                timeRange={timeRange}
+                width={this.state.width}
                 height={this.props.height}>
-                <YAxis
-                  id={'y'}
-                  label={this.props.title}
-                  min={this.props.min}
-                  max={this.props.max}
-                  type={'linear'} />
-                <Charts>
-                  <LineChart
-                    style={this.lineChartStyle}
-                    axis={'y'}
-                    series={timeSeries}
-                    columns={this.props.columnNames} />
-                </Charts>
-              </ChartRow>
-            </ChartContainer>
-        }
+                <ChartRow
+                  height={this.props.height}>
+                  <YAxis
+                    id={'y'}
+                    label={this.props.title}
+                    min={this.props.min}
+                    max={this.props.max}
+                    type={'linear'} />
+                  <Charts>
+                    <LineChart
+                      style={this.lineChartStyle}
+                      axis={'y'}
+                      series={timeSeries}
+                      columns={this.props.columnNames} />
+                  </Charts>
+                </ChartRow>
+              </ChartContainer>
+          }
+        </div >
         {
           this.legend
         }
-      </div >
+      </div>
     )
   }
 }

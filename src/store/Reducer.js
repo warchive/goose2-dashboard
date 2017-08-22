@@ -321,7 +321,7 @@ function addToData(state, data, field, section) {
   }
 
   return Object.assign({}, state, {
-    data: Object.assign({}, state.data, {
+    [section]: Object.assign({}, state[section], {
       [field]: newData
     })
   })
