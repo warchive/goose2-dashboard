@@ -18,6 +18,7 @@ export class TabView extends React.Component {
   render () {
     let tabs = this.props.tabNames.map((v, i) => {
       return <Button
+        key={i}
         bsStyle='info'
         bsSize='sm'
         active={this.state.tabNum === i}
@@ -27,15 +28,14 @@ export class TabView extends React.Component {
       </Button>
     })
 
+    let style = Object.assign({}, { display: 'flex', flexDirection: 'row' }, this.props.style)
     return (
-      <div style={Object.assign({}, { display: 'flex', flexDirection: 'row' }, this.props.style)}>
+      <div style={style} >
         <div style={{ flexDirection: 'column', display: 'flex' }}>
           {tabs}
         </div>
-        <div style={{ float: 'right' }}>
-          {React.Children.toArray(this.props.children)[this.state.tabNum]}
-        </div>
-      </div>
+        {React.Children.toArray(this.props.children)[this.state.tabNum]}
+      </div >
     )
   }
 }

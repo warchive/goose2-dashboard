@@ -11,66 +11,68 @@ export const SensorListener = (dispatch) => {
       data
     } = broadcast
 
+    time *= 1000 // Convert from seconds to milliseconds
+
     switch (sensor) {
       case Broadcasts.SPEED:
         return dispatch({
           type: Actions.UPDATE_SPEED,
-          data: [time * 1000, data]
+          data: [time, data]
         })
       case Broadcasts.AIR_TANK_LEVEL:
         return dispatch({
           type: Actions.UPDATE_AIR_TANK_LEVEL,
-          data: [time * 1000, data]
+          data: [time, data]
         })
       case Broadcasts.BATTERY:
         return dispatch({
           type: Actions.UPDATE_BATTERY,
-          data: [time * 1000, data]
+          data: [time, data]
         })
       case Broadcasts.IR_TEMPERATURE:
         return dispatch({
           type: Actions.UPDATE_IRTEMP,
-          data: [time * 1000, data]
+          data: [time, data]
         })
       case Broadcasts.CONTACT_TEMPERATURE:
         return dispatch({
           type: Actions.UPDATE_CONTACTTEMP,
-          data: [time * 1000, data]
+          data: [time, data]
         })
       case Broadcasts.DISTANCE:
         return dispatch({
           type: Actions.UPDATE_DISTANCE,
-          data: [time * 1000, data]
+          data: [time, data]
         })
       case Broadcasts.MAGNETOMETER:
         return dispatch({
           type: Actions.UPDATE_MAGNETOMER,
-          data: [time * 1000, data]
+          data: [time, data]
         })
       case Broadcasts.ACCELERATION:
         return dispatch({
           type: Actions.UPDATE_ACCELERATION,
-          data: [time * 1000, data]
+          data: [time, data]
         })
       case Broadcasts.GYRO:
         return dispatch({
           type: Actions.UPDATE_GYRO,
-          data: [time * 1000, data]
+          data: [time, data]
         })
       case Broadcasts.LINEAR_VELOCITY:
         return dispatch({
           type: Actions.UPDATE_LINEAR_VELOCITY,
-          data: [time * 1000, data]
+          data: [time, data]
         })
       case Broadcasts.LINEAR_DISPLACEMENT:
         return dispatch({
           type: Actions.UPDATE_LINEAR_DISPLACEMENT,
-          data: [time * 1000, data]
+          data: [time, data]
         })
       case Broadcasts.ROLL_PITCH_YAW:
         return dispatch({
           type: Actions.UPDATE_ROLL_PITCH_YAW,
-          data: [time * 1000, data]
+          data: [time, data]
         })
       default:
         console.error(`Unrecognized name: ${sensor}, data: ${data}`)

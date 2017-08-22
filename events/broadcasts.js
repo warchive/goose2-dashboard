@@ -15,7 +15,7 @@ export const DPR = 'dpr'
 export const MAGNETOMETER = 'magnetometer'
 
 export const ACCELERATION = 'accel'
-export const GYRO = 'gyro'  // Angular velocity
+export const GYRO = 'gyro' // Angular velocity
 export const LINEAR_VELOCITY = 'lvel'
 export const LINEAR_DISPLACEMENT = 'ldisp'
 export const ROLL_PITCH_YAW = 'rpy'

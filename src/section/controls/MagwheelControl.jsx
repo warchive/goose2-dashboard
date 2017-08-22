@@ -32,7 +32,6 @@ const MagwheelControl = ({
       <Button
         block
         bsStyle='danger'
-        bsSize='normal'
         disabled={!manual}
         active={brake}
         onClick={() => changeBrake(!brake)}> Brake </Button>

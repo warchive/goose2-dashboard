@@ -15,7 +15,7 @@ const lineColors = [
 export default class LiveChartMulti extends React.Component {
   constructor (props) {
     super()
-    this.state = { width: props.width }
+    this.state = { width: 300 }
 
     this.styles = styler(props.columnNames.map((v, i) => {
       return {
@@ -38,15 +38,15 @@ export default class LiveChartMulti extends React.Component {
     //   } />
   }
 
-  componentDidMount () {
+  adjustSize () {
     let newWidth = this.container.offsetWidth
+    console.log('newWidth' + newWidth)
     this.setState({ width: newWidth })
+  }
 
-    window.addEventListener('resize', () => {
-      this.setState({
-        width: this.container.offsetWidth
-      })
-    })
+  componentDidMount () {
+    setTimeout(this.adjustSize.bind(this), 10)
+    window.addEventListener('resize', this.adjustSize.bind(this))
   }
 
   render () {
@@ -72,7 +72,7 @@ export default class LiveChartMulti extends React.Component {
     return (
       <div
         ref={(ele) => { this.container = ele }}
-        style={{ width: '100%' }}>
+        style={{ flex: 1 }}>
         <ChartContainer
           timeRange={timeRange}
           width={this.state.width}
