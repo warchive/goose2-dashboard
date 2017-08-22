@@ -242,6 +242,20 @@ let Reducer = (state = Defaults, {
       {
         return addToData(state, data, 'magnetometer')
       }
+    case Actions.UPDATE_REGULATOR:
+      {
+        return addToData(state, data, 'regulator')
+      }
+    case Actions.UPDATE_STATE:
+      {
+        let newData = Object.assign({}, state.data, {
+          state: data
+        })
+
+        return Object.assign({}, state, {
+          data: newData
+        })
+      }
 
     case Actions.UPDATE_MESSAGE_LOG:
       {

@@ -17,7 +17,6 @@ export default class CentralCluster extends React.Component {
   }
 
   initiateGauges () {
-    console.log(this.state.radius)
     let data = this.props.data
     let gauges = data.map((v, i) => {
       let gaugeSettings = this.props.settings[i]

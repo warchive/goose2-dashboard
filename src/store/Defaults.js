@@ -91,7 +91,9 @@ let data = {
   linearDisplacement: [],
   rollPitchYaw: [],
   messages: [],
-  distance: []
+  distance: [],
+  regulator: [],
+  state: '--'
 }
 
 /**

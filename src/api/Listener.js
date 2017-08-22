@@ -162,7 +162,6 @@ export const CommandRecievedListener = (dispatch) => {
 export const MessageListener = (dispatch) => {
   return (broadcast) => {
     broadcast = JSON.parse(broadcast)
-    console.log(broadcast)
     let {
       time,
       message

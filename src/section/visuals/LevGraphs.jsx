@@ -20,6 +20,6 @@ const LevGraphs = ({ style, data }) => {
 
 export default connect(
   state => Object({
-    data: state.data.distance
+    data: state.data.photo
   })
 )(LevGraphs)

@@ -6,7 +6,39 @@ import InnerCluster from './visuals/InnerCluster'
 import RollPitchYaw from './visuals/RollPitchYaw'
 import MessageDisplay from '../components/MessageDisplay'
 
+const centralClusterSettings = [
+  {
+    color: 0x99FD77,
+    min: 0,
+    max: 100,
+    label: 'Speed',
+    unit: 'm/s'
+  },
+  {
+    color: 0x8ADCFF,
+    min: 0,
+    max: 100,
+    label: 'Accel',
+    unit: 'm/s/s'
+  },
+  {
+    color: 0xFF7575,
+    min: 0,
+    max: 100,
+    label: 'Pos',
+    unit: 'm'
+  }
+]
+
 class Dashboard extends React.Component {
+  shouldComponentUpdate (nextProps) {
+    return !(
+      this.props.speed === nextProps.speed &&
+      this.props.accel === nextProps.accel &&
+      this.props.distance === nextProps.distance
+    )
+  }
+
   render () {
     return (
       <Row className='dashboard'>
@@ -16,30 +48,8 @@ class Dashboard extends React.Component {
         <Col sm={7}>
           <CentralCluster
             height={500}
-            data={[this.props.speed, this.props.accel, 100]}
-            settings={[
-              {
-                color: 0x99FD77,
-                min: 0,
-                max: 100,
-                label: 'Speed',
-                unit: 'm/s'
-              },
-              {
-                color: 0x8ADCFF,
-                min: 0,
-                max: 100,
-                label: 'Accel',
-                unit: 'm/s/s'
-              },
-              {
-                color: 0xFF7575,
-                min: 0,
-                max: 100,
-                label: 'something',
-                unit: 'blah'
-              }
-            ]}>
+            data={[this.props.speed, this.props.accel, this.props.distance]}
+            settings={centralClusterSettings}>
             <InnerCluster />
           </CentralCluster>
         </Col>
