@@ -183,84 +183,94 @@ let Reducer = (state = Defaults, {
         return changeControl(state, data, 'launchActual')
       }
 
-      /** Data updates */
-    case Actions.UPDATE_SPEED:
-      {
-        // Add the heart beat from the speed data
-        return Object.assign({}, state, {
-          data: Object.assign({}, state.data, {
-            speed: state.data.speed.concat([data]),
-            heartBeat: state.data.heartBeat.concat([data[0]])
-          })
-        })
-      }
-    case Actions.UPDATE_BATTERY:
-      {
-        return addToData(state, data, 'battery')
-      }
-    case Actions.UPDATE_IRTEMP:
-      {
-        return addToData(state, data, 'irtemp')
-      }
-    case Actions.UPDATE_CONTACTTEMP:
-      {
-        return addToData(state, data, 'contacttemp')
-      }
-    case Actions.UPDATE_AIR_TANK_LEVEL:
-      {
-        return addToData(state, data, 'airTankLevel')
-      }
-    case Actions.UPDATE_AIR_TANK_PRESSURE:
-      {
-        return addToData(state, data, 'airTankPressure')
-      }
-    case Actions.UPDATE_DISTANCE:
-      {
-        return addToData(state, data, 'distance')
-      }
-    case Actions.UPDATE_ACCELERATION:
-      {
-        return addToData(state, data, 'acceleration')
-      }
-    case Actions.UPDATE_GYRO:
-      {
-        return addToData(state, data, 'gyro')
-      }
-    case Actions.UPDATE_ROLL_PITCH_YAW:
-      {
-        return addToData(state, data, 'rollPitchYaw')
-      }
-    case Actions.UPDATE_LINEAR_VELOCITY:
-      {
-        return addToData(state, data, 'linearVelocity')
-      }
-    case Actions.UPDATE_LINEAR_DISPLACEMENT:
-      {
-        return addToData(state, data, 'linearDisplacement')
-      }
-    case Actions.UPDATE_MAGNETOMER:
-      {
-        return addToData(state, data, 'magnetometer')
-      }
-    case Actions.UPDATE_REGULATOR:
-      {
-        return addToData(state, data, 'regulator')
-      }
-    case Actions.UPDATE_STATE:
-      {
-        let newData = Object.assign({}, state.data, {
-          state: data
-        })
+      /*
+       * Data updates received from the pod
+       *
+       * This section handles hen the pod sends repeated polled data which
+       * needs to be added to an array
+       *
+       * A lot of cases here uses addToData(), it is just a helper
+       * function to concat the data into the correct field
+       *
+       */
 
-        return Object.assign({}, state, {
-          data: newData
-        })
+    case Actions.UPDATE_DATA_LEV_TANK_PRESSURE:
+      {
+        return addToData(state, data, 'tankPressure', 'levData')
+      }
+    case Actions.UPDATE_DATA_LEV_REGULATOR_OUTPUT:
+      {
+        return addToData(state, data, 'regulatorOutput', 'levData')
+      }
+    case Actions.UPDATE_DATA_LEV_PHOTO:
+      {
+        return addToData(state, data, 'photo', 'levData')
+      }
+    case Actions.UPDATE_DATA_EC_PHOTO:
+      {
+        return addToData(state, data, 'photo', 'ECData')
+      }
+    case Actions.UPDATE_DATA_EC_TEMP:
+      {
+        return addToData(state, data, 'temp', 'ECData')
+      }
+    case Actions.UPDATE_DATA_MW_RPM:
+      {
+        return addToData(state, data, 'RPM', 'MWData')
+      }
+    case Actions.UPDATE_DATA_MW_TEMP:
+      {
+        return addToData(state, data, 'temp', 'MWData')
+      }
+    case Actions.UPDATE_DATA_DRIVE_TEMP:
+      {
+        return addToData(state, data, 'temp', 'driveData')
+      }
+    case Actions.UPDATE_DATA_DRIVE_REED:
+      {
+        return addToData(state, data, 'reed', 'driveData')
+      }
+    case Actions.UPDATE_DATA_DRIVE_CURRENT:
+      {
+        return addToData(state, data, 'current', 'driveData')
+      }
+    case Actions.UPDATE_DATA_POD_BATTERY_TEMP:
+      {
+        return addToData(state, data, 'batteryTemp', 'podData')
+      }
+    case Actions.UPDATE_DATA_POD_BATTERY_VOLT:
+      {
+        return addToData(state, data, 'batteryVolt', 'podData')
+      }
+    case Actions.UPDATE_DATA_POD_BATTERY_AMP:
+      {
+        return addToData(state, data, 'batteryAmp', 'podData')
+      }
+    case Actions.UPDATE_DATA_POD_REGULATOR:
+      {
+        return addToData(state, data, 'regulator', 'podData')
+      }
+    case Actions.UPDATE_DATA_POD_IMU:
+      {
+        return addToData(state, data, 'IMU', 'podData')
+      }
+    case Actions.UPDATE_DATA_POD_COLOR:
+      {
+        return addToData(state, data, 'color', 'podData')
+      }
+    case Actions.UPDATE_DATA_POD_PUSHER:
+      {
+        return addToData(state, data, 'pusher', 'podData')
+      }
+    case Actions.UPDATE_DATA_POD_STATE:
+      {
+        return addToData(state, data, 'state', 'podData')
+      }
+    case Actions.UPDATE_DATA_POD_MESSAGES:
+      {
+        return addToData(state, data, 'messages', 'podData')
       }
 
-    case Actions.UPDATE_MESSAGE_LOG:
-      {
-        return addToData(state, data, 'messages')
-      }
       /** Network */
     case Actions.UPDATE_CONNECTION_STATE:
       {
@@ -302,12 +312,12 @@ function changeConnection(state, data, field) {
   })
 }
 
-function addToData(state, data, field) {
+function addToData(state, data, field, section) {
   let newData
   if (state.controlSettings.keepLastData) {
     newData = [data]
   } else {
-    newData = state.data[field].concat([data])
+    newData = state[section][field].concat([data])
   }
 
   return Object.assign({}, state, {

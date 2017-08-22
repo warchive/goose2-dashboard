@@ -27,19 +27,9 @@ const Network = ({ connected, strength, beatLatency }) => {
 
 export default connect(
   (state) => {
-    let beatLatency
-    let heartBeatLen = state.data.heartBeat.length
-    if (heartBeatLen >= 2) {
-      beatLatency = state.data.heartBeat[heartBeatLen - 1] -
-        state.data.heartBeat[heartBeatLen - 2]
-    } else {
-      beatLatency = null
-    }
-
     return {
       connected: state.connection.connected,
-      strength: state.connection.strength,
-      beatLatency
+      strength: state.connection.strength
     }
   }
 )(Network)

@@ -60,40 +60,50 @@ let controlSettings = {
 }
 
 /**
- * @typedef {Object} Data
- * @property {Array} speed Speed history of the pod
- * @property {Array} acceleration acceleration history of the pod
- * @property {Array} battery battery history of the pod
- * @property {Array} temp temp history of the pod
- * @property {Array} airTankLevel airTankLevel history of the pod
- * @property {Array} airTankPressure airTankPressure history of the pod
- * @property {Array} distance distance history of the pod
- * @property {Array} imu Inertial history
- * @property {Array} imuRotation Inertial rotation history
- *
  * Array of 2 Tuples where the first index is the time in milliseconds
  * reported by the pod and the second is a k tuple depending on the
  * amount of dimensions of information
  */
-let data = {
-  speed: [],
-  battery: [],
-  irtemp: [],
-  contacttemp: [],
-  airTankLevel: [],
-  airTankPressure: [],
-  photo: [],
-  heartBeat: [],
-  magnetometer: [],
-  acceleration: [],
-  gyro: [],
-  linearVelocity: [],
-  linearDisplacement: [],
-  rollPitchYaw: [],
-  messages: [],
-  distance: [],
-  regulator: [],
-  state: '--'
+let levData = {
+  tankPressure: [], // 1
+  regulatorOutput: [], // 1
+  photo: [] // 4
+}
+
+let ECData = {
+  photo: [], // 2
+  temp: [] // 2
+}
+
+let MWData = {
+  RPM: [], // 4
+  temp: [] // 4
+}
+
+let driveData = {
+  temp: [], // 1
+  reed: [], // ? @todo: find out what this does
+  current: [] // 1
+}
+
+let podData = {
+  batteryTemp: [], // 3
+  batteryVolt: [], // 3
+  batteryAmp: [], // 3
+  regulator: [], // 3
+  /**
+   * IMU is a big one that contains 9 whole data points,
+   * [
+   *   gyro_x, gyro_y, gyro_z,
+   *   accel_x, accel_y, accel_z,
+   *   roll, pitch, yaw
+   * ]
+   */
+  IMU: [], // 9
+  color: [], // 1
+  pusher: [], // 1
+  state: '--', // string
+  messages: [] // array of strings
 }
 
 /**
@@ -116,7 +126,11 @@ let connection = {
  * @property {Connection}
  */
 export default {
-  data,
+  levData,
+  ECData,
+  MWData,
+  driveData,
+  podData,
   controls,
   controlSettings,
   connection

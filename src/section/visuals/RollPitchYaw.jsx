@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Sparklines, SparklinesLine } from 'react-sparklines'
+import { SMALL_GRAPH_POINTS } from '../../../config'
 
 import Tilt from '../../components/Tilt'
 
@@ -18,23 +19,14 @@ const rowStyle = {
   alignItems: 'center'
 }
 
-const RollPitchYaw = ({ rollPitchYaw }) => {
-  let roll, pitch, yaw
-  let rollHistory, pitchHistory, yawHistory
-  if (rollPitchYaw.length < 1) {
-    roll = pitch = yaw = null
-    rollHistory = pitchHistory = yawHistory = []
-  } else {
-    [roll, pitch, yaw] = rollPitchYaw.slice(-1)[0][1]
+const RollPitchYaw = ({ roll, pitch, yaw }) => {
+  let lastRoll, lastPitch, lastYaw
+  lastRoll = lastPitch = lastYaw = 0
 
-    let formattedHistory = rollPitchYaw.slice(-20).reduce((pre, curr) => {
-      pre.forEach((v, i) => v.push(curr[1][i]))
-      return pre
-    }, Array(3).fill(0).map(() => []))
-
-    rollHistory = formattedHistory[0]
-    pitchHistory = formattedHistory[1]
-    yawHistory = formattedHistory[2]
+  if (roll.length) {
+    lastRoll = roll.slice(-1)[0]
+    lastPitch = pitch.slice(-1)[0]
+    lastYaw = yaw.slice(-1)[0]
   }
 
   return (
@@ -44,9 +36,9 @@ const RollPitchYaw = ({ rollPitchYaw }) => {
           min={-180}
           max={180}
           label='Roll'
-          value={roll} />
+          value={lastRoll} />
 
-        <Sparklines data={rollHistory} {...SparkLineProps}>
+        <Sparklines data={roll} {...SparkLineProps}>
           <SparklinesLine color='blue' />
         </Sparklines>
       </div>
@@ -55,9 +47,9 @@ const RollPitchYaw = ({ rollPitchYaw }) => {
           min={-180}
           max={180}
           label='Pitch'
-          value={pitch} />
+          value={lastPitch} />
 
-        <Sparklines data={pitchHistory} {...SparkLineProps}>
+        <Sparklines data={pitch} {...SparkLineProps}>
           <SparklinesLine color='blue' />
         </Sparklines>
       </div>
@@ -66,16 +58,27 @@ const RollPitchYaw = ({ rollPitchYaw }) => {
           min={-180}
           max={180}
           label='Yaw'
-          value={yaw} />
+          value={lastYaw} />
 
-        <Sparklines data={yawHistory} {...SparkLineProps}>
+        <Sparklines data={yaw} {...SparkLineProps}>
           <SparklinesLine color='blue' />
         </Sparklines>
       </div>
     </div >
   )
 }
-
-export default connect(state => Object({
-  rollPitchYaw: state.data.rollPitchYaw
-}))(RollPitchYaw)
+/**
+ * @todo: implement this
+ */
+export default connect(state => {
+  let lastIMUDataPoints = state.podData.IMU.slice(-SMALL_GRAPH_POINTS)
+  let roll = []
+  let pitch = []
+  let yaw = []
+  lastIMUDataPoints.forEach(v => {
+    roll.push(v[7])
+    pitch.push(v[8])
+    yaw.push(v[9])
+  })
+  return { roll, pitch, yaw }
+})(RollPitchYaw)

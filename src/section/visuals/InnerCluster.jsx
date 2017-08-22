@@ -8,14 +8,14 @@ const InnerCluster = ({
   state,
   tankPressure,
   regulatorOutput,
-  battery
+  batteryTemp
 }) => {
   let battery48, battery24, battery5, tank, regulator
 
-  if (!battery) {
+  if (!batteryTemp) {
     battery48 = battery24 = battery5 = null
   } else {
-    [battery48, battery24, battery5] = battery[1]
+    [battery48, battery24, battery5] = batteryTemp[1]
   }
 
   if (tankPressure.length) tank = tankPressure.slice(-1)[1][0]
@@ -77,8 +77,8 @@ const InnerCluster = ({
 }
 
 export default connect(state => Object({
-  state: state.data.state,
-  tankPressure: state.data.airTankPressure,
-  regulatorOutput: state.data.regulator,
-  battery: state.data.battery.slice(-1)[0]
+  state: state.podData.state,
+  tankPressure: state.levData.tankPressure,
+  regulatorOutput: state.levData.regulatorPressure,
+  batteryTemp: state.podData.batteryVolt.slice(-1)[0]
 }))(InnerCluster)

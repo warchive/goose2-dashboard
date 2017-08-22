@@ -1,4 +1,3 @@
-import * as Broadcasts from '../../events/broadcasts'
 import * as Commands from '../../events/commands'
 import * as Actions from '../store/Actions'
 
@@ -14,64 +13,99 @@ export const SensorListener = (dispatch) => {
     time *= 1000 // Convert from seconds to milliseconds
 
     switch (sensor) {
-      case Broadcasts.SPEED:
+      case 'tank':
         return dispatch({
-          type: Actions.UPDATE_SPEED,
+          type: Actions.UPDATE_DATA_LEV_TANK_PRESSURE,
           data: [time, data]
         })
-      case Broadcasts.AIR_TANK_LEVEL:
+      case 'regulator':
         return dispatch({
-          type: Actions.UPDATE_AIR_TANK_LEVEL,
+          type: Actions.UPDATE_DATA_LEV_REGULATOR_OUTPUT,
           data: [time, data]
         })
-      case Broadcasts.BATTERY:
+      case 'photo':
         return dispatch({
-          type: Actions.UPDATE_BATTERY,
+          type: Actions.UPDATE_DATA_LEV_PHOTO,
           data: [time, data]
         })
-      case Broadcasts.IR_TEMPERATURE:
+      case 'latphoto':
         return dispatch({
-          type: Actions.UPDATE_IRTEMP,
+          type: Actions.UPDATE_DATA_EC_PHOTO,
           data: [time, data]
         })
-      case Broadcasts.CONTACT_TEMPERATURE:
+      case 'ectemp':
         return dispatch({
-          type: Actions.UPDATE_CONTACTTEMP,
+          type: Actions.UPDATE_DATA_EC_TEMP,
           data: [time, data]
         })
-      case Broadcasts.DISTANCE:
+      case 'rpm':
         return dispatch({
-          type: Actions.UPDATE_DISTANCE,
+          type: Actions.UPDATE_DATA_MW_RPM,
           data: [time, data]
         })
-      case Broadcasts.MAGNETOMETER:
+      case 'mwtemp':
         return dispatch({
-          type: Actions.UPDATE_MAGNETOMER,
+          type: Actions.UPDATE_DATA_MW_TEMP,
           data: [time, data]
         })
-      case Broadcasts.ACCELERATION:
+      case 'drivetemp':
         return dispatch({
-          type: Actions.UPDATE_ACCELERATION,
+          type: Actions.UPDATE_DATA_DRIVE_TEMP,
           data: [time, data]
         })
-      case Broadcasts.GYRO:
+      case 'reed':
         return dispatch({
-          type: Actions.UPDATE_GYRO,
+          type: Actions.UPDATE_DATA_DRIVE_REED,
           data: [time, data]
         })
-      case Broadcasts.LINEAR_VELOCITY:
+      case 'current':
         return dispatch({
-          type: Actions.UPDATE_LINEAR_VELOCITY,
+          type: Actions.UPDATE_DATA_DRIVE_CURRENT,
           data: [time, data]
         })
-      case Broadcasts.LINEAR_DISPLACEMENT:
+      case 'batterytemp':
         return dispatch({
-          type: Actions.UPDATE_LINEAR_DISPLACEMENT,
+          type: Actions.UPDATE_DATA_POD_BATTERY_TEMP,
           data: [time, data]
         })
-      case Broadcasts.ROLL_PITCH_YAW:
+      case 'batteryvolt':
         return dispatch({
-          type: Actions.UPDATE_ROLL_PITCH_YAW,
+          type: Actions.UPDATE_DATA_POD_BATTERY_VOLT,
+          data: [time, data]
+        })
+      case 'batteryamp':
+        return dispatch({
+          type: Actions.UPDATE_DATA_POD_BATTERY_AMP,
+          data: [time, data]
+        })
+      case 'regulatoroutput':
+        return dispatch({
+          type: Actions.UPDATE_DATA_POD_REGULATOR,
+          data: [time, data]
+        })
+      case 'imu':
+        return dispatch({
+          type: Actions.UPDATE_DATA_POD_IMU,
+          data: [time, data]
+        })
+      case 'color':
+        return dispatch({
+          type: Actions.UPDATE_DATA_POD_COLOR,
+          data: [time, data]
+        })
+      case 'pusher':
+        return dispatch({
+          type: Actions.UPDATE_DATA_POD_PUSHER,
+          data: [time, data]
+        })
+      case 'state':
+        return dispatch({
+          type: Actions.UPDATE_DATA_POD_STATE,
+          data: [time, data]
+        })
+      case 'message':
+        return dispatch({
+          type: Actions.UPDATE_DATA_POD_MESSAGES,
           data: [time, data]
         })
       default:

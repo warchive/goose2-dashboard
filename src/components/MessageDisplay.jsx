@@ -37,7 +37,7 @@ class MessageDisplay extends React.Component {
 export default connect(
   (state) => {
     return {
-      messages: state.data.messages
+      messages: state.podData.messages
     }
   }
 )(MessageDisplay)

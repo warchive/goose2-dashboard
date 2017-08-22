@@ -38,7 +38,6 @@ export default class LiveChartMulti extends React.Component {
   }
 
   adjustSize () {
-    console.log(this)
     let newWidth = this.container.offsetWidth
     this.setState({ width: newWidth, loaded: true })
   }

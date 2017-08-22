@@ -69,10 +69,14 @@ function getLastPairValue (array, idx) {
   return array[lastIdx][1][idx]
 }
 
+/**
+ * @todo: intergrate this part, not sure where to get the data points right now
+ */
+
 export default connect(
   (state) => Object({
-    speed: getLastPairValue(state.data.speed, 0),
-    accel: getLastPairValue(state.data.acceleration, 0),
-    distance: getLastPairValue(state.data.distance, 0)
+    speed: 0,
+    accel: 0,
+    distance: 0
   })
 )(Dashboard)
