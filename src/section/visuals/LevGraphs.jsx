@@ -5,7 +5,7 @@ import LiveChart from '../../components/LiveChartMulti'
 
 const LevGraphs = ({ style, photo }) => {
   return (
-    <TabView tabNames={['1', '2', '3']} style={style}>
+    <TabView tabNames={['1']} style={style}>
       <LiveChart
         height={130}
         title='Pressure'
