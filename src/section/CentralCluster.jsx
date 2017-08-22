@@ -123,16 +123,7 @@ export default class CentralCluster extends React.Component {
   }
 
   componentDidMount () {
-    /**
-     * Such a fucking hack but i have no idea how to fix this issue
-     * basically:
-     * - This component mounts, initialize component gets the dimensions of the div
-     *    and renders everything
-     * - The parent component & this component resizes
-     * - The dimensions are completely fucking wrong now
-     * @todo fix this shit
-     */
-    setTimeout(this.initializeComponent.bind(this), 500)
+    requestAnimationFrame(this.initializeComponent.bind(this))  //eslint-disable-line
   }
 
   calculateAngle (min, max, val) {

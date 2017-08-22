@@ -40,12 +40,12 @@ export default class LiveChartMulti extends React.Component {
 
   adjustSize () {
     let newWidth = this.container.offsetWidth
-    console.log('newWidth' + newWidth)
     this.setState({ width: newWidth })
   }
 
   componentDidMount () {
-    setTimeout(this.adjustSize.bind(this), 10)
+    requestAnimationFrame(this.adjustSize.bind(this)) //eslint-disable-line
+    // this.adjustSize()
     window.addEventListener('resize', this.adjustSize.bind(this))
   }
 
