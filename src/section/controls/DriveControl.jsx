@@ -36,7 +36,7 @@ const DriveControl = ({
         actual={drive}
         disabled={!manual}
         onChange={changeDriveTrain}
-        title='Magwheel' />
+        title='Drivee' />
     </div>
   )
 }
