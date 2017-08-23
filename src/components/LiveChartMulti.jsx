@@ -40,7 +40,6 @@ export default class LiveChartMulti extends React.Component {
 
   adjustSize () {
     let newWidth = this.container.offsetWidth
-    console.log('width: ' + newWidth)
     this.setState({ width: newWidth, loaded: true })
   }
 
@@ -77,7 +76,7 @@ export default class LiveChartMulti extends React.Component {
               : <ChartContainer
                 timeRange={timeRange}
                 width={this.state.width}
-                height={this.props.height}>
+                height={this.props.height} >
                 <ChartRow
                   height={this.props.height}>
                   <YAxis

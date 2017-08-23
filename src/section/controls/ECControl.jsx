@@ -8,8 +8,7 @@ import { sendCommand } from '../../api/api'
 const ECControl = ({
   style, manual,
   solenoid,
-  changeSolenoid,
-  stop  // Commands
+  changeSolenoid, connectArduino
 }) => {
   return (
     <div className='control-group' style={style}>
@@ -21,17 +20,25 @@ const ECControl = ({
         disabled={!manual}
         onClick={() => changeSolenoid(!solenoid)}>
         Solenoid </Button>
+      <Button
+        bsStyle='info'
+        bsSize='sm'
+        onClick={connectArduino}>
+        Connect Arduino </Button>
     </div>
   )
 }
 
-export default connect(state => Object({
+export default connect(state => ({
   manual: state.controlSettings.manualControlMode,
   solenoid: state.controls.ECSolenoidActual
-}), (dispatch) => Object({
+}), (dispatch) => ({
   changeSolenoid: (val) => {
     dispatch({ type: Actions.CHANGE_EC_SOLENOID, data: val })
     sendCommand(Commands.EC_SOLENOID, [Number(val)])
+  },
+  connectArduino: () => {
+    sendCommand(Commands.CONNECT_ARDUINO)
   }
 }
 ))(ECControl)

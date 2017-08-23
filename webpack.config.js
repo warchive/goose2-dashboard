@@ -1,5 +1,5 @@
 const path = require('path')
-const debug = process.env.NODE_ENV !== "production";  //eslint-disable-line
+const debug = process.env.NODE_ENV !== "production"; //eslint-disable-line
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const webpack = require('webpack')
 
@@ -9,7 +9,9 @@ const extractSass = new ExtractTextPlugin({
 })
 
 const minify = new webpack.optimize.UglifyJsPlugin({
-  compress: {warnings: false}
+  compress: {
+    warnings: false
+  }
 })
 
 const prodPlugsin = [
@@ -50,7 +52,7 @@ module.exports = {
       use: {
         loader: 'babel-loader',
         options: {
-          presets: ['env', 'react']
+          presets: ['env', 'react', 'stage-0']
         }
       }
     },
@@ -62,7 +64,7 @@ module.exports = {
         }, {
           loader: 'sass-loader'
         }],
-        // use style-loader in development
+          // use style-loader in development
         fallback: 'style-loader'
       })
     }

@@ -5,7 +5,7 @@ import Line from '../../components/LineGauge'
 import '../../scss/InnerCluster.scss'
 
 const InnerCluster = ({
-  state,
+  state, pusher,
   tankPressure,
   regulatorOutput,
   batteryTemp
@@ -26,6 +26,7 @@ const InnerCluster = ({
       <div className='row'>
         <div style={{ margin: 'auto' }}>
           <h6>State: {state}</h6>
+          <h6>Pusher: {pusher ? 'ON' : 'OFF'}</h6>
         </div>
       </div>
       <div className='row'>
@@ -78,6 +79,7 @@ const InnerCluster = ({
 
 export default connect(state => Object({
   state: state.podData.state,
+  pusher: state.podData.pusher,
   tankPressure: state.levData.tankPressure,
   regulatorOutput: state.levData.regulatorOutput,
   batteryTemp: state.podData.batteryVolt.slice(-1)[0]

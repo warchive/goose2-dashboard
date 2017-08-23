@@ -101,7 +101,7 @@ let podData = {
    */
   IMU: [], // 9
   color: [], // 1
-  pusher: [], // 1
+  pusher: false, // boolean
   state: '--', // string
   messages: [] // array of strings
 }

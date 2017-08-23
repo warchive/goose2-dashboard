@@ -96,7 +96,7 @@ export const SensorListener = (dispatch) => {
       case 'pusher':
         return dispatch({
           type: Actions.UPDATE_DATA_POD_PUSHER,
-          data: [time, data]
+          data: data
         })
       case 'state':
         return dispatch({
@@ -202,7 +202,7 @@ export const MessageListener = (dispatch) => {
     } = broadcast
     let hash = Math.random().toString(36).substring(8)
     dispatch({
-      type: Actions.UPDATE_MESSAGE_LOG,
+      type: Actions.UPDATE_DATA_POD_MESSAGES,
       data: [hash, time, message]
     })
   }

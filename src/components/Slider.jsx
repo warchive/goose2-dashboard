@@ -30,8 +30,7 @@ class Slide extends React.Component {
   }
 
   onChange (evt) {
-    this.setState(Object.assign({},
-      this.state, { val: evt }))
+    this.setState({ val: evt })
 
     if (this.props.instantChange) {
       this.props.onChange(this.state.val)
@@ -49,8 +48,7 @@ class Slide extends React.Component {
       return
     }
 
-    this.setState(Object.assign({}, this.state, { val: newVal }))
-
+    this.setState({ val: newVal })
     this.props.onChange(newVal)
   }
 

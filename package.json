@@ -16,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "babel-polyfill": "^6.23.0",
+    "babel-preset-stage-0": "^6.24.1",
     "canvas-gauges": "^2.1.4",
     "circular-buffer": "^1.0.2",
     "createjs-easeljs": "^0.8.2",

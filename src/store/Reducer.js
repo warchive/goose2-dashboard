@@ -260,7 +260,13 @@ let Reducer = (state = Defaults, {
       }
     case Actions.UPDATE_DATA_POD_PUSHER:
       {
-        return addToData(state, data, 'pusher', 'podData')
+        return {
+          ...state,
+          podData: {
+            ...state.podData,
+            pusher: data
+          }
+        }
       }
     case Actions.UPDATE_DATA_POD_STATE:
       {
