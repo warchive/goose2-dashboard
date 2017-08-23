@@ -6,6 +6,7 @@ import ReactDom from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import Reducer from './store/Reducer'
+import { reduxBatch } from '@manaflair/redux-batch'
 import * as Actions from './store/Actions'
 
 /** Bootstrap */
@@ -21,6 +22,9 @@ import { connect as WSConnect } from './api/api'
 import * as Listeners from './api/Listener.js'
 
 class App extends React.Component {
+  shouldComponentUpdate () {
+    return false
+  }
   render () {
     return (
       <Grid fluid>
@@ -44,10 +48,9 @@ let store
 if (DEBUG) {   // eslint-disable-line
   store = createStore(
     Reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
-    window.__REDUX_DEVTOOLS_EXTENSION__())
+    reduxBatch)
 } else {
-  store = createStore(Reducer)
+  store = createStore(Reducer, reduxBatch)
 }
 
 let ConnectedListeners = {

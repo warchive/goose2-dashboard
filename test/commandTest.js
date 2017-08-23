@@ -8,7 +8,7 @@ function command (input, io) {
   // General command
   if (input.startsWith('!')) {
     let sections = input.split(' ')
-
+    console.log('command sent')
     return io.emit('command_received', JSON.stringify({
       time: Date.now(),
       received: {

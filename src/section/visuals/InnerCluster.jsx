@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import SemiCircle from '../../components/SemiCircle'
 import Line from '../../components/LineGauge'
+import { roundValue } from '../../../config.js'
 import '../../scss/InnerCluster.scss'
 
 const InnerCluster = ({
@@ -15,11 +16,12 @@ const InnerCluster = ({
   if (!batteryTemp) {
     battery48 = battery24 = battery5 = null
   } else {
-    [battery48, battery24, battery5] = batteryTemp[1]
+    //[battery48, battery24, battery5] = batteryTemp[1]
+    battery48 = battery24 = battery5 = null
   }
 
-  if (tankPressure.length) tank = tankPressure.slice(-1)[1][0]
-  if (regulatorOutput.length) regulator = regulatorOutput.slice(-1)[1][0]
+  if (tankPressure.length) tank = tankPressure.slice(-1)[0][1][0]
+  if (regulatorOutput.length) regulator = regulatorOutput.slice(-1)[0][1][0]
 
   return (
     <div className='container-fluid' id='inner-cluster'>
@@ -33,14 +35,14 @@ const InnerCluster = ({
         <SemiCircle
           min={0}
           max={100}
-          value={tank}
+          value={roundValue(tank)}
           label='Tnk pressure'
           unit='PSI'
           width={200} />
         <SemiCircle
           min={0}
           max={100}
-          value={regulator}
+          value={roundValue(regulator)}
           label='Regulator'
           unit='PSI'
           width={200} />
@@ -77,10 +79,12 @@ const InnerCluster = ({
   )
 }
 
-export default connect(state => Object({
+export default connect(state => ({
   state: state.podData.state,
   pusher: state.podData.pusher,
   tankPressure: state.levData.tankPressure,
   regulatorOutput: state.levData.regulatorOutput,
-  batteryTemp: state.podData.batteryVolt.slice(-1)[0]
+  batteryTemp: state.podData.batteryTemp,
+  batteryVolt: state.podData.batteryVolt,
+  batteryAmp: state.podData.batteryAmp
 }))(InnerCluster)

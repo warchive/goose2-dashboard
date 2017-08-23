@@ -1,7 +1,12 @@
 import * as Commands from '../../events/commands'
 import * as Actions from '../store/Actions'
 
+const DISPATCH_INTERVAL = 500
+
 export const SensorListener = (dispatch) => {
+  let lastDispatch = Date.now()
+  let dispatchBatch = []
+  let backupTimerId
   return (broadcast) => {
     broadcast = JSON.parse(broadcast)
     let {
@@ -14,102 +19,138 @@ export const SensorListener = (dispatch) => {
 
     switch (sensor) {
       case 'tank':
-        return dispatch({
+        dispatchBatch.push({
           type: Actions.UPDATE_DATA_LEV_TANK_PRESSURE,
           data: [time, data]
         })
+        break
       case 'regulator':
-        return dispatch({
+        dispatchBatch.push({
           type: Actions.UPDATE_DATA_LEV_REGULATOR_OUTPUT,
           data: [time, data]
         })
+        break
       case 'photo':
-        return dispatch({
+        dispatchBatch.push({
           type: Actions.UPDATE_DATA_LEV_PHOTO,
           data: [time, data]
         })
+        break
       case 'latphoto':
-        return dispatch({
+        dispatchBatch.push({
           type: Actions.UPDATE_DATA_EC_PHOTO,
           data: [time, data]
         })
+        break
       case 'ectemp':
-        return dispatch({
+        dispatchBatch.push({
           type: Actions.UPDATE_DATA_EC_TEMP,
           data: [time, data]
         })
+        break
       case 'rpm':
-        return dispatch({
+        dispatchBatch.push({
           type: Actions.UPDATE_DATA_MW_RPM,
           data: [time, data]
         })
+        break
       case 'mwtemp':
-        return dispatch({
+        dispatchBatch.push({
           type: Actions.UPDATE_DATA_MW_TEMP,
           data: [time, data]
         })
+        break
       case 'drivetemp':
-        return dispatch({
+        dispatchBatch.push({
           type: Actions.UPDATE_DATA_DRIVE_TEMP,
           data: [time, data]
         })
+        break
       case 'reed':
-        return dispatch({
+        dispatchBatch.push({
           type: Actions.UPDATE_DATA_DRIVE_REED,
           data: [time, data]
         })
+        break
       case 'current':
-        return dispatch({
+        dispatchBatch.push({
           type: Actions.UPDATE_DATA_DRIVE_CURRENT,
           data: [time, data]
         })
+        break
       case 'batterytemp':
-        return dispatch({
+        dispatchBatch.push({
           type: Actions.UPDATE_DATA_POD_BATTERY_TEMP,
           data: [time, data]
         })
+        break
       case 'batteryvolt':
-        return dispatch({
+        dispatchBatch.push({
           type: Actions.UPDATE_DATA_POD_BATTERY_VOLT,
           data: [time, data]
         })
+        break
       case 'batteryamp':
-        return dispatch({
+        dispatchBatch.push({
           type: Actions.UPDATE_DATA_POD_BATTERY_AMP,
           data: [time, data]
         })
+        break
       case 'regulatoroutput':
-        return dispatch({
+        dispatchBatch.push({
           type: Actions.UPDATE_DATA_POD_REGULATOR,
           data: [time, data]
         })
+        break
       case 'imu':
-        return dispatch({
+        dispatchBatch.push({
           type: Actions.UPDATE_DATA_POD_IMU,
           data: [time, data]
         })
+        break
       case 'color':
-        return dispatch({
+        dispatchBatch.push({
           type: Actions.UPDATE_DATA_POD_COLOR,
           data: [time, data]
         })
+        break
       case 'pusher':
-        return dispatch({
+        dispatchBatch.push({
           type: Actions.UPDATE_DATA_POD_PUSHER,
           data: data
         })
+        break
       case 'state':
-        return dispatch({
+        dispatchBatch.push({
           type: Actions.UPDATE_DATA_POD_STATE,
           data: [time, data]
         })
+        break
       case 'message':
-        return dispatch({
+        dispatchBatch.push({
           type: Actions.UPDATE_DATA_POD_MESSAGES,
           data: [time, data]
         })
+        break
       default:
         console.error(`Unrecognized name: ${sensor}, data: ${data}`)
+    }
+
+    if (Date.now() - lastDispatch >= DISPATCH_INTERVAL) {
+      dispatch(dispatchBatch)
+      lastDispatch = Date.now()
+      dispatchBatch = []
+      if (backupTimerId !== -1) {
+        clearTimeout(backupTimerId)
+        backupTimerId = -1
+      }
+    } else {
+      if (backupTimerId !== -1) return
+      backupTimerId = setTimeout(() => {
+        dispatch(dispatchBatch)
+        lastDispatch = Date.now()
+        dispatchBatch = []
+      }, DISPATCH_INTERVAL)
     }
   }
 }
@@ -117,6 +158,8 @@ export const SensorListener = (dispatch) => {
 export const CommandRecievedListener = (dispatch) => {
   return (broadcast) => {
     broadcast = JSON.parse(broadcast)
+
+    console.log('command received')
 
     let cmd = broadcast.received.cmd
     let val = broadcast.received.val

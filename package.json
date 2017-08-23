@@ -15,6 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@manaflair/redux-batch": "^0.1.0",
     "babel-polyfill": "^6.23.0",
     "babel-preset-stage-0": "^6.24.1",
     "canvas-gauges": "^2.1.4",

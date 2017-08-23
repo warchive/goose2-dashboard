@@ -45,7 +45,12 @@ export default class LiveChartMulti extends React.Component {
 
   componentDidMount () {
     requestAnimationFrame(this.adjustSize.bind(this)) //eslint-disable-line
-    window.addEventListener('resize', this.adjustSize.bind(this))
+    this.eventListener = this.adjustSize.bind(this)
+    window.addEventListener('resize', this.eventListener)
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('resize', this.eventListener)
   }
 
   render () {
