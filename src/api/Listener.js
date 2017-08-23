@@ -157,11 +157,6 @@ export const CommandRecievedListener = (dispatch) => {
           type: Actions.UPDATE_CONTROL_SPEED,
           data: Boolean(val[0])
         })
-      case Commands.CONNECT_ARDUINO:
-        return dispatch({
-          type: Actions.UPDATE_CONTROL_CONNECT_ARDUINO,
-          data: Boolean(val[0])
-        })
       case Commands.MTV:
         return dispatch({
           type: Actions.UPDATE_CONTROL_MTV,

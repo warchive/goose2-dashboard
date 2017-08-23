@@ -22,10 +22,6 @@ let Reducer = (state = Defaults, {
       {
         return changeControl(state, data, 'emergencyStop')
       }
-    case Actions.CHANGE_CONNECT_ARDUINO:
-      {
-        return changeControl(state, data, 'connect')
-      }
     case Actions.CHANGE_SPEED:
       {
         return changeControl(state, data, 'speed')
@@ -125,10 +121,6 @@ let Reducer = (state = Defaults, {
     case Actions.UPDATE_CONTROL_EMERGENCY_STOP:
       {
         return changeControl(state, data, 'emergencyStopActual')
-      }
-    case Actions.UPDATE_CONTROL_CONNECT_ARDUINO:
-      {
-        return changeControl(state, data, 'connectActual')
       }
     case Actions.UPDATE_CONTROL_POD_START:
       {
