@@ -3,10 +3,9 @@ import { connect } from 'react-redux'
 import SensorHealth from '../components/SensorHealth'
 
 /** Bootstrap */
-import { Grid, Row, Col } from 'react-bootstrap'
+import { Row } from 'react-bootstrap'
 
 const HealthCheck = ({ state }) => {
-
   // <div style={{
   //   display: 'flex',
   //   justifyContent: 'flex-start',
