@@ -2,9 +2,20 @@ import React from 'react'
 import { connect } from 'react-redux'
 import SensorHealth from '../components/SensorHealth'
 
+/** Bootstrap */
+import { Row } from 'react-bootstrap'
+
 const HealthCheck = ({ state }) => {
+  // <div style={{
+  //   display: 'flex',
+  //   justifyContent: 'flex-start',
+  //   alignItems: 'stretch',
+  //   flex: 'row wrap'
+  // }}>
   return (
-    <div>
+    <Row style={{
+      justifyContent: 'center'
+    }}>
       <SensorHealth
         val={state.connection.connected}
         error={(val) => !val}
@@ -18,7 +29,56 @@ const HealthCheck = ({ state }) => {
         warning={(val) => val > 50}>
         Magwheels
       </SensorHealth>
-    </div>
+
+      <SensorHealth
+        val={state.controls.magwheel}
+        error={(val) => val > 75}
+        warning={(val) => val > 50}>
+        Magwheels
+      </SensorHealth>
+
+      <SensorHealth
+        val={state.controls.magwheel}
+        error={(val) => val > 75}
+        warning={(val) => val > 50}>
+        Magwheels
+      </SensorHealth>
+
+      <SensorHealth
+        val={state.controls.magwheel}
+        error={(val) => val > 75}
+        warning={(val) => val > 50}>
+        Magwheels
+      </SensorHealth>
+
+      <SensorHealth
+        val={state.controls.magwheel}
+        error={(val) => val > 75}
+        warning={(val) => val > 50}>
+        Magwheels
+      </SensorHealth>
+
+      <SensorHealth
+        val={state.controls.magwheel}
+        error={(val) => val > 75}
+        warning={(val) => val > 50}>
+        Magwheels
+      </SensorHealth>
+
+      <SensorHealth
+        val={state.controls.magwheel}
+        error={(val) => val > 75}
+        warning={(val) => val > 50}>
+        Magwheels
+      </SensorHealth>
+
+      <SensorHealth
+        val={state.controls.magwheel}
+        error={(val) => val > 75}
+        warning={(val) => val > 50}>
+        Magwheels
+      </SensorHealth>
+    </Row>
   )
 }
 

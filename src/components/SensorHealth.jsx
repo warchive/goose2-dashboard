@@ -3,17 +3,22 @@ import React from 'react'
 export default class SensorHealth extends React.Component {
   getColor () {
     if (this.props.error(this.props.val)) {
-      return 'red'
+      return '#ff7777'
     } else if (this.props.warning(this.props.val)) {
-      return 'yellow'
+      return '#ffed72'
     } else {
-      return 'green'
+      return '#88ff8a'
     }
   }
 
   getStyle () {
     return {
-      backgroundColor: this.getColor()
+      backgroundColor: this.getColor(),
+      width: 'auto',
+      padding: '0 30px',
+      textAlign: 'center',
+      height: '50px',
+      lineHeight: '50px'
     }
   }
 
