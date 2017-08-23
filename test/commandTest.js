@@ -4,7 +4,7 @@ let intervalId = {}
  * @param {String} input
  * @param {*} connection
  */
-function command (input, io) {
+function command(input, io) {
   // General command
   if (input.startsWith('!')) {
     let sections = input.split(' ')
@@ -39,7 +39,7 @@ function command (input, io) {
 
     clearInterval(intervalId[name])
     intervalId[name] = setInterval(() => io.emit('sensor',
-      packet(name, [Math.random() * (max - min) + min])),
+        packet(name, [Math.random() * (max - min) + min])),
       time
     )
     return
@@ -58,9 +58,25 @@ function command (input, io) {
     intervalId[name] = setInterval(() => io.emit('sensor',
       packet(
         name,
-        Array(Number(dim)).fill(0).map(() => Math.random() * (max - min) + min)))
-      , time)
+        Array(Number(dim)).fill(0).map(() => Math.random() * (max - min) + min))), time)
   }
+
+  if (input.startsWith('&')) {
+    let sections = input.split(' ')
+    let [, name, dim, min, max, time] = sections
+
+    dim = Number(dim)
+    min = Number(min)
+    max = Number(max)
+    time = Number(time)
+
+    clearInterval(intervalId[name])
+    intervalId[name] = setInterval(() => io.emit('sensor',
+      packet(
+        name,
+        Array(Number(dim)).fill(0).map(() => Math.sin((Date.now() / 1000)) * ((max - min) / 2) + ((max - min) / 2)), time)), time)
+  }
+
   if (input.startsWith('%')) {
     let sections = input.split(' ')
 
@@ -71,11 +87,12 @@ function command (input, io) {
 
 const startTime = Date.now()
 
-function packet (name, value) {
+function packet(name, value) {
   let json = JSON.stringify({
     time: (Date.now() - startTime) / 1000,
     sensor: name,
-    data: value})
+    data: value
+  })
   return json
 }
 

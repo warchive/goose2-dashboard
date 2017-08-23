@@ -48,6 +48,8 @@ let store
 if (DEBUG) {   // eslint-disable-line
   store = createStore(
     Reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
+    window.__REDUX_DEVTOOLS_EXTENSION__(),
     reduxBatch)
 } else {
   store = createStore(Reducer, reduxBatch)

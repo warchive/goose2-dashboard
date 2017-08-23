@@ -1,7 +1,7 @@
 import * as Commands from '../../events/commands'
 import * as Actions from '../store/Actions'
 
-const DISPATCH_INTERVAL = 500
+const DISPATCH_INTERVAL = 200
 
 export const SensorListener = (dispatch) => {
   let lastDispatch = Date.now()

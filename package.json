@@ -10,6 +10,7 @@
     "lint": "node_modules/.bin/standard",
     "lint:fix": "node_modules/.bin/standard --fix",
     "test": "echo no tests yet",
+    "test:preset": "node test/index.js < test/settings.txt",
     "dev": "node_modules/.bin/webpack-dev-server --open"
   },
   "author": "",
