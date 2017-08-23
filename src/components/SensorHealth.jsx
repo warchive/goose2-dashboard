@@ -2,7 +2,9 @@ import React from 'react'
 
 export default class SensorHealth extends React.Component {
   getColor () {
-    if (this.props.error(this.props.val)) {
+    if (Array.isArray(this.props.val) && this.props.val.length === 0) {
+      return '#cccccc'
+    } else if (this.props.error(this.props.val)) {
       return '#ff7777'
     } else if (this.props.warning(this.props.val)) {
       return '#ffed72'

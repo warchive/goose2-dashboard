@@ -16,7 +16,7 @@ const InnerCluster = ({
   if (!batteryTemp) {
     battery48 = battery24 = battery5 = null
   } else {
-    //[battery48, battery24, battery5] = batteryTemp[1]
+    // [battery48, battery24, battery5] = batteryTemp[1]
     battery48 = battery24 = battery5 = null
   }
 
