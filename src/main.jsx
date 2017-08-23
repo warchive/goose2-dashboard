@@ -19,7 +19,7 @@ import Dashboard from './section/Dashboard'
 import HealthCheck from './section/HealthCheck'
 
 import { connect as WSConnect } from './api/api'
-import * as Listeners from './api/Listener.js'
+import * as Listeners from './api/BatchedListener.js'
 
 class App extends React.Component {
   shouldComponentUpdate () {
