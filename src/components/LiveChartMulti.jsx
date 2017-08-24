@@ -38,6 +38,21 @@ export default class LiveChartMulti extends React.Component {
     </div>
   }
 
+  shouldComponentUpdate (nextProps) {
+    if (!this.props.progressive) return true
+
+    if (this.props.data.length && nextProps.data.length) {
+      let prevDataEndTime, nextDataEndTime
+      prevDataEndTime = this.props.data.slice(-1)[0][0]
+      nextDataEndTime = nextProps.data.slice(-1)[0][0]
+
+      let shouldUpdate = nextDataEndTime > prevDataEndTime
+      return shouldUpdate
+    }
+
+    return true
+  }
+
   adjustSize () {
     let newWidth = this.container.offsetWidth
     this.setState({ width: newWidth, loaded: true })

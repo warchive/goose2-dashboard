@@ -7,6 +7,7 @@ const MagwheelGraph = ({ style, controllerTemp, motorTemp, RPM }) => {
   return (
     <TabView tabNames={['C', 'M', 'R']} style={style}>
       <LiveChart
+        progressive
         height={130}
         title='Cont. Temp'
         min={0}
@@ -15,6 +16,7 @@ const MagwheelGraph = ({ style, controllerTemp, motorTemp, RPM }) => {
         data={controllerTemp}
       />
       <LiveChart
+        progressive
         height={130}
         title='Motor Temp'
         min={0}
@@ -23,6 +25,7 @@ const MagwheelGraph = ({ style, controllerTemp, motorTemp, RPM }) => {
         data={motorTemp}
       />
       <LiveChart
+        progressive
         height={130}
         title='RPM'
         min={0}

@@ -8,6 +8,7 @@ const ECGraph = ({ style, photo, temp }) => {
     <TabView tabNames={['T', 'P']} style={style}>
       <Tab>
         <LiveChart
+          progressive
           height={130}
           title='temperature'
           min={0}
@@ -18,6 +19,7 @@ const ECGraph = ({ style, photo, temp }) => {
       </Tab>
       <Tab>
         <LiveChart
+          progressive
           height={130}
           title='Photoelectric'
           min={0}

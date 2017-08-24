@@ -8,6 +8,7 @@ const DriveGraph = ({ style, temp, reed, current }) => {
     <TabView tabNames={['P', 'C']} style={style}>
       <Tab>
         <LiveChart
+          progressive
           height={130}
           title='Temperature'
           min={0}
@@ -18,6 +19,7 @@ const DriveGraph = ({ style, temp, reed, current }) => {
         <p> ReedSensor: {reed ? 'On' : 'Off'}</p>
       </Tab>
       <LiveChart
+        progressive
         height={130}
         title='Current'
         min={0}

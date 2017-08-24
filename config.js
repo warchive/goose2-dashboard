@@ -35,3 +35,13 @@ export const STATES = [
   'Brk_Hi',
   'Brk_lo'
 ]
+
+/**
+ * If true, BatchedListener Will accumulate redux dispatches in an array
+ * for BATCH_UPDATE_INTEVERAL milliseconds and then dispatch them all at the
+ * same time.
+ *
+ * This saves a lot of rendering cycles and optimizes the front end
+ */
+export const BATCH_UPDATES = true
+export const BATCH_UPDATE_INTERVAL = 300

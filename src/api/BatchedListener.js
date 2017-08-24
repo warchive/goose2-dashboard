@@ -1,7 +1,9 @@
 import * as Commands from '../../events/commands'
 import * as Actions from '../store/Actions'
-
-const DISPATCH_INTERVAL = 200
+import {
+  BATCH_UPDATES,
+  BATCH_UPDATE_INTERVAL
+} from '../../config'
 
 export const SensorListener = (dispatch) => {
   let lastDispatch = Date.now()
@@ -145,21 +147,26 @@ export const SensorListener = (dispatch) => {
         console.error(`Unrecognized name: ${sensor}, data: ${data}`)
     }
 
-    if (Date.now() - lastDispatch >= DISPATCH_INTERVAL) {
-      dispatch(dispatchBatch)
-      lastDispatch = Date.now()
-      dispatchBatch = []
-      if (backupTimerId !== -1) {
-        clearTimeout(backupTimerId)
-        backupTimerId = -1
-      }
-    } else {
-      if (backupTimerId !== -1) return
-      backupTimerId = setTimeout(() => {
+    if (BATCH_UPDATES) {
+      if (Date.now() - lastDispatch >= BATCH_UPDATE_INTERVAL) {
         dispatch(dispatchBatch)
         lastDispatch = Date.now()
         dispatchBatch = []
-      }, DISPATCH_INTERVAL)
+        if (backupTimerId !== -1) {
+          clearTimeout(backupTimerId)
+          backupTimerId = -1
+        }
+      } else {
+        if (backupTimerId !== -1) return
+        backupTimerId = setTimeout(() => {
+          dispatch(dispatchBatch)
+          lastDispatch = Date.now()
+          dispatchBatch = []
+        }, BATCH_UPDATE_INTERVAL)
+      }
+    } else {
+      dispatch(dispatchBatch[0])
+      dispatchBatch = []
     }
   }
 }

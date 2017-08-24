@@ -7,6 +7,7 @@ const LevGraphs = ({ style, photo, DPR }) => {
   return (
     <TabView tabNames={['D', 'P']} style={style}>
       <LiveChart
+        progressive
         height={130}
         title='Pressure'
         min={0}
@@ -15,6 +16,7 @@ const LevGraphs = ({ style, photo, DPR }) => {
         data={DPR}
       />
       <LiveChart
+        progressive
         height={130}
         title='Photo'
         min={0}
