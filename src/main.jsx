@@ -35,9 +35,6 @@ class App extends React.Component {
             <Control />
           </Col>
         </Row>
-        <Row>
-          <HealthCheck />
-        </Row>
       </Grid>
     )
   }
