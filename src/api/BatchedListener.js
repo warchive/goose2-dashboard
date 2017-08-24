@@ -17,16 +17,29 @@ export const SensorListener = (dispatch) => {
 
     time *= 1000 // Convert from seconds to milliseconds
 
+    /**
+     * This case and switch statement links up each incoming broadcast data name
+     * indicated by the condition of the switch statement, the the redux action
+     * that should be dispatche
+     */
     switch (sensor) {
-      case 'tank':
+      // Lev Data
+
+      case 'highpres':
         dispatchBatch.push({
-          type: Actions.UPDATE_DATA_LEV_TANK_PRESSURE,
+          type: Actions.UPDATE_DATA_LEV_HIGH_PRESSURE,
           data: [time, data]
         })
         break
-      case 'regulator':
+      case 'medpres':
         dispatchBatch.push({
-          type: Actions.UPDATE_DATA_LEV_REGULATOR_OUTPUT,
+          type: Actions.UPDATE_DATA_LEV_MEDIUM_PRESSURE,
+          data: [time, data]
+        })
+        break
+      case 'dpr':
+        dispatchBatch.push({
+          type: Actions.UPDATE_DATA_LEV_DPR,
           data: [time, data]
         })
         break
@@ -36,6 +49,8 @@ export const SensorListener = (dispatch) => {
           data: [time, data]
         })
         break
+
+        // Ec section
       case 'latphoto':
         dispatchBatch.push({
           type: Actions.UPDATE_DATA_EC_PHOTO,
@@ -48,18 +63,28 @@ export const SensorListener = (dispatch) => {
           data: [time, data]
         })
         break
+
+        // Magwheel Section
       case 'rpm':
         dispatchBatch.push({
           type: Actions.UPDATE_DATA_MW_RPM,
           data: [time, data]
         })
         break
-      case 'mwtemp':
+      case 'mwControllerTemp':
         dispatchBatch.push({
-          type: Actions.UPDATE_DATA_MW_TEMP,
+          type: Actions.UPDATE_DATA_MW_CONTROLLER_TEMP,
           data: [time, data]
         })
         break
+      case 'mwMotorTemp':
+        dispatchBatch.push({
+          type: Actions.UPDATE_DATA_MW_MOTOR_TEMP,
+          data: [time, data]
+        })
+        break
+
+        // Drive section
       case 'drivetemp':
         dispatchBatch.push({
           type: Actions.UPDATE_DATA_DRIVE_TEMP,
@@ -69,7 +94,7 @@ export const SensorListener = (dispatch) => {
       case 'reed':
         dispatchBatch.push({
           type: Actions.UPDATE_DATA_DRIVE_REED,
-          data: [time, data]
+          data: data[0]
         })
         break
       case 'current':
@@ -78,27 +103,11 @@ export const SensorListener = (dispatch) => {
           data: [time, data]
         })
         break
-      case 'batterytemp':
+
+        // Pod (misc) section
+      case 'battery':
         dispatchBatch.push({
-          type: Actions.UPDATE_DATA_POD_BATTERY_TEMP,
-          data: [time, data]
-        })
-        break
-      case 'batteryvolt':
-        dispatchBatch.push({
-          type: Actions.UPDATE_DATA_POD_BATTERY_VOLT,
-          data: [time, data]
-        })
-        break
-      case 'batteryamp':
-        dispatchBatch.push({
-          type: Actions.UPDATE_DATA_POD_BATTERY_AMP,
-          data: [time, data]
-        })
-        break
-      case 'regulatoroutput':
-        dispatchBatch.push({
-          type: Actions.UPDATE_DATA_POD_REGULATOR,
+          type: Actions.UPDATE_DATA_POD_BATTERY,
           data: [time, data]
         })
         break
@@ -117,13 +126,13 @@ export const SensorListener = (dispatch) => {
       case 'pusher':
         dispatchBatch.push({
           type: Actions.UPDATE_DATA_POD_PUSHER,
-          data: data
+          data: data[0]
         })
         break
       case 'state':
         dispatchBatch.push({
           type: Actions.UPDATE_DATA_POD_STATE,
-          data: [time, data]
+          data: data[0]
         })
         break
       case 'message':

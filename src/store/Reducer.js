@@ -186,18 +186,24 @@ let Reducer = (state = Defaults, {
        *
        */
 
-    case Actions.UPDATE_DATA_LEV_TANK_PRESSURE:
+      // Lev
+    case Actions.UPDATE_DATA_LEV_HIGH_PRESSURE:
       {
-        return addToData(state, data, 'tankPressure', 'levData')
+        return addToData(state, data, 'highPressure', 'levData')
       }
-    case Actions.UPDATE_DATA_LEV_REGULATOR_OUTPUT:
+    case Actions.UPDATE_DATA_LEV_MEDIUM_PRESSURE:
       {
-        return addToData(state, data, 'regulatorOutput', 'levData')
+        return addToData(state, data, 'mediumPressure', 'levData')
+      }
+    case Actions.UPDATE_DATA_LEV_DPR:
+      {
+        return addToData(state, data, 'DPR', 'levData')
       }
     case Actions.UPDATE_DATA_LEV_PHOTO:
       {
         return addToData(state, data, 'photo', 'levData')
       }
+      // EC
     case Actions.UPDATE_DATA_EC_PHOTO:
       {
         return addToData(state, data, 'photo', 'ECData')
@@ -206,41 +212,43 @@ let Reducer = (state = Defaults, {
       {
         return addToData(state, data, 'temp', 'ECData')
       }
+      // MW
     case Actions.UPDATE_DATA_MW_RPM:
       {
         return addToData(state, data, 'RPM', 'MWData')
       }
-    case Actions.UPDATE_DATA_MW_TEMP:
+    case Actions.UPDATE_DATA_MW_CONTROLLER_TEMP:
       {
-        return addToData(state, data, 'temp', 'MWData')
+        return addToData(state, data, 'controllerTemp', 'MWData')
       }
+    case Actions.UPDATE_DATA_MW_MOTOR_TEMP:
+      {
+        return addToData(state, data, 'motorTemp', 'MWData')
+      }
+      // Drive
     case Actions.UPDATE_DATA_DRIVE_TEMP:
       {
         return addToData(state, data, 'temp', 'driveData')
       }
     case Actions.UPDATE_DATA_DRIVE_REED:
       {
-        return addToData(state, data, 'reed', 'driveData')
+        return {
+          ...state,
+          driveData: {
+            ...state.driveData,
+            reed: data
+          }
+        }
       }
     case Actions.UPDATE_DATA_DRIVE_CURRENT:
       {
         return addToData(state, data, 'current', 'driveData')
       }
-    case Actions.UPDATE_DATA_POD_BATTERY_TEMP:
+
+      // Pod
+    case Actions.UPDATE_DATA_POD_BATTERY:
       {
-        return addToData(state, data, 'batteryTemp', 'podData')
-      }
-    case Actions.UPDATE_DATA_POD_BATTERY_VOLT:
-      {
-        return addToData(state, data, 'batteryVolt', 'podData')
-      }
-    case Actions.UPDATE_DATA_POD_BATTERY_AMP:
-      {
-        return addToData(state, data, 'batteryAmp', 'podData')
-      }
-    case Actions.UPDATE_DATA_POD_REGULATOR:
-      {
-        return addToData(state, data, 'regulator', 'podData')
+        return addToData(state, data, 'battery', 'podData')
       }
     case Actions.UPDATE_DATA_POD_IMU:
       {
@@ -262,7 +270,13 @@ let Reducer = (state = Defaults, {
       }
     case Actions.UPDATE_DATA_POD_STATE:
       {
-        return addToData(state, data, 'state', 'podData')
+        return {
+          ...state,
+          podData: {
+            ...state.podData,
+            state: data
+          }
+        }
       }
     case Actions.UPDATE_DATA_POD_MESSAGES:
       {
@@ -280,7 +294,7 @@ let Reducer = (state = Defaults, {
   }
 }
 
-function changeControl (state, data, field) {
+function changeControl(state, data, field) {
   let newControl = Object.assign({}, state.controls, {
     [field]: data
   })
@@ -290,7 +304,7 @@ function changeControl (state, data, field) {
   })
 }
 
-function changeSetting (state, data, field) {
+function changeSetting(state, data, field) {
   let newSetting = Object.assign({}, state.controlSettings, {
     [field]: data
   })
@@ -300,7 +314,7 @@ function changeSetting (state, data, field) {
   })
 }
 
-function changeConnection (state, data, field) {
+function changeConnection(state, data, field) {
   let newConnection = Object.assign({}, state.connection, {
     [field]: data
   })
@@ -310,7 +324,7 @@ function changeConnection (state, data, field) {
   })
 }
 
-function addToData (state, data, field, section) {
+function addToData(state, data, field, section) {
   let newData
   if (state.controlSettings.keepLastData) {
     newData = [data]

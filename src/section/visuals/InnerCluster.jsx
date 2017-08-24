@@ -7,21 +7,21 @@ import '../../scss/InnerCluster.scss'
 
 const InnerCluster = ({
   state, pusher,
-  tankPressure,
-  regulatorOutput,
-  batteryTemp
+  highPressure, mediumPressure,
+  battery
 }) => {
   let battery48, battery24, battery5, tank, regulator
 
-  if (!batteryTemp) {
-    battery48 = battery24 = battery5 = null
-  } else {
-    //[battery48, battery24, battery5] = batteryTemp[1]
-    battery48 = battery24 = battery5 = null
-  }
+  if (highPressure.length) tank = highPressure.slice(-1)[0][1][0]
+  if (mediumPressure.length) regulator = mediumPressure.slice(-1)[0][1][0]
 
-  if (tankPressure.length) tank = tankPressure.slice(-1)[0][1][0]
-  if (regulatorOutput.length) regulator = regulatorOutput.slice(-1)[0][1][0]
+  /**
+   * @todo: Actually implement battery with bar guages for each of the three
+   * properties
+   */
+  if (battery.length) {
+    battery48 = battery24 = battery5 = 0
+  }
 
   return (
     <div className='container-fluid' id='inner-cluster'>
@@ -82,9 +82,7 @@ const InnerCluster = ({
 export default connect(state => ({
   state: state.podData.state,
   pusher: state.podData.pusher,
-  tankPressure: state.levData.tankPressure,
-  regulatorOutput: state.levData.regulatorOutput,
-  batteryTemp: state.podData.batteryTemp,
-  batteryVolt: state.podData.batteryVolt,
-  batteryAmp: state.podData.batteryAmp
+  highPressure: state.levData.highPressure,
+  mediumPressure: state.levData.mediumPressure,
+  battery: state.podData.battery
 }))(InnerCluster)

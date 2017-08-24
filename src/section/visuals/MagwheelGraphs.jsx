@@ -3,16 +3,24 @@ import { TabView } from '../../components/Tabs'
 import { connect } from 'react-redux'
 import LiveChart from '../../components/LiveChartMulti'
 
-const MagwheelGraph = ({ style, temp, RPM }) => {
+const MagwheelGraph = ({ style, controllerTemp, motorTemp, RPM }) => {
   return (
-    <TabView tabNames={['T', 'R']} style={style}>
+    <TabView tabNames={['C', 'M', 'R']} style={style}>
       <LiveChart
         height={130}
-        title='Temperature'
+        title='Cont. Temp'
         min={0}
         max={100}
         columnNames={['1', '2', '3', '4']}
-        data={temp}
+        data={controllerTemp}
+      />
+      <LiveChart
+        height={130}
+        title='Motor Temp'
+        min={0}
+        max={100}
+        columnNames={['1', '2', '3', '4']}
+        data={motorTemp}
       />
       <LiveChart
         height={130}
@@ -28,7 +36,8 @@ const MagwheelGraph = ({ style, temp, RPM }) => {
 
 export default connect(
   state => ({
-    temp: state.MWData.temp,
+    controllerTemp: state.MWData.controllerTemp,
+    motorTemp: state.MWData.motorTemp,
     RPM: state.MWData.RPM
   })
 )(MagwheelGraph)

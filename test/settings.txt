@@ -1,16 +1,17 @@
-& tank 1 0 100 200
-& regulator 1 0 100 200
+& highpres 1 0 100 200
+& medpres 1 0 100 200
+& dpr 1 0 100 200
 & photo 4 0 100 200
 & latphoto 2 0 100 200
 & ectemp 4 0 100 200
 & rpm 4 0 100 200
-& mwtemp 4 0 100 200
+& mwControllerTemp 4 0 100 200
+& mwMotorTemp 4 0 100 200
 & drivetemp 1 0 100 200
-& reed 1 0 100 200
+* reed
 & current 1 0 100 200
-& batterytemp 3 0 100 200
-& batteryvolt 3 0 100 200
-& batteryamp 3 0 100 200
-& regulatoroutput 3 0 100 200
+& battery 9 0 100 200
 & imu 9 0 100 200
 & color 1 0 100 200
+* pusher
+* state

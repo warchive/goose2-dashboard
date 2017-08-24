@@ -65,8 +65,9 @@ let controlSettings = {
  * amount of dimensions of information
  */
 let levData = {
-  tankPressure: [], // 1
-  regulatorOutput: [], // 1
+  highPressure: [], // 1
+  mediumPressure: [], // 1
+  DPR: [], // 1
   photo: [] // 4
 }
 
@@ -77,20 +78,27 @@ let ECData = {
 
 let MWData = {
   RPM: [], // 4
-  temp: [] // 4
+  controllerTemp: [], // 4
+  motorTemp: [] // 4
 }
 
 let driveData = {
   temp: [], // 1
-  reed: [], // ? @todo: find out what this does
+  reed: false,
   current: [] // 1
 }
 
 let podData = {
-  batteryTemp: [], // 3
-  batteryVolt: [], // 3
-  batteryAmp: [], // 3
-  regulator: [], // 3
+  /**
+   * This single array stores the Voltage, Current, and Temperature for
+   * all three batteries onboard in the following order:
+   * [
+   *  battery5_current, battery5_voltage, battery5_temp,
+   *  battery24_current, battery24_voltage, battery24_temp,
+   *  battery48_current, battery48_voltage, battery48_temp
+   * ]
+   */
+  battery: [],
   /**
    * IMU is a big one that contains 9 whole data points,
    * [
@@ -102,7 +110,7 @@ let podData = {
   IMU: [], // 9
   color: [], // 1
   pusher: false, // boolean
-  state: '--', // string
+  state: -1, // int
   messages: [] // array of strings
 }
 
