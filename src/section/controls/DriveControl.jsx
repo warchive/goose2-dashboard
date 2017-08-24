@@ -22,13 +22,6 @@ const DriveControl = ({
         disabled={!manual}
         active={solenoid}
         onClick={() => changeSolenoid(!solenoid)}> Solenoid </Button>
-      <Button
-        block
-        bsStyle='info'
-        bsSize='sm'
-        disabled={!manual}
-        active={safety}
-        onClick={() => changeSafety(!safety)}> Safety </Button>
       <HorizontalSlider
         min={0}
         max={100}
@@ -36,7 +29,7 @@ const DriveControl = ({
         actual={drive}
         disabled={!manual}
         onChange={changeDriveTrain}
-        title='Drivee' />
+        title='RPM' />
     </div>
   )
 }
@@ -58,13 +51,6 @@ export default connect(state => Object({
     sendCommand(Commands.DRIVE_SOLENOID, [Number(val)])
     dispatch({
       type: Actions.CHANGE_DRIVE_SOLENOID,
-      data: val
-    })
-  },
-  changeSafety: (val) => {
-    sendCommand(Commands.DRIVE_SAFETY, [Number(val)])
-    dispatch({
-      type: Actions.CHANGE_DRIVE_SAFETY,
       data: val
     })
   }

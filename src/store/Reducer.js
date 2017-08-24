@@ -174,6 +174,14 @@ let Reducer = (state = Defaults, {
       {
         return changeControl(state, data, 'launchActual')
       }
+    case Actions.UPDATE_CONTROL_BATTERY_24:
+      {
+        return changeControl(state, data, 'battery24Actual')
+      }
+    case Actions.UPDATE_CONTROL_BATTERY_48:
+      {
+        return changeControl(state, data, 'battery48Actual')
+      }
 
       /*
        * Data updates received from the pod

@@ -43,7 +43,9 @@ let controls = {
   driveTrainActual: 0,
   driveSolenoidActual: false,
   driveSafetyActual: false,
-  launchActual: false
+  launchActual: false,
+  battery24Actual: true,
+  battery48Actual: true
 }
 
 /**
@@ -53,8 +55,6 @@ let controls = {
  */
 let controlSettings = {
   manualControlMode: true,
-  scriptControlMode: false,
-  autoControlMode: false,
   instantChange: false,
   keepLastData: false
 }

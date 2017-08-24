@@ -234,6 +234,16 @@ export const CommandRecievedListener = (dispatch) => {
           type: Actions.UPDATE_CONTROL_LAUNCH,
           data: Boolean(val[0])
         })
+      case Commands.BATTERY_24:
+        return dispatch({
+          type: Actions.UPDATE_CONTROL_BATTERY_24,
+          data: Boolean(val[0])
+        })
+      case Commands.BATTERY_48:
+        return dispatch({
+          type: Actions.UPDATE_CONTROL_BATTERY_48,
+          data: Boolean(val[0])
+        })
       default:
         console.error(`Unrecognized cmd: ${cmd}`)
     }

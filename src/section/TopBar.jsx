@@ -30,10 +30,8 @@ const TopBar = ({ connected, strength, beatLatency }) => {
 }
 
 export default connect(
-  (state) => {
-    return {
-      connected: state.connection.connected,
-      strength: state.connection.strength
-    }
-  }
+  (state) => ({
+    connected: state.connection.connected,
+    strength: state.connection.strength
+  })
 )(TopBar)

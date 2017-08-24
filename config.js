@@ -26,27 +26,12 @@ export const ROUNDING = 1
 
 export const roundValue = (val) => Math.round(val * (10 ** ROUNDING)) / 10 ** ROUNDING
 
-/**
- * @typedef {Object} SliderConfig
- * @property {String} title The title for the slider
- * @property {Integer} min The minmum value
- * @property {Integer} max The maximum value
- * @property {Integer} default The default value
- * @property {String} action The redux action that will be emitted on change
- * @property {String} command The command that will be sent to the pod
- * @property {Function} valueFromControl Getting the value from state.control
- */
-
-/**
- * @typedef {Object} GaugeConfig
- * @property {String} title Name of the display
- * @property {String} unit Units of the display
- * @property {Integer} height Height of the display in px
- * @property {Integer} column About of bootstrap grid columns
- * @property {Integer} min Minimum value
- * @property {Integer} max Maximum value
- * @property {Integer} bufferSize How many values will be displayed
- * @property {Function} getvalFromState return the date val tuple from state
- *  at once
- *
- */
+export const STATES = [
+  'Man',
+  'Standby',
+  'Rdy',
+  'Accel',
+  'Coast',
+  'Brk_Hi',
+  'Brk_lo'
+]
