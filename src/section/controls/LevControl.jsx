@@ -34,7 +34,7 @@ const LevControl = ({
 export default connect(state => Object({
   DPR: state.controls.DPRActual,
   MTV: state.controls.MTVActual,
-  manual: state.controlSettings.manualControlMode
+  manual: state.podData.state === 0
 }), (dispatch) => Object({
   changeDPR: (val) => {
     sendCommand(Commands.DPR, [Number(val)])

@@ -48,13 +48,7 @@ let controls = {
   battery48Actual: true
 }
 
-/**
- * @typedef {Object} ControlSettings
- * @property {boolean} manualControl If the controls are manual
- * @property {boolean} instantChange If controls should be changed immediately
- */
 let controlSettings = {
-  manualControlMode: true,
   instantChange: false,
   keepLastData: false
 }

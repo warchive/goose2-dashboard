@@ -74,44 +74,6 @@ let Reducer = (state = Defaults, {
       {
         return changeSetting(state, data, 'instantChange')
       }
-    case Actions.CHANGE_CONTROL_MANUAL:
-      {
-        let newSetting = Object.assign({}, state.controlSettings, {
-          manualControlMode: true,
-          scriptControlMode: false,
-          autoControlMode: false
-        })
-
-        return Object.assign({}, state, {
-          controlSettings: newSetting
-        })
-      }
-
-    case Actions.CHANGE_CONTROL_AUTO:
-      {
-        let newSetting = Object.assign({}, state.controlSettings, {
-          manualControlMode: false,
-          scriptControlMode: false,
-          autoControlMode: true
-        })
-
-        return Object.assign({}, state, {
-          controlSettings: newSetting
-        })
-      }
-
-    case Actions.CHANGE_CONTROL_SCRIPT:
-      {
-        let newSetting = Object.assign({}, state.controlSettings, {
-          manualControlMode: false,
-          scriptControlMode: true,
-          autoControlMode: false
-        })
-
-        return Object.assign({}, state, {
-          controlSettings: newSetting
-        })
-      }
     case Actions.CHANGE_KEEP_LAST_DATA:
       {
         return changeSetting(state, data, 'keepLastData')

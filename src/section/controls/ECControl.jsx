@@ -39,7 +39,7 @@ const ECControl = ({
 }
 
 export default connect(state => ({
-  manual: state.controlSettings.manualControlMode,
+  manual: state.podData.state === 0,
   solenoid: state.controls.ECSolenoidActual,
   battery24: state.controls.battery24Actual,
   battery48: state.controls.battery48Actual
