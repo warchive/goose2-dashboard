@@ -1,28 +1,30 @@
 import React from 'react'
-import { Row, Col } from 'react-bootstrap'
+import { Row } from 'react-bootstrap'
 
 /** Components */
-import ButtonGroup from './controls/ButtonGroup'
-import SliderGroup from './controls/SliderGroup'
-import MessageDisplay from '../components/MessageDisplay'
-import Settings from './controls/Settings'
+import LevControl from './controls/LevControl'
+import MagwheelControl from './controls/MagwheelControl'
+import DriveControl from './controls/DriveControl'
+import ECControl from './controls/ECControl'
+
+import ECGraphs from './visuals/ECGraphs'
+import LevGraphs from './visuals/LevGraphs'
+import MWGraphs from './visuals/MagwheelGraphs'
+import DriveGraphs from './visuals/DriveGraphs'
 
 class Control extends React.Component {
   render () {
     return (
-      <Row style={{display: 'flex'}}>
-        <Col sm={2}>
-          <Settings />
-        </Col>
-        <Col sm={3} style={{display: 'flex'}}>
-          <SliderGroup />
-        </Col>
-        <Col sm={4}>
-          <ButtonGroup />
-        </Col>
-        <Col sm={3} style={{flex: 1}}>
-          <MessageDisplay />
-        </Col>
+
+      <Row id='control-container'>
+        <LevControl style={{ gridArea: 'lev-control' }} />
+        <LevGraphs style={{ gridArea: 'lev-graph' }} />
+        <ECControl style={{ gridArea: 'ec-control' }} />
+        <ECGraphs style={{ gridArea: 'ec-graph' }} />
+        <MagwheelControl style={{ gridArea: 'mw-control' }} />
+        <MWGraphs style={{ gridArea: 'mw-graph' }} />
+        <DriveControl style={{ gridArea: 'drive-control' }} />
+        <DriveGraphs style={{ gridArea: 'drive-graph' }} />
       </Row>
     )
   }

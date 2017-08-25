@@ -1,114 +1,121 @@
 import React from 'react'
-import { Charts, ChartContainer, ChartRow, YAxis, LineChart, Legend, styler } from 'react-timeseries-charts'
+import { LARGE_GRAPH_POINTS } from '../../config'
+import { Charts, ChartContainer, ChartRow, YAxis, LineChart, styler } from 'react-timeseries-charts'
 import { TimeSeries, TimeRange } from 'pondjs'
-import CircularBuffer from 'circular-buffer'
 
 const lineColors = [
   'orange',
   'green',
   'blue',
-  'yellow',
-  'teal',
+  'purple',
   'indigo'
 ]
+
+const Style = {
+  containerStyle: { flex: 1, display: 'flex', flexDirection: 'row' },
+  innerContainerStyle: { flex: 1 },
+  legendStyle: { display: 'flex', flexDirection: 'column', marginLeft: 5, marginRight: 5 }
+}
 
 export default class LiveChartMulti extends React.Component {
   constructor (props) {
     super()
-    this.state = {
-      width: props.width,
-      data: []
-    }
+    this.state = { width: 300, loaded: false }
 
-    this.styles = styler(props.columnNames.map((v, i) => {
+    this.lineChartStyle = styler(props.columnNames.map((v, i) => {
       return {
         key: v,
         color: lineColors[i]
       }
     }))
 
-    this.legend =
-      <Legend
-        type='swatch'
-        style={this.styles}
-        categories={
-          props.columnNames.map(v => {
-            return {
-              key: v,
-              label: v
-            }
-          })
-        } />
-
-    this.buff = new CircularBuffer(props.bufferSize)
+    this.legend = <div style={Style.legendStyle}>
+      {props.columnNames.map((v, i) => {
+        return (
+          <p style={{ color: lineColors[i], fontSize: 12 }} key={i}> {v} </p>
+        )
+      })}
+    </div>
   }
 
-  componentWillReceiveProps (nextProps) {
-    let nextData = nextProps.data
-    let currData = this.state.data
+  shouldComponentUpdate (nextProps) {
+    if (!this.props.progressive) return true
 
-    if (!nextData) return
-    if (nextData[0] <= currData[0]) return
+    if (this.props.data.length && nextProps.data.length) {
+      let prevDataEndTime, nextDataEndTime
+      prevDataEndTime = this.props.data.slice(-1)[0][0]
+      nextDataEndTime = nextProps.data.slice(-1)[0][0]
 
-    let [time, data] = nextData
+      let shouldUpdate = nextDataEndTime > prevDataEndTime
+      return shouldUpdate
+    }
 
-    this.buff.push([time].concat(data))
+    return true
+  }
 
-    this.setState({
-      data: this.buff.toarray()
-    })
+  adjustSize () {
+    let newWidth = this.container.offsetWidth
+    this.setState({ width: newWidth, loaded: true })
   }
 
   componentDidMount () {
-    let newWidth = this.container.offsetWidth
-    this.setState({width: newWidth})
+    requestAnimationFrame(this.adjustSize.bind(this)) //eslint-disable-line
+    this.eventListener = this.adjustSize.bind(this)
+    window.addEventListener('resize', this.eventListener)
+  }
 
-    window.addEventListener('resize', () => {
-      this.setState({
-        width: this.container.offsetWidth
-      })
-    })
+  componentWillUnmount () {
+    window.removeEventListener('resize', this.eventListener)
   }
 
   render () {
+    let data = this.props.data.slice(-LARGE_GRAPH_POINTS)
+      .map(v => [v[0]].concat(v[1]))
+
     let timeSeries = new TimeSeries({
       name: this.props.title,
       columns: ['time', ...this.props.columnNames],
-      points: this.state.data
+      points: data
     })
     let timeRange
 
-    if (this.state.data.length) {
+    if (data.length) {
       timeRange = new TimeRange(
-        this.state.data[0][0],
-        this.state.data[this.state.data.length - 1][0]
+        data[0][0],
+        data[data.length - 1][0]
       )
     } else timeRange = new TimeRange(0, 0)
 
     return (
-      <div
-        ref={(ele) => { this.container = ele }}
-        style={{overflow: 'hidden', width: '100%'}}>
-        <ChartContainer
-          timeRange={timeRange}
-          width={this.state.width}>
-          <ChartRow
-            height={this.props.height}>
-            <YAxis
-              id={'y'}
-              label={this.props.title}
-              min={this.props.min}
-              max={this.props.max}
-              type={'linear'} />
-            <Charts>
-              <LineChart
-                style={this.styles}
-                axis={'y'}
-                series={timeSeries}
-                columns={this.props.columnNames} />
-            </Charts>
-          </ChartRow>
-        </ChartContainer>
+      <div style={Style.containerStyle}>
+        <div
+          ref={(ele) => { this.container = ele }}
+          style={Style.innerContainerStyle}>
+          {
+            !this.state.loaded ? ''
+              : <ChartContainer
+                timeRange={timeRange}
+                width={this.state.width}
+                height={this.props.height} >
+                <ChartRow
+                  height={this.props.height}>
+                  <YAxis
+                    id={'y'}
+                    label={this.props.title}
+                    min={this.props.min}
+                    max={this.props.max}
+                    type={'linear'} />
+                  <Charts>
+                    <LineChart
+                      style={this.lineChartStyle}
+                      axis={'y'}
+                      series={timeSeries}
+                      columns={this.props.columnNames} />
+                  </Charts>
+                </ChartRow>
+              </ChartContainer>
+          }
+        </div >
         {
           this.legend
         }

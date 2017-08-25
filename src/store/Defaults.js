@@ -20,68 +20,92 @@ let controls = {
   brake: false,
   ballValve: false,
   DPR: false,
+  MTV: false,
+  ECSolenoid: false,
   magwheel: 0,
   driveTrain: 0,
+  driveSolenoid: false,
+  driveSafety: false,
+  launch: false,
   /** Actual values reported from the pod */
   dropActual: false,
   startActual: false,
   emergencyStopActual: false,
   connectActual: false,
+  speedActual: 0,
+  accelerationActual: 0,
   brakeActual: false,
   ballValveActual: false,
   DPRActual: false,
-  speedActual: 0,
-  accelerationActual: 0,
+  MTVActual: false,
+  ECSolenoidActual: false,
   magwheelActual: 0,
-  driveTrainActual: 0
+  driveTrainActual: 0,
+  driveSolenoidActual: false,
+  driveSafetyActual: false,
+  launchActual: false,
+  battery24Actual: true,
+  battery48Actual: true
 }
 
-/**
- * @typedef {Object} ControlSettings
- * @property {boolean} manualControl If the controls are manual
- * @property {boolean} instantChange If controls should be changed immediately
- */
 let controlSettings = {
-  manualControlMode: true,
-  scriptControlMode: false,
-  autoControlMode: false,
   instantChange: false,
   keepLastData: false
 }
 
 /**
- * @typedef {Object} Data
- * @property {Array} speed Speed history of the pod
- * @property {Array} acceleration acceleration history of the pod
- * @property {Array} battery battery history of the pod
- * @property {Array} temp temp history of the pod
- * @property {Array} airTankLevel airTankLevel history of the pod
- * @property {Array} airTankPressure airTankPressure history of the pod
- * @property {Array} distance distance history of the pod
- * @property {Array} imu Inertial history
- * @property {Array} imuRotation Inertial rotation history
- *
  * Array of 2 Tuples where the first index is the time in milliseconds
  * reported by the pod and the second is a k tuple depending on the
  * amount of dimensions of information
  */
-let data = {
-  speed: [],
+let levData = {
+  highPressure: [], // 1
+  mediumPressure: [], // 1
+  DPR: [], // 1
+  photo: [] // 4
+}
+
+let ECData = {
+  photo: [], // 2
+  temp: [] // 2
+}
+
+let MWData = {
+  RPM: [], // 4
+  controllerTemp: [], // 4
+  motorTemp: [] // 4
+}
+
+let driveData = {
+  temp: [], // 1
+  reed: false,
+  current: [] // 1
+}
+
+let podData = {
+  /**
+   * This single array stores the Voltage, Current, and Temperature for
+   * all three batteries onboard in the following order:
+   * [
+   *  battery5_current, battery5_voltage, battery5_temp,
+   *  battery24_current, battery24_voltage, battery24_temp,
+   *  battery48_current, battery48_voltage, battery48_temp
+   * ]
+   */
   battery: [],
-  irtemp: [],
-  contacttemp: [],
-  airTankLevel: [],
-  airTankPressure: [],
-  photo: [],
-  heartBeat: [],
-  magnetometer: [],
-  acceleration: [],
-  gyro: [],
-  linearVelocity: [],
-  linearDisplacement: [],
-  rollPitchYaw: [],
-  messages: [],
-  distance: []
+  /**
+   * IMU is a big one that contains 9 whole data points,
+   * [
+   *   gyro_x, gyro_y, gyro_z,
+   *   accel_x, accel_y, accel_z,
+   *   roll, pitch, yaw
+   * ]
+   */
+  IMU: [], // 9
+  color: [], // 1
+  pusher: false, // boolean
+  state: -1, // int
+  messages: [] // array of strings
 }
 
 /**
@@ -104,7 +128,11 @@ let connection = {
  * @property {Connection}
  */
 export default {
-  data,
+  levData,
+  ECData,
+  MWData,
+  driveData,
+  podData,
   controls,
   controlSettings,
   connection

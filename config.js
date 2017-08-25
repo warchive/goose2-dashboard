@@ -4,11 +4,10 @@
  */
 
 // Default URL for the server
-export const URL = 'ws://192.168.1.142:8002/'
-// export const URL = 'ws://localhost:8000/'
+export const URL = 'ws://localhost:8000/'
 
 // If we need to prompt for URL every time
-export const PROMPT_FOR_URL = true
+export const PROMPT_FOR_URL = false
 
 // If we want to cache all recieved data in the redux store
 export const CACHE_LAST_DATA = true
@@ -16,32 +15,33 @@ export const CACHE_LAST_DATA = true
 // Expected time delay between heart beats
 export const HEART_BEAT_POLLING_DELAY = 200
 
-/**
- * @typedef {Object} SliderConfig
- * @property {String} title The title for the slider
- * @property {Integer} min The minmum value
- * @property {Integer} max The maximum value
- * @property {Integer} default The default value
- * @property {String} action The redux action that will be emitted on change
- * @property {String} command The command that will be sent to the pod
- * @property {Function} valueFromControl Getting the value from state.control
- */
+// How many data points big graphs should show
+export const LARGE_GRAPH_POINTS = 50
+
+// How many data points small graphs hould show
+export const SMALL_GRAPH_POINTS = 20
+
+// How many decimal places values should be rounded to
+export const ROUNDING = 1
+
+export const roundValue = (val) => Math.round(val * (10 ** ROUNDING)) / 10 ** ROUNDING
+
+export const STATES = [
+  'Man',
+  'Standby',
+  'Rdy',
+  'Accel',
+  'Coast',
+  'Brk_Hi',
+  'Brk_lo'
+]
 
 /**
- * @typedef {Object} GaugeConfig
- * @property {String} title Name of the display
- * @property {String} unit Units of the display
- * @property {Integer} height Height of the display in px
- * @property {Integer} column About of bootstrap grid columns
- * @property {Integer} min Minimum value
- * @property {Integer} max Maximum value
- * @property {Integer} bufferSize How many values will be displayed
- * @property {Function} getvalFromState return the date val tuple from state
- *  at once
+ * If true, BatchedListener Will accumulate redux dispatches in an array
+ * for BATCH_UPDATE_INTEVERAL milliseconds and then dispatch them all at the
+ * same time.
  *
-*/
-
-/**
- * Import Gauge and Slider definitions from a layout file and re-export them
+ * This saves a lot of rendering cycles and optimizes the front end
  */
-export {GaugeDefinitions, SliderDefinitions} from './layouts/unveilLayout' // eslint-disable-line
+export const BATCH_UPDATES = true
+export const BATCH_UPDATE_INTERVAL = 300

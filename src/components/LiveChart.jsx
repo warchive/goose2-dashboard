@@ -31,7 +31,7 @@ export default class LiveChart extends React.Component {
 
   componentDidMount () {
     let newWidth = this.container.offsetWidth
-    this.setState({width: newWidth})
+    this.setState({ width: newWidth })
 
     window.addEventListener('resize', () => {
       this.setState({
@@ -56,7 +56,7 @@ export default class LiveChart extends React.Component {
     return (
       <div
         ref={(ele) => { this.container = ele }}
-        style={{overflow: 'hidden', width: '100%'}}>
+        style={{ overflow: 'hidden', width: '100%' }}>
         <ChartContainer
           timeRange={timeRange}
           width={this.state.width}>

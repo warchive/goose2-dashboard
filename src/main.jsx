@@ -6,6 +6,7 @@ import ReactDom from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import Reducer from './store/Reducer'
+import { reduxBatch } from '@manaflair/redux-batch'
 import * as Actions from './store/Actions'
 
 /** Bootstrap */
@@ -13,19 +14,21 @@ import { Grid, Row, Col } from 'react-bootstrap'
 
 /** Other components */
 import Control from './section/Controls'
-import Network from './section/Network'
+import TopBar from './section/TopBar'
 import Dashboard from './section/Dashboard'
 
 import { connect as WSConnect } from './api/api'
-import * as Listeners from './api/Listener.js'
+import * as Listeners from './api/BatchedListener.js'
 
 class App extends React.Component {
+  shouldComponentUpdate () {
+    return false
+  }
   render () {
     return (
       <Grid fluid>
-        <Network />
+        <TopBar />
         <Dashboard />
-        <hr />
         <Row>
           <Col md={12}>
             <Control />
@@ -42,9 +45,10 @@ if (DEBUG) {   // eslint-disable-line
   store = createStore(
     Reducer,
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
-    window.__REDUX_DEVTOOLS_EXTENSION__())
+    window.__REDUX_DEVTOOLS_EXTENSION__(),
+    reduxBatch)
 } else {
-  store = createStore(Reducer)
+  store = createStore(Reducer, reduxBatch)
 }
 
 let ConnectedListeners = {
