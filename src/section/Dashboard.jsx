@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import InnerCluster from './visuals/InnerCluster'
 import RollPitchYaw from './visuals/RollPitchYaw'
 import HealthCheck from './HealthCheck'
-
+import MessageDisplay from '../components/MessageDisplay'
 
 const centralClusterSettings = [
   {
@@ -55,8 +55,12 @@ class Dashboard extends React.Component {
           </CentralCluster>
         </Col>
         <Col sm={3}>
-          <HealthCheck
-            height={500} />
+          <Row>
+            <HealthCheck />
+          </Row>
+          <Row>
+            <MessageDisplay height={200} />
+          </Row>
         </Col>
       </Row>
     )

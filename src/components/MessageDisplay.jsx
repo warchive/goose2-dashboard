@@ -5,7 +5,8 @@ const styles = {
   container: {
     overflow: 'scroll',
     backgroundcolor: 'white',
-    fontFamily: 'mono'
+    fontFamily: 'mono',
+    width: '100%'
   },
   date: {
     color: 'gray'
@@ -15,7 +16,6 @@ class MessageDisplay extends React.Component {
   render () {
     return (
       <div
-        className='container-fluid'
         style={Object.assign({}, styles.container, { height: this.props.height })}>
         {
           this.props.messages.map(v => {

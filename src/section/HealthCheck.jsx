@@ -127,6 +127,7 @@ const HealthCheck = ({ state }) => {
         SENSORS.map(v =>
           <SensorHealth
             name={v.name}
+            key={v.name}
             value={v.get(state)}
             error={v.error}
             errorAction={v.errorAction} />
