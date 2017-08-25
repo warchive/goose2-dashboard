@@ -48,25 +48,29 @@ const InnerCluster = ({
     <div className='container-fluid' id='inner-cluster'>
       <Row>
         <div style={{ margin: 'auto' }}>
-          <h6>State: {state}</h6>
-          <h6>Pusher: {pusher ? 'ON' : 'OFF'}</h6>
+          <p style={{ fontSize: 12 }}>State: {state}</p>
+          <p style={{ fontSize: 12 }}>Pusher: {pusher ? 'ON' : 'OFF'}</p>
         </div>
       </Row>
       <Row>
-        <SemiCircle
-          min={0}
-          max={100}
-          value={roundValue(tank)}
-          label='Tnk'
-          unit='PSI'
-          width={100} />
-        <SemiCircle
-          min={0}
-          max={100}
-          value={roundValue(regulator)}
-          label='Regulator'
-          unit='PSI'
-          width={100} />
+        <Col sm={6}>
+          <SemiCircle
+            min={0}
+            max={100}
+            value={roundValue(tank)}
+            label='Tnk'
+            unit='PSI'
+            width={150} />
+        </Col>
+        <Col sm={6}>
+          <SemiCircle
+            min={0}
+            max={100}
+            value={roundValue(regulator)}
+            label='Regulator'
+            unit='PSI'
+            width={150} />
+        </Col>
       </Row>
       <h6 style={{ textAlign: 'center', marginTop: 20, fontSize: 10 }}>Battery-5V</h6>
       <Row>
