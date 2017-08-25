@@ -17,7 +17,7 @@ export default ({ min, max, label, unit, value, width }) => {
   return (
     <Line
       progress={value / (max - min)}
-      text={`${label}: ${roundValue(value)} ${unit}`}
+      text={`${label}:<br/> ${roundValue(value)} ${unit}`}
       options={options}
       containerStyle={{
         width,
