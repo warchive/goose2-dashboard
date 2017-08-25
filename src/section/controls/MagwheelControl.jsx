@@ -23,7 +23,7 @@ const MagwheelControl = ({
         onClick={() => changeLaunch(!launch)}> Launch </Button>
       <HorizontalSlider
         min={0}
-        max={100}
+        max={7500}
         defaultVal={0}
         actual={magwheel}
         disabled={!manual}
