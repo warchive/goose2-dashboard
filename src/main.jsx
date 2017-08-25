@@ -16,7 +16,6 @@ import { Grid, Row, Col } from 'react-bootstrap'
 import Control from './section/Controls'
 import TopBar from './section/TopBar'
 import Dashboard from './section/Dashboard'
-import HealthCheck from './section/HealthCheck'
 
 import { connect as WSConnect } from './api/api'
 import * as Listeners from './api/BatchedListener.js'

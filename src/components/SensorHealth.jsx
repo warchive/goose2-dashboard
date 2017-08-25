@@ -1,13 +1,21 @@
 import React from 'react'
+import { roundValue } from '../../config'
+
+const STYLE = {
+  nameStyle: {
+    fontSize: 12
+  },
+  valueStyle: {
+    fontSize: 12
+  }
+}
 
 export default class SensorHealth extends React.Component {
   getColor () {
-    if (Array.isArray(this.props.val) && this.props.val.length === 0) {
+    if (this.props.value === null) {
       return '#cccccc'
-    } else if (this.props.error(this.props.val)) {
+    } else if (this.props.error(this.props.value)) {
       return '#ff7777'
-    } else if (this.props.warning(this.props.val)) {
-      return '#ffed72'
     } else {
       return '#88ff8a'
     }
@@ -16,18 +24,15 @@ export default class SensorHealth extends React.Component {
   getStyle () {
     return {
       backgroundColor: this.getColor(),
-      width: 'auto',
-      padding: '0 30px',
-      textAlign: 'center',
-      height: '50px',
-      lineHeight: '50px'
+      textAlign: 'center'
     }
   }
 
   render () {
     return (
       <div style={this.getStyle()}>
-        {this.props.children}
+        <p style={STYLE.nameStyle}>{this.props.name}</p>
+        <p style={STYLE.valueStyle}>{roundValue(this.props.value)}</p>
       </div>
     )
   }
