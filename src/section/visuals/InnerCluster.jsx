@@ -1,4 +1,5 @@
 import React from 'react'
+import { Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import SemiCircle from '../../components/SemiCircle'
 import Line from '../../components/LineGauge'
@@ -10,71 +11,153 @@ const InnerCluster = ({
   highPressure, mediumPressure,
   battery
 }) => {
-  let battery48, battery24, battery5, tank, regulator
+  let tank, regulator
 
   if (highPressure.length) tank = highPressure.slice(-1)[0][1][0]
   if (mediumPressure.length) regulator = mediumPressure.slice(-1)[0][1][0]
 
-  /**
-   * @todo: Actually implement battery with bar guages for each of the three
-   * properties
-   */
-  if (battery.length) {
-    battery48 = battery24 = battery5 = 0
-  }
+  let battery5Current, battery5Voltage, battery5Temp, battery24Current,
+    battery24Voltage, battery24Temp, battery48Current, battery48Voltage,
+    battery48Temp
 
+  if (!battery.length) {
+    battery5Current =
+      battery5Voltage =
+      battery5Temp =
+      battery24Current =
+      battery24Voltage =
+      battery24Temp =
+      battery48Current =
+      battery48Voltage =
+      battery48Temp =
+      null
+  } else {
+    let lastBatteryData = battery.slice(-1)[0][1]
+
+    battery5Current = lastBatteryData[0]
+    battery5Voltage = lastBatteryData[1]
+    battery5Temp = lastBatteryData[2]
+    battery24Current = lastBatteryData[3]
+    battery24Voltage = lastBatteryData[4]
+    battery24Temp = lastBatteryData[5]
+    battery48Current = lastBatteryData[6]
+    battery48Voltage = lastBatteryData[7]
+    battery48Temp = lastBatteryData[8]
+  }
   return (
     <div className='container-fluid' id='inner-cluster'>
-      <div className='row'>
+      <Row>
         <div style={{ margin: 'auto' }}>
           <h6>State: {state}</h6>
           <h6>Pusher: {pusher ? 'ON' : 'OFF'}</h6>
         </div>
-      </div>
-      <div className='row'>
+      </Row>
+      <Row>
         <SemiCircle
           min={0}
           max={100}
           value={roundValue(tank)}
-          label='Tnk pressure'
+          label='Tnk'
           unit='PSI'
-          width={200} />
+          width={100} />
         <SemiCircle
           min={0}
           max={100}
           value={roundValue(regulator)}
           label='Regulator'
           unit='PSI'
-          width={200} />
-      </div>
-      <h6 style={{ textAlign: 'center', marginTop: 20 }}>Batteries</h6>
-      <div className='row'>
-        <Line
-          min={0}
-          max={100}
-          value={battery48}
-          label='48V'
-          unit=''
-          width={200} />
-      </div>
-      <div className='row'>
-        <Line
-          min={0}
-          max={100}
-          value={battery24}
-          label='24V'
-          unit=''
-          width={200} />
-      </div>
-      <div className='row'>
-        <Line
-          min={0}
-          max={100}
-          value={battery5}
-          label='5V'
-          unit=''
-          width={200} />
-      </div>
+          width={100} />
+      </Row>
+      <h6 style={{ textAlign: 'center', marginTop: 20, fontSize: 10 }}>Battery-5V</h6>
+      <Row>
+        <Col sm={4}>
+          <Line
+            min={0}
+            max={100}
+            value={battery5Current}
+            label='Curr'
+            unit='a'
+            width={100} />
+        </Col>
+        <Col sm={4}>
+          <Line
+            min={0}
+            max={100}
+            value={battery5Voltage}
+            label='Volt'
+            unit='v'
+            width={100} />
+        </Col>
+        <Col sm={4}>
+          <Line
+            min={0}
+            max={100}
+            value={battery5Temp}
+            label='Temp'
+            unit='c'
+            width={100} />
+        </Col>
+      </Row>
+      <h6 style={{ textAlign: 'center', marginTop: 20, fontSize: 10 }}>Battery-24V</h6>
+      <Row>
+        <Col sm={4}>
+          <Line
+            min={0}
+            max={100}
+            value={battery24Current}
+            label='Curr'
+            unit='a'
+            width={100} />
+        </Col>
+        <Col sm={4}>
+          <Line
+            min={0}
+            max={100}
+            value={battery24Voltage}
+            label='Volt'
+            unit='v'
+            width={100} />
+        </Col>
+        <Col sm={4}>
+          <Line
+            min={0}
+            max={100}
+            value={battery24Temp}
+            label='Temp'
+            unit='c'
+            width={100} />
+        </Col>
+      </Row>
+      <h6 style={{ textAlign: 'center', marginTop: 20, fontSize: 10 }}>Battery-48V</h6>
+      <Row>
+        <Col sm={4}>
+          <Line
+            min={0}
+            max={100}
+            value={battery48Current}
+            label='Curr'
+            unit='a'
+            width={100} />
+        </Col>
+        <Col sm={4}>
+          <Line
+            min={0}
+            max={100}
+            value={battery48Voltage}
+            label='Volt'
+            unit='v'
+            width={100} />
+        </Col>
+        <Col sm={4}>
+          <Line
+            min={0}
+            max={100}
+            value={battery48Temp}
+            label='Temp'
+            unit='c'
+            width={100} />
+        </Col>
+      </Row>
     </div>
   )
 }
