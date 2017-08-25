@@ -4,7 +4,7 @@ let intervalId = {}
  * @param {String} input
  * @param {*} connection
  */
-function command(input, io) {
+function command (input, io) {
   // General command
   if (input.startsWith('!')) {
     let sections = input.split(' ')
@@ -87,7 +87,7 @@ function command(input, io) {
 
 const startTime = Date.now()
 
-function packet(name, value) {
+function packet (name, value) {
   let json = JSON.stringify({
     time: (Date.now() - startTime) / 1000,
     sensor: name,

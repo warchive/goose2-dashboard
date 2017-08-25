@@ -39,7 +39,6 @@ export const UPDATE_CONTROL_LAUNCH = 'UPDATE_CONTROL_LAUNCH'
 export const UPDATE_CONTROL_BATTERY_24 = 'UPDATE_CONTROL_BATTERY_24'
 export const UPDATE_CONTROL_BATTERY_48 = 'UPDATE_CONTROL_BATTERY_48'
 
-
 /** General datums */
 
 // Levitation data

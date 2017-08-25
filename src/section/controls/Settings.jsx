@@ -2,7 +2,6 @@ import { connect } from 'react-redux'
 import { sendCommand } from '../../api/api'
 import React from 'react'
 import { Button } from 'react-bootstrap'
-import * as Actions from '../../store/Actions'
 import * as Commands from '../../../events/commands'
 import { STATES } from '../../../config'
 
