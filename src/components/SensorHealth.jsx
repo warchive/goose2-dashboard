@@ -15,6 +15,7 @@ export default class SensorHealth extends React.Component {
     if (this.props.value === null) {
       return '#cccccc'
     } else if (this.props.error(this.props.value)) {
+      if (this.props.errorAction) this.props.errorAction()
       return '#ff7777'
     } else {
       return '#88ff8a'

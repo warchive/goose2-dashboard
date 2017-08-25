@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { sendCommand } from '../api/api.js'
+import { EMERGENCY_STOP } from '../../events/commands.js'
 import SensorHealth from '../components/SensorHealth'
 
 import '../scss/healthCheck.scss'
@@ -72,17 +74,17 @@ const SENSORS = [
     name: 'BAT_24_T',
     get: (state) => getLastDataAtIdx(state.podData.battery, 5),
     error: (val) => val < 0 || val > 60,
-    errorAction: () => { }
+    errorAction: () => { sendCommand(EMERGENCY_STOP) }
   }, {
     name: 'BAT_48_T',
     get: (state) => getLastDataAtIdx(state.podData.battery, 8),
     error: (val) => val < 0 || val > 60,
-    errorAction: () => { }
+    errorAction: () => { sendCommand(EMERGENCY_STOP) }
   }, {
     name: 'BAT_5_T',
     get: (state) => getLastDataAtIdx(state.podData.battery, 2),
     error: (val) => val < 0 || val > 60,
-    errorAction: () => { }
+    errorAction: () => { sendCommand(EMERGENCY_STOP) }
   }, {
     name: 'MAG_RPM_1',
     get: (state) => getLastDataAtIdx(state.MWData.RPM, 0),
