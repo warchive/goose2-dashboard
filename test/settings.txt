@@ -16,4 +16,4 @@
 ** pusher
 ** state
 
-begin-full-test 1000
+begin-full-test 200

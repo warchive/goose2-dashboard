@@ -15,7 +15,7 @@ let FullDataFormat = {
     [0, 100],
     [0, 100],
     [0, 100],
-    [0, 100],
+    [0, 100]
   ],
   battery: [
     [0, 100],
@@ -65,10 +65,8 @@ function command(input, io) {
 
       Object.keys(FullDataFormat).forEach(v => {
         data[v] = FullDataFormat[v].map(([min, max]) =>
-          Math.sin((Date.now() / 1000)) * ((max - min) / 2) + ((max - min) / 2))
+          Math.sin((Date.now() / 1000)) * ((max - min) / 2) * Math.random() + ((max - min) / 2))
       })
-
-      console.log(data)
 
       io.emit('sensor', JSON.stringify({
         type: 'sensor',

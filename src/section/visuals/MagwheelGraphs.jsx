@@ -9,8 +9,8 @@ const MagwheelGraph = ({ style, mag }) => {
   let motorRPM = []
 
   mag.slice(-LARGE_GRAPH_POINTS).map(v => {
-    motorTemp.push([v[0], [v[0], v[1]]])
-    motorRPM.push([v[0], [v[2], v[3], v[4], v[5]]])
+    motorTemp.push([v[0], [v[1][0], v[1][1]]])
+    motorRPM.push([v[0], [v[1][2], v[1][3], v[1][4], v[1][5]]])
   })
 
   return (

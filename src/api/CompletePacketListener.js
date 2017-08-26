@@ -1,7 +1,14 @@
 import * as Commands from '../../events/commands'
 import * as Actions from '../store/Actions'
+import {
+  BATCH_UPDATES,
+  BATCH_UPDATE_INTERVAL
+} from '../../config'
 
 export const SensorListener = (dispatch) => {
+  let dispatchBatch = []
+  let lastDispatch = Date.now()
+  let backupTimerId = -1
   return (broadcast) => {
     try {
       broadcast = JSON.parse(broadcast)
@@ -10,17 +17,33 @@ export const SensorListener = (dispatch) => {
         data
       } = broadcast
 
-      console.log(broadcast)
-
-      time *= 1000 // Convert from seconds to milliseconds
-
-      dispatch({
+      let dispatchAction = {
         type: Actions.UPDATE_DATA_POD_DATA,
         data: {
           time,
           data
         }
-      })
+      }
+
+      if (!BATCH_UPDATES) return dispatch(dispatchAction)
+
+      dispatchBatch.push(dispatchAction)
+      if (Date.now() - lastDispatch >= BATCH_UPDATE_INTERVAL) {
+        dispatch(dispatchBatch)
+        lastDispatch = Date.now()
+        dispatchBatch = []
+        if (backupTimerId !== -1) {
+          clearTimeout(backupTimerId)
+          backupTimerId = -1
+        }
+      } else {
+        if (backupTimerId !== -1) return
+        backupTimerId = setTimeout(() => {
+          dispatch(dispatchBatch)
+          lastDispatch = Date.now()
+          dispatchBatch = []
+        }, BATCH_UPDATE_INTERVAL)
+      }
     } catch (e) {
       console.log(e)
     }
@@ -35,7 +58,6 @@ export const CommandRecievedListener = (dispatch) => {
     let val = broadcast.received.val
 
     try {
-
       switch (cmd) {
         case Commands.EMERGENCY_STOP:
           return dispatch({
