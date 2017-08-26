@@ -80,8 +80,8 @@ function getLastPairValue (array, idx) {
 
 export default connect(
   (state) => ({
-    speed: getLastPairValue(state.podData.color, 0),
-    accel: getLastPairValue(state.podData.IMU, 4),
+    speed: 0,
+    accel: getLastPairValue(state.podData.imu, 4),
     distance: getLastPairValue(state.podData.color, 0)
   })
 )(Dashboard)

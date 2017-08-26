@@ -2,26 +2,26 @@ import React from 'react'
 import { TabView } from '../../components/Tabs'
 import { connect } from 'react-redux'
 import LiveChart from '../../components/LiveChartMulti'
+import { LARGE_GRAPH_POINTS } from '../../../config'
 
-const MagwheelGraph = ({ style, controllerTemp, motorTemp, RPM }) => {
+const MagwheelGraph = ({ style, mag }) => {
+  let motorTemp = []
+  let motorRPM = []
+
+  mag.slice(-LARGE_GRAPH_POINTS).map(v => {
+    motorTemp.push([v[0], [v[0], v[1]]])
+    motorRPM.push([v[0], [v[2], v[3], v[4], v[5]]])
+  })
+
   return (
-    <TabView tabNames={['C', 'M', 'R']} style={style}>
+    <TabView tabNames={['T', 'R']} style={style}>
       <LiveChart
-        progressive
-        height={130}
-        title='Cont. Temp'
-        min={0}
-        max={100}
-        columnNames={['1', '2', '3', '4']}
-        data={controllerTemp}
-      />
-      <LiveChart
-        progressive
+        progressivepressure
         height={130}
         title='Motor Temp'
         min={0}
         max={100}
-        columnNames={['1', '2', '3', '4']}
+        columnNames={['1', '2']}
         data={motorTemp}
       />
       <LiveChart
@@ -30,8 +30,8 @@ const MagwheelGraph = ({ style, controllerTemp, motorTemp, RPM }) => {
         title='RPM'
         min={0}
         max={100}
-        columnNames={['1', '2', '3', '4']}
-        data={RPM}
+        columnNames={['FL', 'FR', 'RL', 'RR']}
+        data={motorRPM}
       />
     </TabView >
   )
@@ -39,8 +39,6 @@ const MagwheelGraph = ({ style, controllerTemp, motorTemp, RPM }) => {
 
 export default connect(
   state => ({
-    controllerTemp: state.MWData.controllerTemp,
-    motorTemp: state.MWData.motorTemp,
-    RPM: state.MWData.RPM
+    mag: state.podData.mag
   })
 )(MagwheelGraph)

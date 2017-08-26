@@ -69,8 +69,7 @@ export default class LiveChartMulti extends React.Component {
   }
 
   render () {
-    let data = this.props.data.slice(-LARGE_GRAPH_POINTS)
-      .map(v => [v[0]].concat(v[1]))
+    let data = this.props.data.map(v => [v[0]].concat(v[1]))
 
     let timeSeries = new TimeSeries({
       name: this.props.title,

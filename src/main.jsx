@@ -18,7 +18,7 @@ import TopBar from './section/TopBar'
 import Dashboard from './section/Dashboard'
 
 import { connect as WSConnect } from './api/api'
-import * as Listeners from './api/BatchedListener.js'
+import * as Listeners from './api/CompletePacketListener.js'
 
 class App extends React.Component {
   shouldComponentUpdate () {

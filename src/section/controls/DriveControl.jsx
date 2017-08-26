@@ -38,7 +38,7 @@ export default connect(state => Object({
   drive: state.controls.driveTrainActual,
   solenoid: state.controls.driveSolenoidActual,
   safety: state.controls.driveSafetyActual,
-  manual: state.podData.state === 0
+  manual: true
 }), (dispatch) => Object({
   changeDriveTrain: (val) => {
     sendCommand(Commands.DRIVE_TRAIN_SPEED, [Number(val)])

@@ -1,17 +1,19 @@
-& highpres 1 0 100 200
-& medpres 1 0 100 200
-& dpr 1 0 100 200
-& photo 4 0 100 200
-& latphoto 2 0 100 200
-& ectemp 4 0 100 200
-& rpm 4 0 100 200
-& mwControllerTemp 4 0 100 200
-& mwMotorTemp 4 0 100 200
-& drivetemp 1 0 100 200
-* reed
-& current 1 0 100 200
-& battery 9 0 100 200
-& imu 9 0 100 200
-& color 1 0 100 200
-* pusher
-* state
+*& highpres 1 0 100 200
+*& medpres 1 0 100 200
+*& dpr 1 0 100 200
+*& photo 4 0 100 200
+*& latphoto 2 0 100 200
+*& ectemp 4 0 100 200
+*& rpm 4 0 100 200
+*& mwControllerTemp 4 0 100 200
+*& mwMotorTemp 4 0 100 200
+*& drivetemp 1 0 100 200
+** reed
+*& current 1 0 100 200
+*& battery 9 0 100 200
+*& imu 9 0 100 200
+*& color 1 0 100 200
+** pusher
+** state
+
+begin-full-test 1000

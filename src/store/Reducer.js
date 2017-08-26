@@ -156,85 +156,45 @@ let Reducer = (state = Defaults, {
        *
        */
 
-      // Lev
-    case Actions.UPDATE_DATA_LEV_HIGH_PRESSURE:
+    case Actions.UPDATE_DATA_POD_DATA:
       {
-        return addToData(state, data, 'highPressure', 'levData')
-      }
-    case Actions.UPDATE_DATA_LEV_MEDIUM_PRESSURE:
-      {
-        return addToData(state, data, 'mediumPressure', 'levData')
-      }
-    case Actions.UPDATE_DATA_LEV_DPR:
-      {
-        return addToData(state, data, 'DPR', 'levData')
-      }
-    case Actions.UPDATE_DATA_LEV_PHOTO:
-      {
-        return addToData(state, data, 'photo', 'levData')
-      }
-      // EC
-    case Actions.UPDATE_DATA_EC_PHOTO:
-      {
-        return addToData(state, data, 'photo', 'ECData')
-      }
-    case Actions.UPDATE_DATA_EC_TEMP:
-      {
-        return addToData(state, data, 'temp', 'ECData')
-      }
-      // MW
-    case Actions.UPDATE_DATA_MW_RPM:
-      {
-        return addToData(state, data, 'RPM', 'MWData')
-      }
-    case Actions.UPDATE_DATA_MW_CONTROLLER_TEMP:
-      {
-        return addToData(state, data, 'controllerTemp', 'MWData')
-      }
-    case Actions.UPDATE_DATA_MW_MOTOR_TEMP:
-      {
-        return addToData(state, data, 'motorTemp', 'MWData')
-      }
-      // Drive
-    case Actions.UPDATE_DATA_DRIVE_TEMP:
-      {
-        return addToData(state, data, 'temp', 'driveData')
-      }
-    case Actions.UPDATE_DATA_DRIVE_REED:
-      {
-        return {
-          ...state,
-          driveData: {
-            ...state.driveData,
-            reed: data
-          }
-        }
-      }
-    case Actions.UPDATE_DATA_DRIVE_CURRENT:
-      {
-        return addToData(state, data, 'current', 'driveData')
-      }
+        let time = data.time
+        let {
+          imu,
+          battery,
+          mag,
+          photo,
+          pressure,
+          color,
+          reed
+        } = data.data
 
-      // Pod
-    case Actions.UPDATE_DATA_POD_BATTERY:
-      {
-        return addToData(state, data, 'battery', 'podData')
-      }
-    case Actions.UPDATE_DATA_POD_IMU:
-      {
-        return addToData(state, data, 'IMU', 'podData')
-      }
-    case Actions.UPDATE_DATA_POD_COLOR:
-      {
-        return addToData(state, data, 'color', 'podData')
-      }
-    case Actions.UPDATE_DATA_POD_PUSHER:
-      {
         return {
           ...state,
           podData: {
             ...state.podData,
-            pusher: data
+            imu: state.podData.imu.concat([
+              [time, imu]
+            ]),
+            battery: state.podData.battery.concat([
+              [time, battery]
+            ]),
+            mag: state.podData.mag.concat([
+              [time, mag]
+            ]),
+            photo: state.podData.photo.concat([
+              [time, photo]
+            ]),
+            pressure: state.podData.pressure.concat([
+              [time, pressure]
+            ]),
+            color: state.podData.color.concat([
+              [time, color]
+            ]),
+            reed: state.podData.reed.concat([
+              [time, reed]
+            ])
+
           }
         }
       }
@@ -264,7 +224,7 @@ let Reducer = (state = Defaults, {
   }
 }
 
-function changeControl (state, data, field) {
+function changeControl(state, data, field) {
   let newControl = Object.assign({}, state.controls, {
     [field]: data
   })
@@ -274,7 +234,7 @@ function changeControl (state, data, field) {
   })
 }
 
-function changeSetting (state, data, field) {
+function changeSetting(state, data, field) {
   let newSetting = Object.assign({}, state.controlSettings, {
     [field]: data
   })
@@ -284,7 +244,7 @@ function changeSetting (state, data, field) {
   })
 }
 
-function changeConnection (state, data, field) {
+function changeConnection(state, data, field) {
   let newConnection = Object.assign({}, state.connection, {
     [field]: data
   })
@@ -294,7 +254,7 @@ function changeConnection (state, data, field) {
   })
 }
 
-function addToData (state, data, field, section) {
+function addToData(state, data, field, section) {
   let newData
   if (state.controlSettings.keepLastData) {
     newData = [data]

@@ -53,56 +53,65 @@ let controlSettings = {
   keepLastData: false
 }
 
-/**
- * Array of 2 Tuples where the first index is the time in milliseconds
- * reported by the pod and the second is a k tuple depending on the
- * amount of dimensions of information
- */
-let levData = {
-  highPressure: [], // 1
-  mediumPressure: [], // 1
-  DPR: [], // 1
-  photo: [] // 4
-}
-
-let ECData = {
-  photo: [], // 2
-  temp: [] // 2
-}
-
-let MWData = {
-  RPM: [], // 4
-  controllerTemp: [], // 4
-  motorTemp: [] // 4
-}
-
-let driveData = {
-  temp: [], // 1
-  reed: false,
-  current: [] // 1
-}
-
 let podData = {
+  /**
+   * IMU is a big one that contains 9 whole data points,
+   * [
+   *  gyro_x, gyro_y, gyro_z,
+   *  accel_x, accel_y, accel_z,
+   *  roll, pitch, yaw
+   * ]
+   */
+  imu: [],
   /**
    * This single array stores the Voltage, Current, and Temperature for
    * all three batteries onboard in the following order:
    * [
-   *  battery5_current, battery5_voltage, battery5_temp,
-   *  battery24_current, battery24_voltage, battery24_temp,
-   *  battery48_current, battery48_voltage, battery48_temp
+   *  battery5_temp, battery5_voltage, battery5_current,
+   *  battery24_temp, battery24_voltage, battery24_current,
+   *  battery48_temp, battery48_voltage, battery48_current
    * ]
    */
   battery: [],
   /**
-   * IMU is a big one that contains 9 whole data points,
+   * This single array stores all the information for magwheels
    * [
-   *   gyro_x, gyro_y, gyro_z,
-   *   accel_x, accel_y, accel_z,
-   *   roll, pitch, yaw
+   *  front_left_motor_temp, rear_right_motor_temp,
+   *  front_left_rpm, front_right_rpm,
+   *  rear_left_rpm, rear_right_rpm
    * ]
    */
-  IMU: [], // 9
+  mag: [],
+  /**
+   * This holds data from photoelectric distance and lateral sensors
+   * [
+   *  front_left_dist,
+   *  front_right_dist,
+   *  lateral_dist
+   * ]
+   */
+  photo: [],
+  /**
+   * This holds the data from the levitation systems
+   * [
+   *  dpr (low pressure sensor)
+   *  medium_pressure
+   *  high_pressure
+   * ]
+   */
+  pressure: [],
+  /**
+   * The distance from the start of the track in meters determined
+   * by the color sensor
+   * [
+   *  distance
+   * ]
+   */
   color: [], // 1
+  /**
+   * Reed sensor value for the drive train position
+   */
+  reed: [],
   pusher: false, // boolean
   state: -1, // int
   messages: [] // array of strings
@@ -128,10 +137,6 @@ let connection = {
  * @property {Connection}
  */
 export default {
-  levData,
-  ECData,
-  MWData,
-  driveData,
   podData,
   controls,
   controlSettings,
