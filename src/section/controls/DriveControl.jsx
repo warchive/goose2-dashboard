@@ -41,7 +41,7 @@ export default connect(state => Object({
   manual: state.podData.state === 0
 }), (dispatch) => Object({
   changeDriveTrain: (val) => {
-    sendCommand(Commands.DRIVE_TRAIN_SPEED, val)
+    sendCommand(Commands.DRIVE_TRAIN_SPEED, [Number(val)])
     dispatch({
       type: Actions.CHANGE_DRIVETRAIN_SPEED,
       data: [val]

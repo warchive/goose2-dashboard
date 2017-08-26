@@ -46,7 +46,7 @@ export default connect(state => Object({
   manual: state.podData.state === 0
 }), (dispatch) => Object({
   changeMagwheel: (val) => {
-    sendCommand(Commands.MAGWHEEL_SPEED, [val])
+    sendCommand(Commands.MAGWHEEL_SPEED, [Number(val)])
     dispatch({
       type: Actions.CHANGE_MAGWHEEL_SPEED,
       data: val
