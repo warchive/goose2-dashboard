@@ -43,7 +43,7 @@ export default connect(state => Object({
   magwheel: state.controls.magwheelActual,
   launch: state.controls.launchActual,
   brake: state.controls.brakeActual,
-  manual: state.podData.state === 0
+  manual: true
 }), (dispatch) => Object({
   changeMagwheel: (val) => {
     sendCommand(Commands.MAGWHEEL_SPEED, [Number(val)])
