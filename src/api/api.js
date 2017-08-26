@@ -17,9 +17,15 @@ export function connect (listeners, onopen, onerror,
     url = window.prompt('Please input the server url', url)
   }
 
-  client = SocketIO(url)
+  client = SocketIO(url, {
+    reconnectionDelay: 0,
+    reconnectionDelayMax: 0,
+    timeout: 200,
+    randomizationFactor: 0
+  })
   client.on('connect', onopen)
   client.on('disconnect', onclose)
+  client.on('reconnect_attempt', attempt => console.log('Attempt ' + attempt + ' to reconnect'))
 
   Object.keys(listeners).forEach(v => client.on(v, listeners[v]))
 }
