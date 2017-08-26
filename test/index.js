@@ -6,10 +6,14 @@ const PORT = 8000
 
 io.on('connection', client => {
   console.log('client connected')
-  client.on('control', evt => console.log(evt))
+  client.on('control', evt => {
+    console.log(evt)
+    client.emit('command_received', JSON.stringify({
+      received: JSON.parse(evt)
+    }))
+  })
 })
 
-io.on('control', evt => console.log(evt))
 io.listen(PORT)
 
 const rl = readLine.createInterface({

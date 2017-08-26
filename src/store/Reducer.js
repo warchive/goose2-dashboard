@@ -108,7 +108,7 @@ let Reducer = (state = Defaults, {
       {
         return changeControl(state, data, 'DPRActual')
       }
-    case Actions.UPDATE_CONTROL_MAGWHEEL_SPEED:
+    case Actions.UPDATE_CONTROL_MAGWHEEL:
       {
         return changeControl(state, data, 'magwheelActual')
       }

@@ -2,5 +2,8 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(7, 1fr);
-  grid-gap: 3px
+  grid-gap: 3px;
+  >div {
+    padding: 2px 0 2px 0;
+  }
 }

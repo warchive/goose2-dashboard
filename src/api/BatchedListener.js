@@ -175,10 +175,11 @@ export const CommandRecievedListener = (dispatch) => {
   return (broadcast) => {
     broadcast = JSON.parse(broadcast)
 
-    console.log('command received')
-
     let cmd = broadcast.received.cmd
     let val = broadcast.received.val
+
+    console.log(cmd)
+    console.log(val)
 
     switch (cmd) {
       case Commands.EMERGENCY_STOP:
@@ -250,6 +251,16 @@ export const CommandRecievedListener = (dispatch) => {
         return dispatch({
           type: Actions.UPDATE_CONTROL_BATTERY_48,
           data: Boolean(val[0])
+        })
+      case Commands.MAGWHEEL_SPEED:
+        return dispatch({
+          type: Actions.UPDATE_CONTROL_MAGWHEEL,
+          data: val[0]
+        })
+      case Commands.DRIVE_TRAIN_SPEED:
+        return dispatch({
+          type: Actions.UPDATE_CONTROL_DRIVETRAIN_SPEED,
+          data: val[0]
         })
       default:
         console.error(`Unrecognized cmd: ${cmd}`)
