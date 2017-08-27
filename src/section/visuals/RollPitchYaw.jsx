@@ -6,7 +6,7 @@ import { SMALL_GRAPH_POINTS } from '../../../config'
 import Tilt from '../../components/Tilt'
 
 const SparkLineProps = {
-  limit: 20,
+  limit: SMALL_GRAPH_POINTS,
   width: 150,
   height: 100,
   margin: 2,
@@ -33,8 +33,8 @@ const RollPitchYaw = ({ roll, pitch, yaw }) => {
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <div style={rowStyle}>
         <Tilt
-          min={-180}
-          max={180}
+          min={-10}
+          max={10}
           label='Roll'
           value={lastRoll} />
 
@@ -44,8 +44,8 @@ const RollPitchYaw = ({ roll, pitch, yaw }) => {
       </div>
       <div style={rowStyle}>
         <Tilt
-          min={-180}
-          max={180}
+          min={-10}
+          max={10}
           label='Pitch'
           value={lastPitch} />
 
@@ -55,8 +55,8 @@ const RollPitchYaw = ({ roll, pitch, yaw }) => {
       </div>
       <div style={rowStyle}>
         <Tilt
-          min={-180}
-          max={180}
+          min={-10}
+          max={10}
           label='Yaw'
           value={lastYaw} />
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { TabView } from '../../components/Tabs'
+import { TabView, Tab } from '../../components/Tabs'
 import { connect } from 'react-redux'
 import LiveChart from '../../components/LiveChartMulti'
 import { LARGE_GRAPH_POINTS } from '../../../config'
@@ -15,24 +15,26 @@ const MagwheelGraph = ({ style, mag }) => {
 
   return (
     <TabView tabNames={['T', 'R']} style={style}>
-      <LiveChart
-        progressivepressure
-        height={130}
-        title='Motor Temp'
-        min={0}
-        max={100}
-        columnNames={['1', '2']}
-        data={motorTemp}
-      />
-      <LiveChart
-        progressive
-        height={130}
-        title='RPM'
-        min={0}
-        max={100}
-        columnNames={['FL', 'FR', 'RL', 'RR']}
-        data={motorRPM}
-      />
+      <Tab>
+        <LiveChart
+          progressivepressure
+          height={80}
+          title='Motor Temp'
+          min={0}
+          max={100}
+          columnNames={['1', '2']}
+          data={motorTemp}
+        />
+        <LiveChart
+          progressive
+          height={80}
+          title='RPM'
+          min={0}
+          max={8000}
+          columnNames={['FL', 'FR', 'RL', 'RR']}
+          data={motorRPM}
+        />
+      </Tab>
     </TabView >
   )
 }
