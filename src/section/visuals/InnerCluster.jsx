@@ -58,8 +58,8 @@ const InnerCluster = ({
       <Row>
         <Col sm={6}>
           <SemiCircle
-            min={0}
-            max={100}
+            min={150}
+            max={4520}
             value={roundValue(highPressure)}
             label='Hi'
             unit='PSI'
@@ -68,7 +68,7 @@ const InnerCluster = ({
         <Col sm={6}>
           <SemiCircle
             min={0}
-            max={100}
+            max={150}
             value={roundValue(mediumPressure)}
             label='Lo'
             unit='PSI'
@@ -79,26 +79,26 @@ const InnerCluster = ({
       <Row>
         <Col sm={4}>
           <Line
-            min={0}
-            max={100}
+            min={0.4}
+            max={2.4}
             value={battery5Current}
             label='Curr'
-            unit='a'
+            unit='A'
             width={100} />
         </Col>
         <Col sm={4}>
           <Line
-            min={0}
-            max={100}
+            min={5}
+            max={5.5}
             value={battery5Voltage}
             label='Volt'
-            unit='v'
+            unit='V'
             width={100} />
         </Col>
         <Col sm={4}>
           <Line
             min={0}
-            max={100}
+            max={60}
             value={battery5Temp}
             label='Temp'
             unit='c'
@@ -110,25 +110,25 @@ const InnerCluster = ({
         <Col sm={4}>
           <Line
             min={0}
-            max={100}
+            max={160}
             value={battery24Current}
             label='Curr'
-            unit='a'
+            unit='A'
             width={100} />
         </Col>
         <Col sm={4}>
           <Line
-            min={0}
-            max={100}
+            min={24}
+            max={30}
             value={battery24Voltage}
             label='Volt'
-            unit='v'
+            unit='V'
             width={100} />
         </Col>
         <Col sm={4}>
           <Line
             min={0}
-            max={100}
+            max={60}
             value={battery24Temp}
             label='Temp'
             unit='c'
@@ -140,25 +140,25 @@ const InnerCluster = ({
         <Col sm={4}>
           <Line
             min={0}
-            max={100}
+            max={25}
             value={battery48Current}
             label='Curr'
-            unit='a'
+            unit='A'
             width={100} />
         </Col>
         <Col sm={4}>
           <Line
-            min={0}
-            max={100}
+            min={47}
+            max={54.5}
             value={battery48Voltage}
             label='Volt'
-            unit='v'
+            unit='V'
             width={100} />
         </Col>
         <Col sm={4}>
           <Line
             min={0}
-            max={100}
+            max={60}
             value={battery48Temp}
             label='Temp'
             unit='c'

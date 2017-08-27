@@ -18,14 +18,14 @@ const centralClusterSettings = [
   {
     color: 0x8ADCFF,
     min: 0,
-    max: 100,
+    max: 30,
     label: 'Accel',
     unit: 'm/s/s'
   },
   {
     color: 0xFF7575,
     min: 0,
-    max: 100,
+    max: 1600,
     label: 'Pos',
     unit: 'm'
   }

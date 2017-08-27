@@ -46,7 +46,7 @@ export default class CentralCluster extends React.Component {
         this.rotation = that.calculateAngle(
           gaugeSettings.min,
           gaugeSettings.max,
-          Math.min(Math.max(val, gaugeSettings.min), gaugeSettings.max)
+          val
         )
       }
       this.app.stage.addChild(currGauge)
