@@ -7,54 +7,54 @@ let intervalId = {}
 
 let FullDataFormat = {
   imu: [
-    [0, 100],
-    [0, 100],
-    [0, 100],
-    [0, 100],
-    [0, 100],
-    [0, 100],
-    [0, 100],
-    [0, 100],
-    [0, 100]
+    [-1, 1],
+    [-22, 11],
+    [-1, 1],
+    [-1, 1],
+    [-22, 11],
+    [-1, 1],
+    [-1, 1],
+    [-1, 1],
+    [-1, 1]
   ],
   battery: [
-    [0, 100],
-    [0, 100],
-    [0, 100],
-    [0, 100],
-    [0, 100],
-    [0, 100],
-    [0, 100],
-    [0, 100],
-    [0, 100]
+    [0, 60],
+    [5, 5.5],
+    [0.4, 2.4],
+    [0, 60],
+    [24, 30],
+    [0, 160],
+    [0, 60],
+    [47, 54.5],
+    [0, 25]
   ],
   mag: [
     [0, 100],
     [0, 100],
-    [0, 100],
-    [0, 100],
-    [0, 100],
-    [0, 100]
+    [0, 7500],
+    [0, 7500],
+    [0, 7500],
+    [0, 7500]
   ],
   photo: [
-    [0, 100],
-    [0, 100],
-    [0, 100]
+    [20, 80],
+    [20, 80],
+    [-10, 10]
   ],
   pressure: [
     [0, 100],
-    [0, 100],
-    [0, 100]
+    [0, 150],
+    [150, 4520]
   ],
   color: [
-    [0, 100]
+    [0, 1600]
   ],
   reed: [
     [0, 1]
   ]
 }
 
-function command (input, io) {
+function command(input, io) {
   if (input.startsWith('begin-full-test')) {
     let interval = input.split(' ')[1]
 
@@ -65,7 +65,7 @@ function command (input, io) {
 
       Object.keys(FullDataFormat).forEach(v => {
         data[v] = FullDataFormat[v].map(([min, max]) =>
-          Math.sin((Date.now() / 1000)) * ((max - min) / 2) * Math.random() + ((max - min) / 2))
+          Math.sin((Date.now() / 1000)) * ((max - min) / 2) + ((max + min) / 2))
       })
 
       io.emit('sensor', JSON.stringify({
@@ -158,7 +158,7 @@ function command (input, io) {
 
 const startTime = Date.now()
 
-function packet (name, value) {
+function packet(name, value) {
   let json = JSON.stringify({
     time: (Date.now() - startTime) / 1000,
     sensor: name,

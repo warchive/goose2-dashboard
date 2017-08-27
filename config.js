@@ -43,5 +43,5 @@ export const STATES = [
  *
  * This saves a lot of rendering cycles and optimizes the front end
  */
-export const BATCH_UPDATES = true
+export const BATCH_UPDATES = false
 export const BATCH_UPDATE_INTERVAL = 500

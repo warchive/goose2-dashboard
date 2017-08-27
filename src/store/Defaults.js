@@ -113,7 +113,7 @@ let podData = {
    */
   reed: [],
   pusher: false, // boolean
-  state: -1, // int
+  state: 0, // int
   messages: [] // array of strings
 }
 
