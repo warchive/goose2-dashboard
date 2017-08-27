@@ -8,8 +8,8 @@ import HorizontalSlider from '../../components/HorizonalSlider'
 
 const DriveControl = ({
   style, manual,
-  drive, solenoid, safety,
-  changeDriveTrain, changeSolenoid, changeSafety,
+  drive, drop,
+  changeDriveTrain, changeDrop, changeSafety,
   stop  // Commands
 }) => {
   return (
@@ -20,8 +20,8 @@ const DriveControl = ({
         bsStyle='info'
         bsSize='sm'
         disabled={!manual}
-        active={solenoid}
-        onClick={() => changeSolenoid(!solenoid)}> Solenoid </Button>
+        active={drop}
+        onClick={() => changeDrop(!drop)}> Drop </Button>
       <HorizontalSlider
         min={0}
         max={100}
@@ -35,22 +35,21 @@ const DriveControl = ({
 }
 
 export default connect(state => Object({
-  drive: state.controls.driveTrainActual,
-  solenoid: state.controls.driveSolenoidActual,
-  safety: state.controls.driveSafetyActual,
+  drive: state.podState.drive,
+  drop: state.podState.brake,
   manual: true
 }), (dispatch) => Object({
   changeDriveTrain: (val) => {
     sendCommand(Commands.DRIVE_TRAIN_SPEED, [Number(val)])
     dispatch({
-      type: Actions.CHANGE_DRIVETRAIN_SPEED,
-      data: [val]
+      type: Actions.CHANGE_DRIVE_TRAIN_SPEED,
+      data: val
     })
   },
-  changeSolenoid: (val) => {
-    sendCommand(Commands.DRIVE_SOLENOID, [Number(val)])
+  changeDrop: (val) => {
+    sendCommand(Commands.DROP, [Number(val)])
     dispatch({
-      type: Actions.CHANGE_DRIVE_SOLENOID,
+      type: Actions.CHANGE_DRIVE_DROP,
       data: val
     })
   }

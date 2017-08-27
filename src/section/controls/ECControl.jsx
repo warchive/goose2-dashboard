@@ -7,8 +7,8 @@ import { sendCommand } from '../../api/api'
 
 const ECControl = ({
   style, manual,
-  solenoid, battery24, battery48,
-  changeSolenoid, changeBattery24, changeBattery48
+  brakeSolenoid, battery24, battery48,
+  changeBrake, changeBattery24, changeBattery48
 }) => {
   return (
     <div className='control-group' style={style}>
@@ -16,9 +16,9 @@ const ECControl = ({
       <Button
         bsStyle='info'
         bsSize='sm'
-        active={solenoid}
+        active={brakeSolenoid}
         disabled={!manual}
-        onClick={() => changeSolenoid(!solenoid)}>
+        onClick={() => changeBrake(!brakeSolenoid)}>
         Solenoid </Button>
       <Button
         bsStyle='info'
@@ -40,18 +40,20 @@ const ECControl = ({
 
 export default connect(state => ({
   manual: true,
-  solenoid: state.controls.ECSolenoidActual,
-  battery24: state.controls.battery24Actual,
-  battery48: state.controls.battery48Actual
+  brakeSolenoid: state.podState.brake,
+  battery24: state.podState.batt24,
+  battery48: state.podState.batt48
 }), (dispatch) => ({
-  changeSolenoid: (val) => {
-    dispatch({ type: Actions.CHANGE_EC_SOLENOID, data: val })
-    sendCommand(Commands.EC_SOLENOID, [Number(val)])
+  changeBrake: (val) => {
+    dispatch({ type: Actions.CHANGE_BRAKE, data: val })
+    sendCommand(Commands.BRAKE, [Number(val)])
   },
   changeBattery24: (val) => {
+    dispatch({ type: Actions.CHANGE_BATTERY_24, data: val })
     sendCommand(Commands.BATTERY_24, [Number(val)])
   },
   changeBattery48: (val) => {
+    dispatch({ type: Actions.CHANGE_BATTERY_48, data: val })
     sendCommand(Commands.BATTERY_48, [Number(val)])
   }
 }

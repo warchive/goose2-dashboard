@@ -53,7 +53,7 @@ if (DEBUG) {   // eslint-disable-line
 
 let ConnectedListeners = {
   sensor: Listeners.SensorListener(store.dispatch),
-  command_received: Listeners.CommandRecievedListener(store.dispatch),
+  state: Listeners.StateListener(store.dispatch),
   message: Listeners.MessageListener(store.dispatch)
 }
 

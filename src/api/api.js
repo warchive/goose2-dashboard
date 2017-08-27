@@ -1,4 +1,7 @@
-import {URL as defaultURL, PROMPT_FOR_URL} from '../../config'
+import {
+  URL as defaultURL,
+  PROMPT_FOR_URL
+} from '../../config'
 const SocketIO = require('socket.io-client')
 
 /**
@@ -11,7 +14,7 @@ let client
  * Establishes connection with socket
  * @param {String} url
  */
-export function connect (listeners, onopen, onerror,
+export function connect(listeners, onopen, onerror,
   onclose, url = defaultURL) {
   if (PROMPT_FOR_URL) {
     url = window.prompt('Please input the server url', url)
@@ -30,7 +33,7 @@ export function connect (listeners, onopen, onerror,
   Object.keys(listeners).forEach(v => client.on(v, listeners[v]))
 }
 
-export function sendMessage (message) {
+export function sendMessage(message) {
   if (!client) {
     throw new Error("socket hasn't been established yet")
   }
@@ -41,12 +44,12 @@ export function sendMessage (message) {
   client.emit('control', message)
 }
 
-export function sendJSON (obj) {
+export function sendJSON(obj) {
   let message = JSON.stringify(obj)
   sendMessage(message)
 }
 
-export function sendCommand (cmd, val) {
+export function sendCommand(cmd, val) {
   sendJSON({
     cmd,
     val

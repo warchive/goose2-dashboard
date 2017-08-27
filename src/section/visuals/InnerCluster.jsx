@@ -170,7 +170,7 @@ const InnerCluster = ({
 }
 
 export default connect(state => ({
-  state: state.podData.state,
+  state: state.podState.state,
   pusher: state.podData.pusher,
   pressure: state.podData.pressure,
   battery: state.podData.battery

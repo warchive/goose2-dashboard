@@ -1,53 +1,6 @@
 /**
- * @typedef {Object} Controls
- * @property {boolean} start If the pod has been started
- * @property {boolean} emergencyStop If the emergency stop has been engaged
- * @property {float} speed The set speed for the pod
- * @property {float} acceleration The set acceleration
- *
- * Actual referes to what the pod reports (pod's state)
- * @property {boolean} startActual
- * @property {boolean} emergencyStopActual
- * @property {float} speedActual
- * @property {float} accelerationActual
+ * Not being used right now
  */
-let controls = {
-  start: false,
-  emergencyStop: false,
-  connect: false,
-  speed: 0,
-  acceleration: 0,
-  brake: false,
-  ballValve: false,
-  DPR: false,
-  MTV: false,
-  ECSolenoid: false,
-  magwheel: 0,
-  driveTrain: 0,
-  driveSolenoid: false,
-  driveSafety: false,
-  launch: false,
-  /** Actual values reported from the pod */
-  dropActual: false,
-  startActual: false,
-  emergencyStopActual: false,
-  connectActual: false,
-  speedActual: 0,
-  accelerationActual: 0,
-  brakeActual: false,
-  ballValveActual: false,
-  DPRActual: false,
-  MTVActual: false,
-  ECSolenoidActual: false,
-  magwheelActual: 0,
-  driveTrainActual: 0,
-  driveSolenoidActual: false,
-  driveSafetyActual: false,
-  launchActual: false,
-  battery24Actual: true,
-  battery48Actual: true
-}
-
 let controlSettings = {
   instantChange: false,
   keepLastData: false
@@ -60,6 +13,24 @@ let controlSettings = {
  * The dashboard should display this state to match the pod's
  */
 let podState = {
+  magWheel: 0,
+  drive: 0,
+  drop: false,
+  dpr: false,
+  ballValve: false,
+  brake: false,
+  batt48: false,
+  batt24: false,
+  state: 0
+}
+
+/**
+ * This object represents the state of the frontend
+ * It is the exact copy of the pod state, but keep tracks of
+ * what the front end thinks is "true", this way we can tell
+ * if there is a state mismatch
+ */
+let frontState = {
   magWheel: 0,
   drive: 0,
   drop: false,
@@ -131,7 +102,6 @@ let podData = {
    */
   reed: [],
   pusher: false, // boolean
-  state: 0, // int
   messages: [] // array of strings
 }
 
@@ -157,7 +127,7 @@ let connection = {
 export default {
   podData,
   podState,
-  controls,
+  frontState,
   controlSettings,
   connection
 }

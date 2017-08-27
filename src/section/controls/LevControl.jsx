@@ -6,8 +6,8 @@ import * as Actions from '../../store/Actions'
 import { sendCommand } from '../../api/api'
 const LevControl = ({
   style, manual,
-  DPR, MTV, // Input States
-  changeDPR, changeMTV, stop  // Commands
+  DPR, BallValve, // Input States
+  changeDPR, changeBallValve, stop  // Commands
 }) => {
   return (
     <div className='control-group' style={style}>
@@ -23,25 +23,25 @@ const LevControl = ({
       <Button
         bsStyle='info'
         bsSize='sm'
-        active={MTV}
+        active={BallValve}
         disabled={!manual}
-        onClick={(evt) => changeMTV(!MTV)}>
-        MTV </Button>
+        onClick={(evt) => changeBallValve(!BallValve)}>
+        BallValve </Button>
     </div>
   )
 }
 
 export default connect(state => Object({
-  DPR: state.controls.DPRActual,
-  MTV: state.controls.MTVActual,
+  DPR: state.podState.dpr,
+  BallValve: state.podState.ballValve,
   manual: true
 }), (dispatch) => Object({
   changeDPR: (val) => {
     sendCommand(Commands.DPR, [Number(val)])
     dispatch({ type: Actions.CHANGE_DPR, data: val })
   },
-  changeMTV: (val) => {
-    sendCommand(Commands.MTV, [Number(val)])
-    dispatch({ type: Actions.CHANGE_MTV, data: val })
+  changeBallValve: (val) => {
+    sendCommand(Commands.BALL_VALVE, [Number(val)])
+    dispatch({ type: Actions.CHANGE_BALL_VALVE, data: val })
   }
 }))(LevControl)

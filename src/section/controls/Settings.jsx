@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import { sendCommand } from '../../api/api'
 import React from 'react'
+import { CHANGE_STATE } from '../../store/Actions.js'
 import { Button } from 'react-bootstrap'
 import * as Commands from '../../../events/commands'
 import { STATES } from '../../../config'
@@ -39,12 +40,16 @@ const Settings = ({
 const SettingsConnected = connect(
   (state) => {
     return {
-      state: state.podData.state
+      state: state.podState.state
     }
   },
   (dispatch) => ({
     changeState: (val) => {
       sendCommand(Commands.STATE, [Number(val)])
+      dispatch({
+        type: CHANGE_STATE,
+        data: val
+      })
     }
   })
 )(Settings)
