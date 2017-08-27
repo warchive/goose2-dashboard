@@ -14,7 +14,7 @@ const MagwheelGraph = ({ style, mag }) => {
   })
 
   return (
-    <TabView tabNames={['T', 'R']} style={style}>
+    <TabView tabNames={['']} style={style}>
       <Tab>
         <LiveChart
           progressivepressure

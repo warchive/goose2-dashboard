@@ -9,96 +9,30 @@ You can use the included test server (index.js) to test the client
 
 ## How to use
 
-### Commands are displayed on the screen
+There are only two possible meaningful commands that you can give to the interpretor as of now
 
-Any commands the the client sends to the server will be printed on the screen. For example, if you presss the start button, you should see:
+```begin-full-test delay [wiggle=0]```
+
+Will make the server start sending the full array of data to the dashboard in a smooth sinuoidal way.
+This way you can see how the dashboard responds when data reaches its maximum or minimum.
+
+You can also specify wiggle, which will randomly shift the value of a data point by it's range multiplied by wiggle/100
+
+The calculation is:
 
 ```js
-// Start command
-{ type: 'utf8', utf8Data: '{"Command":"start","value":true}' }
-
-// Acceleration command
-{ type: 'utf8',
-  utf8Data: '{"Command":"acceleration","value":46}' }
-```
-
-### Broadcasts can be sent to the client
-
-There are 2 types of broadcasts:
-
-* General broadcasts that look like ```[type] name [args ...]```
-* ~~Specific test broadcasts that look like ```command```~~ **no implementation yet**
-
-These broadcast commands are typed into the console where the node server is runing
-
-#### General broadcasts
-
-Type is the value type, these are represented by 3 characters
-
-* ! - Boolean
-* @ - String
-* \# - Number
-* $ - _special_ Generates random values
-* % - _special_ Stop generating special values
-
-Some example broadcasts and what they yield:
-
-```JSON
-// ! start t
-{
-  "sensor": "start",
-  "time": 132,
-  "data": [true]
-}
-
-// ! start f
-{
-  "sensor": "start",
-  "time": 1235
-  "data": [false]
-}
-
-// String broadcasts aren't really useful right now
-
-// # speed 50
-{
-  "sensor": "speed",
-  "time": 21352,
-  "data": [50]
+function calculateDataPoint(min, max, wiggle){
+  return Math.sin((Date.now() / 1000)) * ((max - min) / 2) + ((max + min) / 2) +
+    (Math.random() > 0.5 ? -1 : 1) * Math.random() * (wiggle / 100) * (max - min)
 }
 ```
 
-#### Special General Broadcasts
+The next command is
 
-You can also tell the server to continuously sending random data
+```@ message```
 
-The $ command takes in 3 arguments: ```$ <broadcast name> <min bound> <max bound> <delay time>```
+which will send your message to the dashboard for it to log
 
-For example:
-
-```JSON
-// $ speed 0 100 200
-// Will produce data like:
-
-{
-  "sensor": "speed",
-  "time": 12315,
-  "data": [24]
-
-}
-
-// Where 0 <= data <= 100 every 200 milliseconds
-```
-
-The % command takes in 1 argument: ```% <broadcast name>```
-
-It will stop the broadcast with the same name from repeating itself
-
-So ```% speed``` willl stop the reptition
-
-<br/>
-
-Broadcasts, Broadcasts types and bounds can be found here:
 
 [Commands and Events for Websocket Communication](https://github.com/teamwaterloop/control-front/tree/master/events)
 
