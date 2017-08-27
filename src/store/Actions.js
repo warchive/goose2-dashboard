@@ -40,10 +40,21 @@ export const UPDATE_CONTROL_LAUNCH = 'UPDATE_CONTROL_LAUNCH'
 export const UPDATE_CONTROL_BATTERY_24 = 'UPDATE_CONTROL_BATTERY_24'
 export const UPDATE_CONTROL_BATTERY_48 = 'UPDATE_CONTROL_BATTERY_48'
 
-/** General datums */
+/**
+ * This action is responsible for updating all of the pod's state
+ * at once
+ */
 
-// Pod data
+export const UPDATE_STATE = 'UPDATE_STATE'
+
+/**
+ * This action is responsible for updating all of the data
+ * recorded by the front end all at once
+ */
 export const UPDATE_DATA_POD_DATA = 'UPDATE_DATA_POD_DATA'
+
+
+
 export const UPDATE_DATA_POD_STATE = 'UPDATE_DATA_POD_STATE'
 export const UPDATE_DATA_POD_MESSAGES = 'UPDATE_DATA_POD_MESSAGES'
 

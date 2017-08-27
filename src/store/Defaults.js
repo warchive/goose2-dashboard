@@ -53,6 +53,24 @@ let controlSettings = {
   keepLastData: false
 }
 
+/**
+ * This object is responsible for keeping track of the
+ * state of the pod
+ *
+ * The dashboard should display this state to match the pod's
+ */
+let podState = {
+  magWheel: 0,
+  drive: 0,
+  drop: false,
+  dpr: false,
+  ballValve: false,
+  brake: false,
+  batt48: false,
+  batt24: false,
+  state: 0
+}
+
 let podData = {
   /**
    * IMU is a big one that contains 9 whole data points,
@@ -138,6 +156,7 @@ let connection = {
  */
 export default {
   podData,
+  podState,
   controls,
   controlSettings,
   connection

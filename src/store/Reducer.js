@@ -145,6 +145,37 @@ let Reducer = (state = Defaults, {
         return changeControl(state, data, 'battery48Actual')
       }
 
+    case Actions.UPDATE_STATE:
+      {
+        let {
+          mag,
+          drive,
+          drop,
+          dpr,
+          bv,
+          brake,
+          batt48,
+          batt24,
+          state: podState
+        } = data
+
+        return {
+          ...state,
+          podState: {
+            ...state.podState,
+            magWheel: mag,
+            drive,
+            drop,
+            dpr,
+            ballValve: bv,
+            brake,
+            batt48,
+            batt24,
+            state: podState
+          }
+        }
+      }
+
       /*
        * Data updates received from the pod
        *
@@ -224,7 +255,7 @@ let Reducer = (state = Defaults, {
   }
 }
 
-function changeControl (state, data, field) {
+function changeControl(state, data, field) {
   let newControl = Object.assign({}, state.controls, {
     [field]: data
   })
@@ -234,7 +265,7 @@ function changeControl (state, data, field) {
   })
 }
 
-function changeSetting (state, data, field) {
+function changeSetting(state, data, field) {
   let newSetting = Object.assign({}, state.controlSettings, {
     [field]: data
   })
@@ -244,7 +275,7 @@ function changeSetting (state, data, field) {
   })
 }
 
-function changeConnection (state, data, field) {
+function changeConnection(state, data, field) {
   let newConnection = Object.assign({}, state.connection, {
     [field]: data
   })
@@ -254,7 +285,7 @@ function changeConnection (state, data, field) {
   })
 }
 
-function addToData (state, data, field, section) {
+function addToData(state, data, field, section) {
   let newData
   if (state.controlSettings.keepLastData) {
     newData = [data]

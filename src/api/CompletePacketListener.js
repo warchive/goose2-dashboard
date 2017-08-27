@@ -50,6 +50,23 @@ export const SensorListener = (dispatch) => {
   }
 }
 
+export const StateListener = (dispatch) => {
+  return (broadcast) => {
+    try {
+      broadcast = JSON.parse(broadcast)
+
+      let data = broadcast.data
+
+      dispatch({
+        type: Actions.UPDATE_STATE,
+        data
+      })
+    } catch (e) {
+      console.error(e)
+    }
+  }
+}
+
 export const CommandRecievedListener = (dispatch) => {
   return (broadcast) => {
     broadcast = JSON.parse(broadcast)
