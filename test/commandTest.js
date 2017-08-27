@@ -54,10 +54,15 @@ let FullDataFormat = {
   ]
 }
 
+function generateSinusoidalValue(min, max, progress, wiggle) {
+  return Math.sin((Date.now() / 1000)) * ((max - min) / 2) + ((max + min) / 2) +
+    (Math.random() > 0.5 ? -1 : 1) * Math.random() * (wiggle / 100) * (max - min)
+}
+
 function command(input, io) {
   if (input.startsWith('begin-full-test')) {
     let interval = input.split(' ')[1]
-
+    let wiggle = input.split(' ')[2] | 0
     clearInterval(intervalId['full-test'])
 
     setInterval(() => {
@@ -65,7 +70,7 @@ function command(input, io) {
 
       Object.keys(FullDataFormat).forEach(v => {
         data[v] = FullDataFormat[v].map(([min, max]) =>
-          Math.sin((Date.now() / 1000)) * ((max - min) / 2) + ((max + min) / 2))
+          generateSinusoidalValue(min, max, Date.now() / 1000, wiggle))
       })
 
       io.emit('sensor', JSON.stringify({
