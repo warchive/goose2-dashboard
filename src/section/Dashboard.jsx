@@ -9,13 +9,6 @@ import MessageDisplay from '../components/MessageDisplay'
 
 const centralClusterSettings = [
   {
-    color: 0x99FD77,
-    min: 0,
-    max: 100,
-    label: 'Speed',
-    unit: 'm/s'
-  },
-  {
     color: 0x8ADCFF,
     min: 0,
     max: 30,
@@ -49,7 +42,7 @@ class Dashboard extends React.Component {
         <Col sm={7}>
           <CentralCluster
             height={500}
-            data={[this.props.speed, this.props.accel, this.props.distance]}
+            data={[this.props.accel, this.props.distance]}
             settings={centralClusterSettings}>
             <InnerCluster />
           </CentralCluster>
@@ -80,7 +73,6 @@ function getLastPairValue (array, idx) {
 
 export default connect(
   (state) => ({
-    speed: 0,
     accel: getLastPairValue(state.podData.imu, 4),
     distance: getLastPairValue(state.podData.color, 0)
   })
