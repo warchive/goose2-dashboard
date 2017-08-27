@@ -22,7 +22,6 @@ let Reducer = (state = Defaults, {
   type,
   data
 }) => {
-  console.log(data)
   switch (type) {
     /** Basic control data */
     case Actions.CHANGE_BRAKE:

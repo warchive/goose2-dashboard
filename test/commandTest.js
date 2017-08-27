@@ -59,6 +59,7 @@ function generateSinusoidalValue(min, max, progress, wiggle) {
     (Math.random() > 0.5 ? -1 : 1) * Math.random() * (wiggle / 100) * (max - min)
 }
 
+
 function command(input, io) {
   if (input.startsWith('begin-full-test')) {
     let interval = input.split(' ')[1]

@@ -7,3 +7,4 @@ export const BALL_VALVE = 'bv' // 0 or 1
 export const MAGWHEEL_SPEED = 'spdmag'
 export const STATE = 'state'
 export const DPR = 'dpr' // 0 or 1
+export const EMERGENCY_STOP = 'emg'
