@@ -54,7 +54,7 @@ let FullDataFormat = {
   ]
 }
 
-function command(input, io) {
+function command (input, io) {
   if (input.startsWith('begin-full-test')) {
     let interval = input.split(' ')[1]
 
@@ -158,7 +158,7 @@ function command(input, io) {
 
 const startTime = Date.now()
 
-function packet(name, value) {
+function packet (name, value) {
   let json = JSON.stringify({
     time: (Date.now() - startTime) / 1000,
     sensor: name,

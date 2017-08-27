@@ -1,5 +1,4 @@
 import React from 'react'
-import { LARGE_GRAPH_POINTS } from '../../config'
 import { Charts, ChartContainer, ChartRow, YAxis, LineChart, styler } from 'react-timeseries-charts'
 import { TimeSeries, TimeRange } from 'pondjs'
 

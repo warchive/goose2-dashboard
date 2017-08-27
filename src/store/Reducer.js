@@ -224,7 +224,7 @@ let Reducer = (state = Defaults, {
   }
 }
 
-function changeControl(state, data, field) {
+function changeControl (state, data, field) {
   let newControl = Object.assign({}, state.controls, {
     [field]: data
   })
@@ -234,7 +234,7 @@ function changeControl(state, data, field) {
   })
 }
 
-function changeSetting(state, data, field) {
+function changeSetting (state, data, field) {
   let newSetting = Object.assign({}, state.controlSettings, {
     [field]: data
   })
@@ -244,7 +244,7 @@ function changeSetting(state, data, field) {
   })
 }
 
-function changeConnection(state, data, field) {
+function changeConnection (state, data, field) {
   let newConnection = Object.assign({}, state.connection, {
     [field]: data
   })
@@ -254,7 +254,7 @@ function changeConnection(state, data, field) {
   })
 }
 
-function addToData(state, data, field, section) {
+function addToData (state, data, field, section) {
   let newData
   if (state.controlSettings.keepLastData) {
     newData = [data]
