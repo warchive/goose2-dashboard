@@ -19,7 +19,7 @@ const ECControl = ({
         active={brakeSolenoid}
         disabled={!manual}
         onClick={() => changeBrake(!brakeSolenoid)}>
-        Solenoid </Button>
+        brake </Button>
       <Button
         bsStyle='info'
         bsSize='sm'
