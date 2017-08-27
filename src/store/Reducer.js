@@ -1,7 +1,7 @@
 import Defaults from './Defaults'
 import * as Actions from './Actions'
 
-function changeFrontState(state, field, data) {
+function changeFrontState (state, field, data) {
   return {
     ...state,
     frontState: {

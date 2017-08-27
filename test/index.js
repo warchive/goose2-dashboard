@@ -25,24 +25,7 @@ io.on('connection', client => {
       val
     } = parsed
 
-    if (cmd === 'emg')
-      podState.state = 6
-    else if (cmd === 'brk')
-      podState.brake = Boolean(val[0])
-    else if (cmd === 'battery24')
-      podState.batt24 = Boolean(val[0])
-    else if (cmd === 'battery48')
-      podState.batt48 = Boolean(val[0])
-    else if (cmd === 'spddrive')
-      podState.drive = val[0]
-    else if (cmd === 'bv')
-      podState.bv = Boolean(val[0])
-    else if (cmd === 'spdmag')
-      podState.mag = val[0]
-    else if (cmd === 'state')
-      podState.state = val[0]
-    else if (cmd === 'dpr')
-      podState.dpr = Boolean(val[0])
+    if (cmd === 'emg') { podState.state = 6 } else if (cmd === 'brk') { podState.brake = Boolean(val[0]) } else if (cmd === 'battery24') { podState.batt24 = Boolean(val[0]) } else if (cmd === 'battery48') { podState.batt48 = Boolean(val[0]) } else if (cmd === 'spddrive') { podState.drive = val[0] } else if (cmd === 'bv') { podState.bv = Boolean(val[0]) } else if (cmd === 'spdmag') { podState.mag = val[0] } else if (cmd === 'state') { podState.state = val[0] } else if (cmd === 'dpr') { podState.dpr = Boolean(val[0]) }
   })
 
   setInterval(() => {
