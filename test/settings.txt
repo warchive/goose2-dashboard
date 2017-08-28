@@ -1,1 +1,1 @@
-begin-full-test 50 0
+begin-full-test 50 2 

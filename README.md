@@ -12,6 +12,8 @@
 
 Front end HTML page for controlling the pod
 
+![](http://i.imgur.com/cNU2BZB.gif)
+
 ## See below link for documentation
 
 * [Testing client with test server](https://github.com/teamwaterloop/control-front/tree/master/test)
