@@ -2,7 +2,7 @@ import {
   URL as defaultURL,
   PROMPT_FOR_URL
 } from '../../config'
-const SocketIO = require('socket.io-client')
+import SocketIO from 'socket.io-client'
 
 /**
  * connection used to send/recieve messages from the server

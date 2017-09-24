@@ -56,6 +56,7 @@ Then open dist/index.html
 
 ```text
 ├── dist              - Built files
+├── docs              - Documentation
 ├── events            - Names of broadcasts (from the pod) and commands (to the pod)
 ├── layouts           - Configuration files for the layout of the control panel
 ├── src

@@ -79,8 +79,10 @@ export const SMALL_GRAPH_POINTS = 20
 // How many decimal places values should be rounded to
 export const ROUNDING = 1
 
+// Function that can be imported to round values
 export const roundValue = (val) => Math.round(val * (10 ** ROUNDING)) / 10 ** ROUNDING
 
+// definitions for different state names
 export const STATES = [
   'Man',
   'Standby',

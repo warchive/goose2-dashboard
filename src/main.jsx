@@ -41,6 +41,14 @@ class App extends React.Component {
 
 let store
 
+/**
+ * This next line creates the redux store.
+ * The window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && ...
+ * line basically adds a 'plugin' to the redux store. It allows
+ * for this chrome web extension
+ * https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en
+ * To be used. If you don't have this extensino installed, it might cause a problem
+ */
 if (DEBUG) {   // eslint-disable-line
   store = createStore(
     Reducer,
