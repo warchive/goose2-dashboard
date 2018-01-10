@@ -4,7 +4,7 @@
 
 [build]: https://travis-ci.org/teamwaterloop/control-front
 
-[build-badge]: https://travis-ci.org/teamwaterloop/control-front.svg?branch=master
+[build-badge]: https://travis-ci.org/teamwaterloop/goose2-dashboard.svg?branch=master
 
 [standard]: https://standardjs.com
 
