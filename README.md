@@ -2,9 +2,9 @@
 
 [![Build Status][build-badge]][build] [![Standard code style][standard-badge]][standard]
 
-[build]: https://travis-ci.org/teamwaterloop/control-front
+[build]: https://travis-ci.org/waterloop/control-front
 
-[build-badge]: https://travis-ci.org/teamwaterloop/goose2-dashboard.svg?branch=master
+[build-badge]: https://travis-ci.org/waterloop/goose2-dashboard.svg?branch=master
 
 [standard]: https://standardjs.com
 
